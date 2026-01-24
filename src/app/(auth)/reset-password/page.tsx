@@ -18,7 +18,7 @@ export default function Page() {
         ))}
       </div>
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="reset password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
-      <AuthForm buttonText="submitting...">
+      <AuthForm buttonText="submitting..." buttonLink="/sign-in">
         <div className="flex gap-x-3 items-center px-3 py-1 bg-gray-200 rounded-md">
           <input type="text" name="password" placeholder="Password" className="border-none outline-none w-full p-2" id="" />
           <Eye className="cursor-pointer w-4.5" />
