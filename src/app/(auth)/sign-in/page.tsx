@@ -15,17 +15,17 @@ export default function Page() {
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="sign in" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
       <AuthOption />
       <AuthForm buttonText="log in">
-        <div className="flex gap-x-3 items-center px-3 py-1 bg-gray-200 rounded-md">
-          <input type="text" name="email" placeholder="Email/Mobile Number" className="border-none outline-none w-full p-2" id="" />
+        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
+          <input type="text" name="email" placeholder="Email/Mobile Number" className="border-none bg-transparent text-charcoal-black outline-none w-full p-2 text-sm" id="" />
         </div>
-        <div className="flex gap-x-3 items-center px-3 py-1 bg-gray-200 rounded-md">
-          <input type="text" name="password" placeholder="Password" className="border-none outline-none w-full p-2" id="" />
-          <Eye className="cursor-pointer w-4.5" />
+        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
+          <input type="text" name="password" placeholder="Password" className="border-none bg-transparent text-charcoal-black outline-none w-full p-2 text-sm" id="" />
+          <Eye className="cursor-pointer w-4.5 text-charcoal-black" />
         </div>
-        <AuthNavigateText text="forgot password?" link="/forgot-password" className="text-xs self-end" />
+        <AuthNavigateText text="forgot password?" link="/forgot-password" className="text-xs self-end text-charcoal-black" />
       </AuthForm>
-      <p className="self-start">
-        Dom't have account? <AuthNavigateText text="sign up" link="/sign-up" className="text-blue-600" />
+      <p className="self-start text-sm text-charcoal-black">
+        Don't have account? <AuthNavigateText text="sign up" link="/sign-up" className="text-brownish-amber" />
       </p>
     </section>
   );

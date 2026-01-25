@@ -14,15 +14,15 @@ export default function Page() {
       <AuthBackIcon />
       <div className="flex w-fit gap-x-2 my-14">
         {[0, 1, 2].map((x) => (
-          <div key={x} className={`w-6 border ${x === 1 ? "border-blue-500" : "border-gray-200"}`} />
+          <div key={x} className={`w-6 border ${x === 1 ? "border-brownish-amber" : "border-soft-lavender"}`} />
         ))}
       </div>
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="enter OTP" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
       <AuthForm buttonText="reset password" buttonLink="/reset-password">
         <AuthOTP />
       </AuthForm>
-      <p className="self-start">
-        Didn't get OTP? <span className="capitalize text-blue-600">resend OTP</span>
+      <p className="self-start text-sm text-charcoal-black">
+        Didn't get OTP? <span className="capitalize text-brownish-amber">resend OTP</span>
       </p>
     </section>
   );

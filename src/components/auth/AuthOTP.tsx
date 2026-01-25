@@ -34,7 +34,7 @@ export default function AuthOTP() {
   return (
     <div className="flex justify-center items-center gap-x-3">
       {confirmInput.map((value, index) => (
-        <input key={index} type="number" value={value} onInput={(e: ChangeEvent<HTMLInputElement>) => (e.target.value = e.target.value.slice(0, 1))} onChange={(e) => handleConfirmInput(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} ref={(el) => { confirmRefs.current[index] = el! }} className="text-center bg-[#F3F2ED] rounded-sm outline-none border-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 w-10 h-10 text-xs md:w-14 md:h-14 lg:w-12 lg:h-12 md:text-base" maxLength={1} />
+        <input key={index} type="number" value={value} onInput={(e: ChangeEvent<HTMLInputElement>) => (e.target.value = e.target.value.slice(0, 1))} onChange={(e) => handleConfirmInput(e, index)} onKeyDown={(e) => handleKeyDown(e, index)} ref={(el) => { confirmRefs.current[index] = el! }} className="text-center bg-light-gray text-sm rounded-sm outline-none border-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 w-10 h-10 md:w-14 md:h-14 lg:w-12 lg:h-12 md:text-base" maxLength={1} />
       ))}
     </div>
   );

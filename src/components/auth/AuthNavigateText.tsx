@@ -5,6 +5,6 @@ export default function AuthNavigateText({ text, link, className }: { text: stri
   const router = useRouter();
 
   return (
-    <span className={`capitalize ${className}`} onClick={() => router.push(link)}>{text}</span>
+    <span className={`capitalize cursor-pointer ${className}`} onClick={() => router.push(link)}>{text}</span>
   )
 }

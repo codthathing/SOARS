@@ -14,18 +14,18 @@ export default function Page() {
       <AuthBackIcon />
       <div className="flex w-fit gap-x-2 my-14">
         {[0, 1, 2].map((x) => (
-          <div key={x} className={`w-6 border ${x === 2 ? "border-blue-500" : "border-gray-200"}`} />
+          <div key={x} className={`w-6 border ${x === 2 ? "border-brownish-amber" : "border-soft-lavender"}`} />
         ))}
       </div>
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="reset password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
       <AuthForm buttonText="submitting..." buttonLink="/sign-in">
-        <div className="flex gap-x-3 items-center px-3 py-1 bg-gray-200 rounded-md">
-          <input type="text" name="password" placeholder="Password" className="border-none outline-none w-full p-2" id="" />
-          <Eye className="cursor-pointer w-4.5" />
+        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
+          <input type="text" name="password" placeholder="Password" className="border-none outline-none w-full p-2 text-sm text-charcoal-black" id="" />
+          <Eye className="cursor-pointer w-4.5 text-charcoal-black" />
         </div>
-        <div className="flex gap-x-3 items-center px-3 py-1 bg-gray-200 rounded-md">
-          <input type="text" name="confirm-password" placeholder="Confirm Password" className="border-none outline-none w-full p-2" id="" />
-          <Eye className="cursor-pointer w-4.5" />
+        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
+          <input type="text" name="confirm-password" placeholder="Confirm Password" className="border-none outline-none w-full p-2 text-sm text-charcoal-black" id="" />
+          <Eye className="cursor-pointer w-4.5 text-charcoal-black" />
         </div>
       </AuthForm>
     </section>

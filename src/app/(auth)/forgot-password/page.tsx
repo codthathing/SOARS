@@ -12,12 +12,12 @@ export default function Page() {
     <section className="flex flex-col h-screen px-6 pt-6 items-center">
       <AuthBackIcon />
       <div className="flex w-fit gap-x-2 my-14">
-        {[0, 1, 2].map((x) => <div key={x} className={`w-6 border ${x === 0 ? "border-blue-500" : "border-gray-200"}`} />)}
+        {[0, 1, 2].map((x) => <div key={x} className={`w-6 border ${x === 0 ? "border-brownish-amber" : "border-soft-lavender"}`} />)}
       </div>
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="forgot password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
       <AuthForm buttonText="continue" buttonLink="/otp-verification">
-        <div className="flex gap-x-3 items-center px-3 py-1 bg-gray-200 rounded-md">
-          <input type="text" name="email" placeholder="Email/Mobile Number" className="border-none outline-none w-full p-2" id="" />
+        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
+          <input type="text" name="email" placeholder="Email/Mobile Number" className="border-none outline-none w-full p-2 text-sm text-charcoal-black" id="" />
         </div>
       </AuthForm>
     </section>
