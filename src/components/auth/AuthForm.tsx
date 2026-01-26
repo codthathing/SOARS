@@ -19,7 +19,7 @@ export default function AuthForm({ children, initialValues, validationSchema, bu
       }}
       validationSchema={validationSchema}
       validateOnBlur={false}
-      validateOnChange={false}
+      validateOnChange={true}
     >
       {(formik) => {
         return (
