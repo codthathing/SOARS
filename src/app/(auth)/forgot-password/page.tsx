@@ -1,5 +1,6 @@
 import AuthBackIcon from "@/src/components/auth/AuthBackIcon";
-import AuthForm from "@/src/components/auth/AuthForm";
+import AuthForgotPasswordForm from "@/src/components/auth/AuthForgotPasswordForm";
+import AuthInputField from "@/src/components/auth/AuthInputField";
 import AuthPageDetails from "@/src/components/auth/AuthPageDetails";
 import { Metadata } from "next";
 
@@ -15,11 +16,9 @@ export default function Page() {
         {[0, 1, 2].map((x) => <div key={x} className={`w-6 border ${x === 0 ? "border-brownish-amber" : "border-soft-lavender"}`} />)}
       </div>
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="forgot password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
-      <AuthForm buttonText="continue" buttonLink="/otp-verification">
-        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
-          <input type="text" name="email" placeholder="Email/Mobile Number" className="border-none outline-none w-full p-2 text-sm text-charcoal-black" id="" />
-        </div>
-      </AuthForm>
+      <AuthForgotPasswordForm>
+        <AuthInputField type="email" name="email" placeholder="Email/Mobile Number" />
+      </AuthForgotPasswordForm>
     </section>
   );
 }

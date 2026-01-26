@@ -1,7 +1,7 @@
 import AuthBackIcon from "@/src/components/auth/AuthBackIcon";
-import AuthForm from "@/src/components/auth/AuthForm";
+import AuthInputField from "@/src/components/auth/AuthInputField";
 import AuthPageDetails from "@/src/components/auth/AuthPageDetails";
-import {  Eye } from "lucide-react";
+import AuthResetPasswordForm from "@/src/components/auth/AuthResetPasswordForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,21 +13,13 @@ export default function Page() {
     <section className="flex flex-col h-screen px-6 pt-6 items-center">
       <AuthBackIcon />
       <div className="flex w-fit gap-x-2 my-14">
-        {[0, 1, 2].map((x) => (
-          <div key={x} className={`w-6 border ${x === 2 ? "border-brownish-amber" : "border-soft-lavender"}`} />
-        ))}
+        {[0, 1, 2].map((x) => <div key={x} className={`w-6 border ${x === 2 ? "border-brownish-amber" : "border-soft-lavender"}`} />)}
       </div>
       <AuthPageDetails image="/assets/laptop_subimp.jpg" title="reset password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
-      <AuthForm buttonText="submitting..." buttonLink="/sign-in">
-        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
-          <input type="text" name="password" placeholder="Password" className="border-none outline-none w-full p-2 text-sm text-charcoal-black" id="" />
-          <Eye className="cursor-pointer w-4.5 text-charcoal-black" />
-        </div>
-        <div className="flex gap-x-3 items-center px-3 py-1 has-focus:border has-focus:border-brownish-amber has-focus:bg-soft-lavender bg-light-gray rounded-md">
-          <input type="text" name="confirm-password" placeholder="Confirm Password" className="border-none outline-none w-full p-2 text-sm text-charcoal-black" id="" />
-          <Eye className="cursor-pointer w-4.5 text-charcoal-black" />
-        </div>
-      </AuthForm>
+      <AuthResetPasswordForm>
+        <AuthInputField type="password" name="password" placeholder="Password" />
+        <AuthInputField type="password" name="confirmPassword" placeholder="Confirm Password" />
+      </AuthResetPasswordForm>
     </section>
   );
 }

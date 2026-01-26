@@ -1,8 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { FormikProps } from "formik";
 
-export default function AuthButton({ buttonText, buttonLink }: { buttonText: string; buttonLink?: string }) {
-  const router = useRouter();
-
-  return <input type="button" value={buttonText} onClick={() => router.push(buttonLink || "")} className="capitalize text-white shadow-[0_4px_9px_rgba(0,0,0,0.25)] bg-brownish-amber text-base w-full border-none outline-none py-3 rounded-md" />;
+export default function AuthButton({ buttonText, formik }: { buttonText: string; formik: FormikProps<{ [key: string]: any }> }) {
+  return <input type="submit" value={buttonText} disabled={formik.isSubmitting || !(formik.isValid && formik.dirty)} className="capitalize text-white shadow-[0_4px_9px_rgba(0,0,0,0.25)] disabled:bg-brownish-amber/50 bg-brownish-amber text-base w-full border-none outline-none py-3 rounded-md" />;
 }

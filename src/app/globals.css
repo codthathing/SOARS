@@ -4,16 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-deep-blue: #1E3A8A; /* conveys reliability and security */
   --color-light-gray: #F3F4F6; /* clean, minimal background */
   --color-emerald-green: #10B981; /* highlights success actions like “Save” or “Share" */
-  --color-indigo: #4B0082; /* bold, tech-forward */
   --color-soft-lavender: #E6E6FA; /* approachable and calming */
-  --color-bright-orange: #FF6B35; /* energizes “Organize” and “Archive” actions */
   --color-charcoal-black: #2C2C2C; /* sleek, timeless */
-  --color-sky-blue: #3B82F6; /* openness and communication */
-  --color-coral: #F87171; /* warm, inviting touch for user interactions */
-  --color-soft-mint: #A7F3D0; /* fresh, calming */
   --color-brownish-amber: #D97706;
 }
 
