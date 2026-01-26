@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <section className="flex flex-col h-screen px-6 justify-center items-center">
-      <AuthPageDetails image="/assets/laptop_subimp.jpg" title="sign in" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
+      <AuthPageDetails image="/assets/sign-in.png" title="sign in" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
       <AuthOption />
       <AuthSignInForm>
         <AuthInputField type="email" name="email" placeholder="Email/Mobile Number" />

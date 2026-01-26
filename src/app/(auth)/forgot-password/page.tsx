@@ -15,7 +15,7 @@ export default function Page() {
       <div className="flex w-fit gap-x-2 my-14">
         {[0, 1, 2].map((x) => <div key={x} className={`w-6 border ${x === 0 ? "border-brownish-amber" : "border-soft-lavender"}`} />)}
       </div>
-      <AuthPageDetails image="/assets/laptop_subimp.jpg" title="forgot password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
+      <AuthPageDetails image="/assets/forgot-password.png" title="forgot password" text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, reiciendis perspiciatis provident." />
       <AuthForgotPasswordForm>
         <AuthInputField type="email" name="email" placeholder="Email/Mobile Number" />
       </AuthForgotPasswordForm>
