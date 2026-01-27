@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.push("/sign-in");
+      router.push("/onboarding/0");
     }, 3000);
 
     return () => clearTimeout(timeout);
@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="flex h-dvh items-center justify-center bg-zinc-100">
       <main className="flex flex-col items-center gap-y-0">
-        <Image src={"/assets/app-logo.svg"} alt="App Logo" width={65} height={100} className="w-15 h-40" />
+        <Image src={"/app-logo.svg"} alt="App Logo" width={65} height={100} className="w-15 h-40" />
         <p className="text-2xl font-sans dark:bg-black">SOARS</p>
       </main>
     </div>

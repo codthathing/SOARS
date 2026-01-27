@@ -7,10 +7,10 @@ export default function OnboardingButtons({ currentIndex }: { currentIndex: numb
 
   return (
     <section className="flex justify-between mb-6 items-center">
-      <span className="cursor-pointer" onClick={() => router.push("/sign-in")}>Skip</span>
+      <span className="cursor-pointer text-brownish-amber text-sm" onClick={() => router.push("/sign-in")}>Skip</span>
       <div className="flex gap-x-1">
         {[0, 1, 2, 3].map((x) => (
-          <div key={x} className={`w-2 h-2 rounded-full ${x === currentIndex ? "bg-black" : "bg-gray-300"}`} />
+          <div key={x} className={`w-2 h-2 rounded-full ${x === currentIndex ? "bg-brownish-amber" : "bg-soft-lavender"}`} />
         ))}
       </div>
       <span
@@ -21,7 +21,7 @@ export default function OnboardingButtons({ currentIndex }: { currentIndex: numb
             router.push("/sign-in");
           }
         }}
-        className="font-bold cursor-pointer"
+        className="font-bold text-sm text-brownish-amber cursor-pointer"
       >
         {currentIndex < 3 ? "Next" : "Login"}
       </span>

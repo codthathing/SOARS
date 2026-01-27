@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 const optionsDetails = [
-  { id: 0, image: "/assets/google.svg", text: "google" },
-  { id: 1, image: "/assets/twitter.svg", text: "twitter" },
+  { id: 0, image: "/google.svg", text: "google" },
+  { id: 1, image: "/twitter.svg", text: "twitter" },
 ];
 
 export default function AuthOption() {
