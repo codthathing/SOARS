@@ -74,7 +74,6 @@ export default function AuthOTP() {
             inputMode="numeric"
             pattern="\d*"
             value={value}
-            onInput={(e: ChangeEvent<HTMLInputElement>) => e.target.value = e.target.value.slice(0, 1)}
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmInput(e, index)}
             onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => handleKeyDown(e, index)}
             onPaste={(e: ClipboardEvent<HTMLInputElement>) => handlePaste(e)}
