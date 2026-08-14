@@ -7,7 +7,7 @@ export default function AuthOTP() {
   const confirmRefs = useRef<HTMLInputElement[]>([]);
   const { setFieldValue, setFieldTouched, errors, touched } = useFormikContext<{ otp: string }>();
 
-  const handleConfirmInput = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+  const handleConfirmInput = async (e: ChangeEvent<HTMLInputElement>, index: number) => {
     const value = e.target.value;
     
     if (value.length <= 1 && /^\d*$/.test(value)) {
@@ -16,9 +16,8 @@ export default function AuthOTP() {
       setConfirmInput(newConfirmInput);
 
       const otpValue = newConfirmInput.join("");
-      setFieldValue("otp", otpValue);
-      
-      setFieldTouched("otp", true);
+      await setFieldValue("otp", otpValue);
+      await setFieldTouched("otp", true);
 
       if (value && index < confirmInput.length - 1) {
         confirmRefs.current[index + 1].focus();
@@ -26,7 +25,7 @@ export default function AuthOTP() {
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>, index: number) => {
+  const handleKeyDown = async (e: KeyboardEvent<HTMLInputElement>, index: number) => {
     if (e.key === "Backspace") {
       const newConfirmInput = [...confirmInput];
       
@@ -35,7 +34,7 @@ export default function AuthOTP() {
       } else {
         newConfirmInput[index] = "";
         setConfirmInput(newConfirmInput);
-        setFieldValue("otp", newConfirmInput.join(""));
+        await setFieldValue("otp", newConfirmInput.join(""));
 
       }
     } else if (e.key === "ArrowLeft" && index > 0) {
@@ -45,15 +44,15 @@ export default function AuthOTP() {
     }
   };
 
-  const handlePaste = (e: ClipboardEvent) => {
+  const handlePaste = async (e: ClipboardEvent) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData("text").slice(0, 6);
 
     if (/^\d+$/.test(pastedData)) {
       const newInput = pastedData.split("").concat(Array(6 - pastedData.length).fill(""));
       setConfirmInput(newInput);
-      setFieldValue("otp", pastedData);
-      setFieldTouched("otp", true);
+      await setFieldValue("otp", pastedData);
+      await setFieldTouched("otp", true);
 
       const nextIndex = Math.min(pastedData.length, 5);
       confirmRefs.current[nextIndex]?.focus();

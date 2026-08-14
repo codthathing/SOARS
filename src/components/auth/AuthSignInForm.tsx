@@ -12,5 +12,5 @@ const initialValues = { email: "", password: "" };
 
 export default function AuthSignInForm({ children }: { children: ReactNode; }) {
 
-  return <AuthForm validationSchema={validationSchema} initialValues={initialValues} buttonText="log in">{children}</AuthForm>
+  return <AuthForm validationSchema={validationSchema} initialValues={initialValues} buttonText="log in" buttonLink={"/landing"}>{children}</AuthForm>
 }

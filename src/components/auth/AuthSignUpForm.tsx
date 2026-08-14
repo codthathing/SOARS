@@ -12,5 +12,5 @@ const validationSchema = Yup.object().shape({
 const initialValues = { name: "", email: "", password: "" };
 
 export default function AuthSignUpForm({ children }: { children: ReactNode; }) {
-  return <AuthForm validationSchema={validationSchema} initialValues={initialValues} buttonText="creeate account">{children}</AuthForm>
+  return <AuthForm validationSchema={validationSchema} initialValues={initialValues} buttonText="create account">{children}</AuthForm>
 }

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <section className="flex flex-col h-dvh px-6 pt-6 items-center">
+    <section className="flex flex-col h-dvh px-6 pt-6 items-center md:gap-y-3 lg:w-[65%] lg:mx-auto lg:gap-y-1">
       <AuthBackIcon />
       <div className="flex w-fit gap-x-2 my-14">
         {[0, 1, 2].map((x) => <div key={x} className={`w-6 border ${x === 1 ? "border-brownish-amber" : "border-soft-lavender"}`} />)}
@@ -19,7 +19,7 @@ export default function Page() {
       <AuthOTPVerificationForm>
         <AuthOTP />
       </AuthOTPVerificationForm>
-      <p className="self-start text-sm text-charcoal-black">Didn't get OTP? <span className="capitalize text-brownish-amber">resend OTP</span></p>
+      <p className="self-start text-sm text-charcoal-black md:text-xl lg:text-sm">Didn&apos;t get OTP? <span className="capitalize text-brownish-amber">resend OTP</span></p>
     </section>
   );
 }
