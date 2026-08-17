@@ -1,18 +1,13 @@
+"use client";
 import {Card, CardDescription, CardHeader, CardTitle} from "@/src/components/ui/card";
 import {Bookmark, Folder, Star, Archive} from "lucide-react";
-
-type IconName = keyof typeof ICON_MAP;
+import {useAppSelector} from "@/src/store/store";
 
 const ICON_MAP = { "bookmark": Bookmark, "directory": Folder, "star": Star, "archive": Archive };
 
-const categories: { id: number; icon: IconName; count: number; title: string }[] = [
-  { id: 0, icon: "bookmark", count: 248, title: "total saves" },
-  { id: 1, icon: "directory", count: 12, title: "collections" },
-  { id: 3, icon: "star", count: 34, title: "favorites" },
-  { id: 2, icon: "archive", count: 57, title: "archives" },
-]
-
 export default function HomeCategories() {
+  const categories = useAppSelector((state) => state.categories);
+
   return (
     <div className={"grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-x-2"}>
       {categories.map(({ id, icon, count, title }) => {

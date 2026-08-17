@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <div className="flex h-dvh items-center justify-center bg-light-gray">
       <main className="flex flex-col items-center gap-y-0 md:gap-y-4 lg:gap-y-0">
-        <Image src={"/app-logo.svg"} alt="App Logo" width={65} height={100} className="w-15 h-40 md:w-27.5 md:h-55 lg:w-17.5 lg:h-47.5" />
+        <Image src={"/app-logo.svg"} alt="App Logo" width={65} height={100} loading={"eager"} className="w-15 h-40 md:w-27.5 md:h-55 lg:w-17.5 lg:h-47.5" />
         <p className="text-2xl font-sans dark:bg-black md:text-5xl lg:text-3xl">SOARS</p>
       </main>
     </div>

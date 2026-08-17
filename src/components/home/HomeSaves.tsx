@@ -1,21 +1,14 @@
+"use client";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/src/components/ui/card";
 import { Globe, LinkIcon, MoreVertical, NotepadText, Star, File} from "lucide-react";
 import {Badge} from "@/src/components/ui/badge";
+import {useAppSelector} from "@/src/store/store";
 
-type SavesIconName = keyof typeof SAVES_ICON_MAP;
-
-const SAVES_ICON_MAP = { "link": LinkIcon, "pdf": File, "note": NotepadText };
-
-const saves: { id: number; type: SavesIconName; link?: string; size?: string; edited?: string; title: string; favorite: boolean; tags: string[] }[] = [
-  { id: 0, type: "link", link: "medium", title: "the grammar of the great queen of British colonel", favorite: true, tags: ["design", "reading"] },
-  { id: 1, type: "pdf", size: "2.4 MB", title: "q3 product income for the house of the b4 companies", favorite: false, tags: ["work"] },
-  { id: 2, type: "note", edited: "2d", title: "ideas for the onboarding of the interns at microsoft", favorite: false, tags: ["ideas"] },
-  { id: 3, type: "link", link: "tailwindcss", title: "tailwind css v4 documentation for learners", favorite: true, tags: ["dev"] },
-  { id: 4, type: "link", link: "youtube", title: "color theory crash course for pros", favorite: false, tags: ["design", "learning"] },
-  { id: 5, type: "pdf", size: "1.8 KB", title: "invoice - march product sales", favorite: false, tags: ["finance"] },
-]
+const SAVES_ICON_MAP = { "link": LinkIcon, "file": File, "note": NotepadText };
 
 export default function HomeSaves() {
+  const saves = useAppSelector(state => state.saves);
+
   return (
     <div className={"flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-2"}>
       {saves.map(({ id, type, link, size, edited, title, favorite, tags }) => {
