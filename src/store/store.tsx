@@ -1,4 +1,4 @@
-import {configureStore, createSlice} from "@reduxjs/toolkit";
+import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 type IconName = "bookmark" | "directory" | "star" | "archive";
@@ -35,10 +35,37 @@ const savesSlice = createSlice({
 })
 
 
+
+export const fetchUser = createAsyncThunk("fetch/user", async ({email, password}: {email: string; password?: string}) => {
+  const res = await fetch("/api/users/me", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({email, password})
+  })
+
+  const data = await res.json();
+
+  if (!res.ok) throw new Error(data.error);
+
+  return data;
+})
+
 const userSlice = createSlice({
   name: "user",
-  initialState: { id: "", email: "" },
-  reducers: {}
+  initialState: {
+    user: null,
+    error: false
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    }).addCase(fetchUser.rejected, (state) => {
+      state.error = true;
+    })
+  }
 })
 
 

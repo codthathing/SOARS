@@ -1,126 +1,574 @@
 {
-  "account": [
-    { "id": "663f301d-50ff-4426-b0db-2fbc0034ee33", "email": "akinwunmiolusegun277@gmail.com" },
-    { "id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "email": "chiamaka.okafor91@gmail.com" },
-    { "id": "0223416c-fa0c-417b-a7be-fe3633757200", "email": "tunde.balogun.dev@gmail.com" },
-    { "id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "email": "amara.eze2020@gmail.com" },
-    { "id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "email": "ibrahim.musa.tech@gmail.com" },
-    { "id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "email": "funmilayo.adeyemi@gmail.com" }
+  "users": [
+    {
+      "id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "email": "akinwunmiolusegun277@gmail.com",
+      "password": "$2b$10$AbsqtaJqpNh9aJRcJxZDTuzdd/ZcbB0gV7HCoJpILSNLImGO5R28q"
+    },
+    {
+      "id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "email": "chiamaka.okafor91@gmail.com",
+      "password": ""
+    },
+    {
+      "id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "email": "tunde.balogun.dev@gmail.com",
+      "password": ""
+    },
+    {
+      "id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "email": "amara.eze2020@gmail.com",
+      "password": ""
+    },
+    {
+      "id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "email": "ibrahim.musa.tech@gmail.com",
+      "password": ""
+    },
+    {
+      "id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "email": "funmilayo.adeyemi@gmail.com",
+      "password": ""
+    }
   ],
-
   "collections": [
-    { "id": "80dc68e2-6ea7-49ce-bc04-c03ef7bce059", "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33", "title": "general" },
-    { "id": "7f3a9c21-5e84-4b67-a2d9-8c1f6e3b0475", "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33", "title": "dev contents" },
-
-    { "id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "title": "general" },
-    { "id": "71e8e147-4e43-434d-af9a-86a4e6b981c2", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "title": "recipes" },
-
-    { "id": "96ec09c8-9659-4026-becc-f8b181d44944", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "title": "general" },
-    { "id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "title": "backend notes" },
-
-    { "id": "7ed40e44-83f3-492e-bf5d-cfed388699e6", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "title": "general" },
-    { "id": "75946424-d1ec-46ca-960f-6222f28e58a6", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "title": "fashion inspo" },
-
-    { "id": "5b81ca6f-977c-43cd-b410-aebebbdfaded", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "title": "general" },
-    { "id": "68347688-cd83-41a2-9407-98c658a347ee", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "title": "networking research" },
-
-    { "id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "title": "general" },
-    { "id": "eba76d6e-2767-4a66-8267-cbfb823e3b84", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "title": "school resources" }
+    {
+      "id": "80dc68e2-6ea7-49ce-bc04-c03ef7bce059",
+      "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "title": "general"
+    },
+    {
+      "id": "7f3a9c21-5e84-4b67-a2d9-8c1f6e3b0475",
+      "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "title": "dev contents"
+    },
+    {
+      "id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "title": "general"
+    },
+    {
+      "id": "71e8e147-4e43-434d-af9a-86a4e6b981c2",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "title": "recipes"
+    },
+    {
+      "id": "96ec09c8-9659-4026-becc-f8b181d44944",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "title": "general"
+    },
+    {
+      "id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "title": "backend notes"
+    },
+    {
+      "id": "7ed40e44-83f3-492e-bf5d-cfed388699e6",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "title": "general"
+    },
+    {
+      "id": "75946424-d1ec-46ca-960f-6222f28e58a6",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "title": "fashion inspo"
+    },
+    {
+      "id": "5b81ca6f-977c-43cd-b410-aebebbdfaded",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "title": "general"
+    },
+    {
+      "id": "68347688-cd83-41a2-9407-98c658a347ee",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "title": "networking research"
+    },
+    {
+      "id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "title": "general"
+    },
+    {
+      "id": "eba76d6e-2767-4a66-8267-cbfb823e3b84",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "title": "school resources"
+    }
   ],
-
   "links": [
-    { "id": "9ed10f6c-b37c-4bd7-bb07-062eef603269", "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33", "collection_id": "80dc68e2-6ea7-49ce-bc04-c03ef7bce059", "url": "medium.com", "title": "the grammar of the great queen of british colonel" },
-    { "id": "9d57ad32-69c8-423f-9149-21bbb82e52f2", "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33", "collection_id": "7f3a9c21-5e84-4b67-a2d9-8c1f6e3b0475", "url": "queensdiary.com", "title": "the grammar of the great queen of british colonel" },
-
-    { "id": "81a6e18c-b3fc-499d-9f6e-25a52f5b05b4", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "collection_id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0", "url": "allnigerianrecipes.com", "title": "how to make proper jollof rice" },
-    { "id": "90e9f2f6-5b48-45aa-9bff-dcba573d6e9d", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "collection_id": "71e8e147-4e43-434d-af9a-86a4e6b981c2", "url": "food24.com", "title": "5 soups every naija kitchen needs" },
-
-    { "id": "56277017-3e8a-40ba-9e84-f09bbf6be354", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "collection_id": "96ec09c8-9659-4026-becc-f8b181d44944", "url": "freecodecamp.org", "title": "understanding database indexing" },
-    { "id": "4fb29b70-282b-4f0f-ad8b-88dd25c5628f", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "collection_id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3", "url": "postgresql.org", "title": "postgres foreign key constraints" },
-
-    { "id": "5de60d64-3f79-4970-8a32-0ad8f1b02c07", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "collection_id": "7ed40e44-83f3-492e-bf5d-cfed388699e6", "url": "vogue.com", "title": "ankara styles trending this season" },
-    { "id": "af57bc2b-6e55-4336-ae19-e2934951223e", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "collection_id": "75946424-d1ec-46ca-960f-6222f28e58a6", "url": "bellanaija.com", "title": "lagos fashion week highlights" },
-
-    { "id": "6ae69b50-52e8-4f79-8e63-78b8077b39df", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "collection_id": "5b81ca6f-977c-43cd-b410-aebebbdfaded", "url": "cloudflare.com", "title": "how tcp handshakes actually work" },
-    { "id": "d8c3a8fe-00d9-4ce1-bdf8-7b1be2034608", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "collection_id": "68347688-cd83-41a2-9407-98c658a347ee", "url": "cisco.com", "title": "subnetting for beginners" },
-
-    { "id": "dc1f31dd-0c4b-4c11-99f1-37a5c967f5f1", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "collection_id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077", "url": "khanacademy.org", "title": "intro to linear algebra" },
-    { "id": "8a865a43-2bf5-487d-b57b-e67417f116c4", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "collection_id": "eba76d6e-2767-4a66-8267-cbfb823e3b84", "url": "coursera.org", "title": "data structures crash course" }
+    {
+      "id": "9ed10f6c-b37c-4bd7-bb07-062eef603269",
+      "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "collection_id": "80dc68e2-6ea7-49ce-bc04-c03ef7bce059",
+      "url": "medium.com",
+      "title": "the grammar of the great queen of british colonel"
+    },
+    {
+      "id": "9d57ad32-69c8-423f-9149-21bbb82e52f2",
+      "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "collection_id": "7f3a9c21-5e84-4b67-a2d9-8c1f6e3b0475",
+      "url": "queensdiary.com",
+      "title": "the grammar of the great queen of british colonel"
+    },
+    {
+      "id": "81a6e18c-b3fc-499d-9f6e-25a52f5b05b4",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "collection_id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0",
+      "url": "allnigerianrecipes.com",
+      "title": "how to make proper jollof rice"
+    },
+    {
+      "id": "90e9f2f6-5b48-45aa-9bff-dcba573d6e9d",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "collection_id": "71e8e147-4e43-434d-af9a-86a4e6b981c2",
+      "url": "food24.com",
+      "title": "5 soups every naija kitchen needs"
+    },
+    {
+      "id": "56277017-3e8a-40ba-9e84-f09bbf6be354",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "collection_id": "96ec09c8-9659-4026-becc-f8b181d44944",
+      "url": "freecodecamp.org",
+      "title": "understanding database indexing"
+    },
+    {
+      "id": "4fb29b70-282b-4f0f-ad8b-88dd25c5628f",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "collection_id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3",
+      "url": "postgresql.org",
+      "title": "postgres foreign key constraints"
+    },
+    {
+      "id": "5de60d64-3f79-4970-8a32-0ad8f1b02c07",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "collection_id": "7ed40e44-83f3-492e-bf5d-cfed388699e6",
+      "url": "vogue.com",
+      "title": "ankara styles trending this season"
+    },
+    {
+      "id": "af57bc2b-6e55-4336-ae19-e2934951223e",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "collection_id": "75946424-d1ec-46ca-960f-6222f28e58a6",
+      "url": "bellanaija.com",
+      "title": "lagos fashion week highlights"
+    },
+    {
+      "id": "6ae69b50-52e8-4f79-8e63-78b8077b39df",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "collection_id": "5b81ca6f-977c-43cd-b410-aebebbdfaded",
+      "url": "cloudflare.com",
+      "title": "how tcp handshakes actually work"
+    },
+    {
+      "id": "d8c3a8fe-00d9-4ce1-bdf8-7b1be2034608",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "collection_id": "68347688-cd83-41a2-9407-98c658a347ee",
+      "url": "cisco.com",
+      "title": "subnetting for beginners"
+    },
+    {
+      "id": "dc1f31dd-0c4b-4c11-99f1-37a5c967f5f1",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "collection_id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077",
+      "url": "khanacademy.org",
+      "title": "intro to linear algebra"
+    },
+    {
+      "id": "8a865a43-2bf5-487d-b57b-e67417f116c4",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "collection_id": "eba76d6e-2767-4a66-8267-cbfb823e3b84",
+      "url": "coursera.org",
+      "title": "data structures crash course"
+    }
   ],
-
   "files": [
-    { "id": "c72a102f-45b9-4609-956f-a44ed9dca68a", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "collection_id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0", "storage_key": "users/5c1328c9/receipts/market-run-aug.pdf", "title": "market run receipt", "original_filename": "market-run-aug.pdf", "mime_type": "application/pdf", "size_bytes": 184320, "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b85", "created_at": "2026-08-02T09:12:00Z", "updated_at": "2026-08-02T09:12:00Z" },
-    { "id": "e3668879-b5b5-4e03-bc8c-316d8465c37c", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "collection_id": "71e8e147-4e43-434d-af9a-86a4e6b981c2", "storage_key": "users/5c1328c9/recipes/jollof-notes.docx", "title": "jollof recipe notes", "original_filename": "jollof-notes.docx", "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "size_bytes": 45210, "checksum": "1f3870be274f6c49b3e31a0c6728957f8b6cea468953e5aa3f26f83a0e83f11", "created_at": "2026-07-28T16:40:00Z", "updated_at": "2026-08-05T11:02:00Z" },
-
-    { "id": "ab479aaa-ba2a-407c-9323-7d1b2c101b5e", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "collection_id": "96ec09c8-9659-4026-becc-f8b181d44944", "storage_key": "users/0223416c/misc/cv-2026.pdf", "title": "updated cv", "original_filename": "cv-2026.pdf", "mime_type": "application/pdf", "size_bytes": 98304, "checksum": "9e107d9d372bb6826bd81d3542a419d6f9b76b0e1e5a3e9b3f6a1d7b1f2e0aa", "created_at": "2026-06-10T08:30:00Z", "updated_at": "2026-07-15T13:20:00Z" },
-    { "id": "2a5363f3-97e9-444c-8894-c210620d09f4", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "collection_id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3", "storage_key": "users/0223416c/backend/erd-diagram.png", "title": "project erd diagram", "original_filename": "erd-diagram.png", "mime_type": "image/png", "size_bytes": 312450, "checksum": "6dcd4ce23d88e2ee9568ba546c007c63d9131c1b83085202a41e37c3fa5c1c5", "created_at": "2026-07-01T10:05:00Z", "updated_at": "2026-07-01T10:05:00Z" },
-
-    { "id": "38c1d660-875c-4f12-b753-d3ea7c4a9c4e", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "collection_id": "7ed40e44-83f3-492e-bf5d-cfed388699e6", "storage_key": "users/83c56ff3/misc/rent-agreement.pdf", "title": "rent agreement", "original_filename": "rent-agreement.pdf", "mime_type": "application/pdf", "size_bytes": 512000, "checksum": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab3", "created_at": "2026-05-20T12:00:00Z", "updated_at": "2026-05-20T12:00:00Z" },
-    { "id": "8889c2a8-cfb2-4785-93b3-45902fe9f199", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "collection_id": "75946424-d1ec-46ca-960f-6222f28e58a6", "storage_key": "users/83c56ff3/fashion/moodboard.png", "title": "ankara moodboard", "original_filename": "moodboard.png", "mime_type": "image/png", "size_bytes": 890112, "checksum": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fc", "created_at": "2026-08-10T14:45:00Z", "updated_at": "2026-08-10T14:45:00Z" },
-
-    { "id": "6fa19fe8-1620-4d4e-8308-69c2b55d4525", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "collection_id": "5b81ca6f-977c-43cd-b410-aebebbdfaded", "storage_key": "users/54c1ad52/misc/id-card-scan.pdf", "title": "id card scan", "original_filename": "id-card-scan.pdf", "mime_type": "application/pdf", "size_bytes": 152300, "checksum": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e", "created_at": "2026-06-01T09:00:00Z", "updated_at": "2026-06-01T09:00:00Z" },
-    { "id": "ead33e71-0d18-4114-8d12-ea8ebde55fb9", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "collection_id": "68347688-cd83-41a2-9407-98c658a347ee", "storage_key": "users/54c1ad52/networking/subnet-cheatsheet.xlsx", "title": "subnetting cheatsheet", "original_filename": "subnet-cheatsheet.xlsx", "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "size_bytes": 28900, "checksum": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39", "created_at": "2026-07-22T17:10:00Z", "updated_at": "2026-08-03T19:55:00Z" },
-
-    { "id": "f7c2e021-31b9-42b9-b8ca-195dbceb716d", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "collection_id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077", "storage_key": "users/afb7a860/misc/school-fee-receipt.pdf", "title": "school fee receipt", "original_filename": "school-fee-receipt.pdf", "mime_type": "application/pdf", "size_bytes": 76800, "checksum": "3b6c5f2e1a4d8c9b0e7f6a5d4c3b2a1908f7e6d5c4b3a2918f7e6d5c4b3a291", "created_at": "2026-08-01T08:00:00Z", "updated_at": "2026-08-01T08:00:00Z" },
-    { "id": "1a548eb8-6ac0-4976-bb56-5950f7c59d83", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "collection_id": "eba76d6e-2767-4a66-8267-cbfb823e3b84", "storage_key": "users/afb7a860/school/algebra-slides.pptx", "title": "linear algebra slides", "original_filename": "algebra-slides.pptx", "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation", "size_bytes": 1048576, "checksum": "8a1c2b3d4e5f6071829f0e1d2c3b4a5968778695a4b3c2d1e0f9e8d7c6b5a49", "created_at": "2026-07-19T13:25:00Z", "updated_at": "2026-07-30T20:10:00Z" }
+    {
+      "id": "c72a102f-45b9-4609-956f-a44ed9dca68a",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "collection_id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0",
+      "storage_key": "users/5c1328c9/receipts/market-run-aug.pdf",
+      "title": "market run receipt",
+      "original_filename": "market-run-aug.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 184320,
+      "checksum": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b85",
+      "created_at": "2026-08-02T09:12:00Z",
+      "updated_at": "2026-08-02T09:12:00Z"
+    },
+    {
+      "id": "e3668879-b5b5-4e03-bc8c-316d8465c37c",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "collection_id": "71e8e147-4e43-434d-af9a-86a4e6b981c2",
+      "storage_key": "users/5c1328c9/recipes/jollof-notes.docx",
+      "title": "jollof recipe notes",
+      "original_filename": "jollof-notes.docx",
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "size_bytes": 45210,
+      "checksum": "1f3870be274f6c49b3e31a0c6728957f8b6cea468953e5aa3f26f83a0e83f11",
+      "created_at": "2026-07-28T16:40:00Z",
+      "updated_at": "2026-08-05T11:02:00Z"
+    },
+    {
+      "id": "ab479aaa-ba2a-407c-9323-7d1b2c101b5e",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "collection_id": "96ec09c8-9659-4026-becc-f8b181d44944",
+      "storage_key": "users/0223416c/misc/cv-2026.pdf",
+      "title": "updated cv",
+      "original_filename": "cv-2026.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 98304,
+      "checksum": "9e107d9d372bb6826bd81d3542a419d6f9b76b0e1e5a3e9b3f6a1d7b1f2e0aa",
+      "created_at": "2026-06-10T08:30:00Z",
+      "updated_at": "2026-07-15T13:20:00Z"
+    },
+    {
+      "id": "2a5363f3-97e9-444c-8894-c210620d09f4",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "collection_id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3",
+      "storage_key": "users/0223416c/backend/erd-diagram.png",
+      "title": "project erd diagram",
+      "original_filename": "erd-diagram.png",
+      "mime_type": "image/png",
+      "size_bytes": 312450,
+      "checksum": "6dcd4ce23d88e2ee9568ba546c007c63d9131c1b83085202a41e37c3fa5c1c5",
+      "created_at": "2026-07-01T10:05:00Z",
+      "updated_at": "2026-07-01T10:05:00Z"
+    },
+    {
+      "id": "38c1d660-875c-4f12-b753-d3ea7c4a9c4e",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "collection_id": "7ed40e44-83f3-492e-bf5d-cfed388699e6",
+      "storage_key": "users/83c56ff3/misc/rent-agreement.pdf",
+      "title": "rent agreement",
+      "original_filename": "rent-agreement.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 512000,
+      "checksum": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab3",
+      "created_at": "2026-05-20T12:00:00Z",
+      "updated_at": "2026-05-20T12:00:00Z"
+    },
+    {
+      "id": "8889c2a8-cfb2-4785-93b3-45902fe9f199",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "collection_id": "75946424-d1ec-46ca-960f-6222f28e58a6",
+      "storage_key": "users/83c56ff3/fashion/moodboard.png",
+      "title": "ankara moodboard",
+      "original_filename": "moodboard.png",
+      "mime_type": "image/png",
+      "size_bytes": 890112,
+      "checksum": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fc",
+      "created_at": "2026-08-10T14:45:00Z",
+      "updated_at": "2026-08-10T14:45:00Z"
+    },
+    {
+      "id": "6fa19fe8-1620-4d4e-8308-69c2b55d4525",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "collection_id": "5b81ca6f-977c-43cd-b410-aebebbdfaded",
+      "storage_key": "users/54c1ad52/misc/id-card-scan.pdf",
+      "title": "id card scan",
+      "original_filename": "id-card-scan.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 152300,
+      "checksum": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e",
+      "created_at": "2026-06-01T09:00:00Z",
+      "updated_at": "2026-06-01T09:00:00Z"
+    },
+    {
+      "id": "ead33e71-0d18-4114-8d12-ea8ebde55fb9",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "collection_id": "68347688-cd83-41a2-9407-98c658a347ee",
+      "storage_key": "users/54c1ad52/networking/subnet-cheatsheet.xlsx",
+      "title": "subnetting cheatsheet",
+      "original_filename": "subnet-cheatsheet.xlsx",
+      "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "size_bytes": 28900,
+      "checksum": "ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39",
+      "created_at": "2026-07-22T17:10:00Z",
+      "updated_at": "2026-08-03T19:55:00Z"
+    },
+    {
+      "id": "f7c2e021-31b9-42b9-b8ca-195dbceb716d",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "collection_id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077",
+      "storage_key": "users/afb7a860/misc/school-fee-receipt.pdf",
+      "title": "school fee receipt",
+      "original_filename": "school-fee-receipt.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 76800,
+      "checksum": "3b6c5f2e1a4d8c9b0e7f6a5d4c3b2a1908f7e6d5c4b3a2918f7e6d5c4b3a291",
+      "created_at": "2026-08-01T08:00:00Z",
+      "updated_at": "2026-08-01T08:00:00Z"
+    },
+    {
+      "id": "1a548eb8-6ac0-4976-bb56-5950f7c59d83",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "collection_id": "eba76d6e-2767-4a66-8267-cbfb823e3b84",
+      "storage_key": "users/afb7a860/school/algebra-slides.pptx",
+      "title": "linear algebra slides",
+      "original_filename": "algebra-slides.pptx",
+      "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      "size_bytes": 1048576,
+      "checksum": "8a1c2b3d4e5f6071829f0e1d2c3b4a5968778695a4b3c2d1e0f9e8d7c6b5a49",
+      "created_at": "2026-07-19T13:25:00Z",
+      "updated_at": "2026-07-30T20:10:00Z"
+    }
   ],
-
   "notes": [
-    { "id": "1007df77-e735-456f-9725-04fd27cd27ae", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "collection_id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0", "slug": "market-list-august", "title": "things to buy at the market", "content": "Tomatoes, pepper, onions, crayfish, palm oil, garri.", "created_at": "2026-08-05T07:00:00Z", "updated_at": "2026-08-14T18:30:00Z" },
-    { "id": "8e7f6355-9fab-462c-bb5b-9982829cb373", "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659", "collection_id": "71e8e147-4e43-434d-af9a-86a4e6b981c2", "slug": "egusi-soup-steps", "title": "egusi soup steps", "content": "1. Blend egusi seeds. 2. Fry with palm oil. 3. Add stock, cook 20 mins. 4. Add spinach, season.", "created_at": "2026-07-30T15:00:00Z", "updated_at": "2026-07-30T15:00:00Z" },
-
-    { "id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "collection_id": "96ec09c8-9659-4026-becc-f8b181d44944", "slug": "interview-prep", "title": "interview prep notes", "content": "Review system design basics, practice SQL joins, prep behavioral answers.", "created_at": "2026-06-12T10:00:00Z", "updated_at": "2026-08-16T09:15:00Z" },
-    { "id": "6c96e476-0406-43dc-9835-7781f9a4ecf6", "u_id": "0223416c-fa0c-417b-a7be-fe3633757200", "collection_id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3", "slug": "db-indexing-notes", "title": "database indexing notes", "content": "B-tree indexes speed up WHERE and JOIN lookups but slow down writes. Index selectively.", "created_at": "2026-07-02T11:20:00Z", "updated_at": "2026-07-20T14:00:00Z" },
-
-    { "id": "eac170f8-7ae1-41a7-8d2f-2d30a5719cff", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "collection_id": "7ed40e44-83f3-492e-bf5d-cfed388699e6", "slug": "apartment-hunt", "title": "apartment hunting notes", "content": "Check Lekki and Yaba listings, budget under 1.5m/year, must have backup power.", "created_at": "2026-05-15T09:00:00Z", "updated_at": "2026-05-22T16:45:00Z" },
-    { "id": "8fd0a46c-3d07-45a2-8b80-f4f88a0cbadf", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "collection_id": "75946424-d1ec-46ca-960f-6222f28e58a6", "slug": "tailor-measurements", "title": "tailor measurements", "content": "Bust 34, waist 28, hip 36, sleeve 22.", "created_at": "2026-08-09T12:30:00Z", "updated_at": "2026-08-09T12:30:00Z" },
-
-    { "id": "180b4b32-0293-48ed-ae04-9ca8cb1b55dd", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "collection_id": "5b81ca6f-977c-43cd-b410-aebebbdfaded", "slug": "daily-todo", "title": "daily todo list", "content": "Fix router config, submit assignment, call ISP about downtime.", "created_at": "2026-08-15T06:00:00Z", "updated_at": "2026-08-16T21:00:00Z" },
-    { "id": "cec7e586-4439-427e-ab45-631e098757c3", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "collection_id": "68347688-cd83-41a2-9407-98c658a347ee", "slug": "osi-model-summary", "title": "osi model summary", "content": "7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application.", "created_at": "2026-06-25T13:00:00Z", "updated_at": "2026-06-25T13:00:00Z" },
-
-    { "id": "33368c2f-0362-49a8-86cf-d52142850d01", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "collection_id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077", "slug": "study-plan", "title": "exam study plan", "content": "Mon-Tue: linear algebra. Wed-Thu: data structures. Fri: past questions.", "created_at": "2026-08-11T08:00:00Z", "updated_at": "2026-08-17T07:45:00Z" },
-    { "id": "fbf06e8b-8e7f-415c-b550-dfd93f3cbbbd", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "collection_id": "eba76d6e-2767-4a66-8267-cbfb823e3b84", "slug": "matrix-formulas", "title": "matrix formula reference", "content": "Determinant, inverse, eigenvalues formulas for 2x2 and 3x3 matrices.", "created_at": "2026-07-28T10:00:00Z", "updated_at": "2026-07-28T10:00:00Z" }
+    {
+      "id": "1007df77-e735-456f-9725-04fd27cd27ae",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "collection_id": "7849b2e6-e383-4a79-a3a0-80ed231e26a0",
+      "slug": "market-list-august",
+      "title": "things to buy at the market",
+      "content": "Tomatoes, pepper, onions, crayfish, palm oil, garri.",
+      "created_at": "2026-08-05T07:00:00Z",
+      "updated_at": "2026-08-14T18:30:00Z"
+    },
+    {
+      "id": "8e7f6355-9fab-462c-bb5b-9982829cb373",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "collection_id": "71e8e147-4e43-434d-af9a-86a4e6b981c2",
+      "slug": "egusi-soup-steps",
+      "title": "egusi soup steps",
+      "content": "1. Blend egusi seeds. 2. Fry with palm oil. 3. Add stock, cook 20 mins. 4. Add spinach, season.",
+      "created_at": "2026-07-30T15:00:00Z",
+      "updated_at": "2026-07-30T15:00:00Z"
+    },
+    {
+      "id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "collection_id": "96ec09c8-9659-4026-becc-f8b181d44944",
+      "slug": "interview-prep",
+      "title": "interview prep notes",
+      "content": "Review system design basics, practice SQL joins, prep behavioral answers.",
+      "created_at": "2026-06-12T10:00:00Z",
+      "updated_at": "2026-08-16T09:15:00Z"
+    },
+    {
+      "id": "6c96e476-0406-43dc-9835-7781f9a4ecf6",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "collection_id": "6d78be46-d2c2-4354-8cdb-fab388ac08a3",
+      "slug": "db-indexing-notes",
+      "title": "database indexing notes",
+      "content": "B-tree indexes speed up WHERE and JOIN lookups but slow down writes. Index selectively.",
+      "created_at": "2026-07-02T11:20:00Z",
+      "updated_at": "2026-07-20T14:00:00Z"
+    },
+    {
+      "id": "eac170f8-7ae1-41a7-8d2f-2d30a5719cff",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "collection_id": "7ed40e44-83f3-492e-bf5d-cfed388699e6",
+      "slug": "apartment-hunt",
+      "title": "apartment hunting notes",
+      "content": "Check Lekki and Yaba listings, budget under 1.5m/year, must have backup power.",
+      "created_at": "2026-05-15T09:00:00Z",
+      "updated_at": "2026-05-22T16:45:00Z"
+    },
+    {
+      "id": "8fd0a46c-3d07-45a2-8b80-f4f88a0cbadf",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "collection_id": "75946424-d1ec-46ca-960f-6222f28e58a6",
+      "slug": "tailor-measurements",
+      "title": "tailor measurements",
+      "content": "Bust 34, waist 28, hip 36, sleeve 22.",
+      "created_at": "2026-08-09T12:30:00Z",
+      "updated_at": "2026-08-09T12:30:00Z"
+    },
+    {
+      "id": "180b4b32-0293-48ed-ae04-9ca8cb1b55dd",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "collection_id": "5b81ca6f-977c-43cd-b410-aebebbdfaded",
+      "slug": "daily-todo",
+      "title": "daily todo list",
+      "content": "Fix router config, submit assignment, call ISP about downtime.",
+      "created_at": "2026-08-15T06:00:00Z",
+      "updated_at": "2026-08-16T21:00:00Z"
+    },
+    {
+      "id": "cec7e586-4439-427e-ab45-631e098757c3",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "collection_id": "68347688-cd83-41a2-9407-98c658a347ee",
+      "slug": "osi-model-summary",
+      "title": "osi model summary",
+      "content": "7 layers: Physical, Data Link, Network, Transport, Session, Presentation, Application.",
+      "created_at": "2026-06-25T13:00:00Z",
+      "updated_at": "2026-06-25T13:00:00Z"
+    },
+    {
+      "id": "33368c2f-0362-49a8-86cf-d52142850d01",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "collection_id": "d34613c4-17ff-4b23-b6c4-bab23c4c3077",
+      "slug": "study-plan",
+      "title": "exam study plan",
+      "content": "Mon-Tue: linear algebra. Wed-Thu: data structures. Fri: past questions.",
+      "created_at": "2026-08-11T08:00:00Z",
+      "updated_at": "2026-08-17T07:45:00Z"
+    },
+    {
+      "id": "fbf06e8b-8e7f-415c-b550-dfd93f3cbbbd",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "collection_id": "eba76d6e-2767-4a66-8267-cbfb823e3b84",
+      "slug": "matrix-formulas",
+      "title": "matrix formula reference",
+      "content": "Determinant, inverse, eigenvalues formulas for 2x2 and 3x3 matrices.",
+      "created_at": "2026-07-28T10:00:00Z",
+      "updated_at": "2026-07-28T10:00:00Z"
+    }
   ],
-
   "note_versions": [
-    { "id": 1, "note_id": "1007df77-e735-456f-9725-04fd27cd27ae", "content": "Tomatoes, pepper, onions.", "edited_at": "2026-08-05T07:00:00Z" },
-    { "id": 2, "note_id": "1007df77-e735-456f-9725-04fd27cd27ae", "content": "Tomatoes, pepper, onions, crayfish.", "edited_at": "2026-08-10T12:00:00Z" },
-    { "id": 3, "note_id": "1007df77-e735-456f-9725-04fd27cd27ae", "content": "Tomatoes, pepper, onions, crayfish, palm oil, garri.", "edited_at": "2026-08-14T18:30:00Z" },
-
-    { "id": 4, "note_id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb", "content": "Review system design basics.", "edited_at": "2026-06-12T10:00:00Z" },
-    { "id": 5, "note_id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb", "content": "Review system design basics, practice SQL joins.", "edited_at": "2026-07-30T09:00:00Z" },
-    { "id": 6, "note_id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb", "content": "Review system design basics, practice SQL joins, prep behavioral answers.", "edited_at": "2026-08-16T09:15:00Z" },
-
-    { "id": 7, "note_id": "180b4b32-0293-48ed-ae04-9ca8cb1b55dd", "content": "Fix router config.", "edited_at": "2026-08-15T06:00:00Z" },
-    { "id": 8, "note_id": "180b4b32-0293-48ed-ae04-9ca8cb1b55dd", "content": "Fix router config, submit assignment, call ISP about downtime.", "edited_at": "2026-08-16T21:00:00Z" },
-
-    { "id": 9, "note_id": "33368c2f-0362-49a8-86cf-d52142850d01", "content": "Mon-Tue: linear algebra.", "edited_at": "2026-08-11T08:00:00Z" },
-    { "id": 10, "note_id": "33368c2f-0362-49a8-86cf-d52142850d01", "content": "Mon-Tue: linear algebra. Wed-Thu: data structures.", "edited_at": "2026-08-14T10:00:00Z" },
-    { "id": 11, "note_id": "33368c2f-0362-49a8-86cf-d52142850d01", "content": "Mon-Tue: linear algebra. Wed-Thu: data structures. Fri: past questions.", "edited_at": "2026-08-17T07:45:00Z" }
+    {
+      "id": 1,
+      "note_id": "1007df77-e735-456f-9725-04fd27cd27ae",
+      "content": "Tomatoes, pepper, onions.",
+      "edited_at": "2026-08-05T07:00:00Z"
+    },
+    {
+      "id": 2,
+      "note_id": "1007df77-e735-456f-9725-04fd27cd27ae",
+      "content": "Tomatoes, pepper, onions, crayfish.",
+      "edited_at": "2026-08-10T12:00:00Z"
+    },
+    {
+      "id": 3,
+      "note_id": "1007df77-e735-456f-9725-04fd27cd27ae",
+      "content": "Tomatoes, pepper, onions, crayfish, palm oil, garri.",
+      "edited_at": "2026-08-14T18:30:00Z"
+    },
+    {
+      "id": 4,
+      "note_id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb",
+      "content": "Review system design basics.",
+      "edited_at": "2026-06-12T10:00:00Z"
+    },
+    {
+      "id": 5,
+      "note_id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb",
+      "content": "Review system design basics, practice SQL joins.",
+      "edited_at": "2026-07-30T09:00:00Z"
+    },
+    {
+      "id": 6,
+      "note_id": "d840409f-55c0-453f-88a0-b53c2a0c2fcb",
+      "content": "Review system design basics, practice SQL joins, prep behavioral answers.",
+      "edited_at": "2026-08-16T09:15:00Z"
+    },
+    {
+      "id": 7,
+      "note_id": "180b4b32-0293-48ed-ae04-9ca8cb1b55dd",
+      "content": "Fix router config.",
+      "edited_at": "2026-08-15T06:00:00Z"
+    },
+    {
+      "id": 8,
+      "note_id": "180b4b32-0293-48ed-ae04-9ca8cb1b55dd",
+      "content": "Fix router config, submit assignment, call ISP about downtime.",
+      "edited_at": "2026-08-16T21:00:00Z"
+    },
+    {
+      "id": 9,
+      "note_id": "33368c2f-0362-49a8-86cf-d52142850d01",
+      "content": "Mon-Tue: linear algebra.",
+      "edited_at": "2026-08-11T08:00:00Z"
+    },
+    {
+      "id": 10,
+      "note_id": "33368c2f-0362-49a8-86cf-d52142850d01",
+      "content": "Mon-Tue: linear algebra. Wed-Thu: data structures.",
+      "edited_at": "2026-08-14T10:00:00Z"
+    },
+    {
+      "id": 11,
+      "note_id": "33368c2f-0362-49a8-86cf-d52142850d01",
+      "content": "Mon-Tue: linear algebra. Wed-Thu: data structures. Fri: past questions.",
+      "edited_at": "2026-08-17T07:45:00Z"
+    }
   ],
-
   "tags": [
-    { "id": 1, "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269", "type": "link", "tag": "design" },
-    { "id": 2, "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269", "type": "link", "tag": "reading" },
-    { "id": 3, "resource_id": "56277017-3e8a-40ba-9e84-f09bbf6be354", "type": "link", "tag": "backend" },
-    { "id": 4, "resource_id": "6c96e476-0406-43dc-9835-7781f9a4ecf6", "type": "note", "tag": "database" },
-    { "id": 5, "resource_id": "6fa19fe8-1620-4d4e-8308-69c2b55d4525", "type": "file", "tag": "identity" }
+    {
+      "id": 1,
+      "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269",
+      "type": "link",
+      "tag": "design"
+    },
+    {
+      "id": 2,
+      "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269",
+      "type": "link",
+      "tag": "reading"
+    },
+    {
+      "id": 3,
+      "resource_id": "56277017-3e8a-40ba-9e84-f09bbf6be354",
+      "type": "link",
+      "tag": "backend"
+    },
+    {
+      "id": 4,
+      "resource_id": "6c96e476-0406-43dc-9835-7781f9a4ecf6",
+      "type": "note",
+      "tag": "database"
+    },
+    {
+      "id": 5,
+      "resource_id": "6fa19fe8-1620-4d4e-8308-69c2b55d4525",
+      "type": "file",
+      "tag": "identity"
+    }
   ],
-
   "favorites": [
-    { "id": 1, "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269", "u_id" : "663f301d-50ff-4426-b0db-2fbc0034ee33", "type": "link" },
-    { "id": 2, "resource_id": "8e7f6355-9fab-462c-bb5b-9982829cb373", "u_id":  "5c1328c9-412f-45c3-9f77-85ab74b2d659", "type": "note" },
-    { "id": 3, "resource_id": "ab479aaa-ba2a-407c-9323-7d1b2c101b5e", "u_id":  "0223416c-fa0c-417b-a7be-fe3633757200", "type": "file" },
-    { "id": 4, "resource_id": "af57bc2b-6e55-4336-ae19-e2934951223e", "u_id":  "83c56ff3-63e1-4552-bd3a-a6610100decc", "type": "link" },
-    { "id": 5, "resource_id": "cec7e586-4439-427e-ab45-631e098757c3", "u_id":  "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "type": "note" }
+    {
+      "id": 1,
+      "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269",
+      "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "type": "link"
+    },
+    {
+      "id": 2,
+      "resource_id": "8e7f6355-9fab-462c-bb5b-9982829cb373",
+      "u_id": "5c1328c9-412f-45c3-9f77-85ab74b2d659",
+      "type": "note"
+    },
+    {
+      "id": 3,
+      "resource_id": "ab479aaa-ba2a-407c-9323-7d1b2c101b5e",
+      "u_id": "0223416c-fa0c-417b-a7be-fe3633757200",
+      "type": "file"
+    },
+    {
+      "id": 4,
+      "resource_id": "af57bc2b-6e55-4336-ae19-e2934951223e",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "type": "link"
+    },
+    {
+      "id": 5,
+      "resource_id": "cec7e586-4439-427e-ab45-631e098757c3",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "type": "note"
+    }
   ],
-
   "archive": [
-    { "id": 1, "resource_id": "d8c3a8fe-00d9-4ce1-bdf8-7b1be2034608", "type": "link", "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d", "archived_at": "2026-07-02T10:15:00Z" },
-    { "id": 2, "resource_id": "eac170f8-7ae1-41a7-8d2f-2d30a5719cff", "type": "note", "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc", "archived_at": "2026-07-18T09:40:00Z" }
+    {
+      "id": 1,
+      "resource_id": "d8c3a8fe-00d9-4ce1-bdf8-7b1be2034608",
+      "type": "link",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "archived_at": "2026-07-02T10:15:00Z"
+    },
+    {
+      "id": 2,
+      "resource_id": "eac170f8-7ae1-41a7-8d2f-2d30a5719cff",
+      "type": "note",
+      "u_id": "83c56ff3-63e1-4552-bd3a-a6610100decc",
+      "archived_at": "2026-07-18T09:40:00Z"
+    }
   ],
-
   "trash": [
-    { "id": 1, "resource_id": "8a865a43-2bf5-487d-b57b-e67417f116c4", "type": "link", "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01", "deleted_at": "2026-08-01T14:22:00Z", "expires_at": "2026-08-31T14:22:00Z" }
+    {
+      "id": 1,
+      "resource_id": "8a865a43-2bf5-487d-b57b-e67417f116c4",
+      "type": "link",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "deleted_at": "2026-08-01T14:22:00Z",
+      "expires_at": "2026-08-31T14:22:00Z"
+    }
   ]
 }

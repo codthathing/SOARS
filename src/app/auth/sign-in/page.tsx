@@ -17,9 +17,9 @@ export default function Page() {
       <AuthSignInForm>
         <AuthInputField type="email" name="email" placeholder="Email/Mobile Number" />
         <AuthInputField type="password" name="password" placeholder="Password" />
-        <AuthNavigateText text="forgot password?" link="/forgot-password" className="text-xs self-end text-charcoal-black md:text-base lg:text-xs" />
+        <AuthNavigateText text="forgot password?" link="/auth/forgot-password" className="text-xs self-end text-charcoal-black md:text-base lg:text-xs" />
       </AuthSignInForm>
-      <p className="self-start text-sm text-charcoal-black md:text-xl lg:text-sm">Don&apos;t have account? <AuthNavigateText text="sign up" link="/sign-up" className="text-brownish-amber" /></p>
+      <p className="self-start text-sm text-charcoal-black md:text-xl lg:text-sm">Don&apos;t have account? <AuthNavigateText text="sign up" link="/auth/sign-up" className="text-brownish-amber" /></p>
     </section>
   );
 }
