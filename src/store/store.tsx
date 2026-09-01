@@ -36,7 +36,7 @@ const savesSlice = createSlice({
 
 
 
-export const fetchUser = createAsyncThunk("fetch/user", async ({email, password}: {email: string; password?: string}) => {
+export const fetchUserEmail = createAsyncThunk("fetch/user/email", async ({email, password}: {email: string; password?: string}) => {
   const res = await fetch("/api/users/me", {
     method: "POST",
     headers: {
@@ -58,15 +58,21 @@ const userSlice = createSlice({
     user: null,
     error: false
   },
-  reducers: {},
+  reducers: {
+    updateUser: (state, action) => {
+      state.user = action.payload
+    }
+  },
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
+    builder.addCase(fetchUserEmail.fulfilled, (state, action) => {
       state.user = action.payload;
-    }).addCase(fetchUser.rejected, (state) => {
+    }).addCase(fetchUserEmail.rejected, (state) => {
       state.error = true;
     })
   }
 })
+
+export const { updateUser } = userSlice.actions;
 
 
 export const store = configureStore({
