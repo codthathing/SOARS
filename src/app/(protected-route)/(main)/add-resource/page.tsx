@@ -8,7 +8,7 @@ import { Check, Globe, Icon, LinkIcon } from "lucide-react";
 export default function AddResourcePage() {
   return (
     <>
-      <HomeHeader topic="add resource" />
+      <HomeHeader topic="add resource" showAvatar={true} showArrowLeft={false} />
       <section className={"flex flex-col px-6 py-4 gap-y-4 h-full overflow-y-auto md:p-7 md:gap-y-10 lg:gap-y-5 lg:w-4/5 mx-auto"}>
         <AddResourceTypesButtons />
         <div className="bg-soft-lavender/30 p-4 rounded-lg flex gap-x-4 items-center md:p-5 md:rounded-xl">

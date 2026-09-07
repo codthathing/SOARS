@@ -8,7 +8,7 @@ import HomeHeader from "@/src/components/home/HomeHeader";
 export default function HomePage() {
   return (
     <>
-      <HomeHeader topic="home" />
+      <HomeHeader topic="home" showAvatar={true} showArrowLeft={false} />
       <section className={"flex flex-col px-6 py-4 gap-y-4 h-full overflow-y-auto md:p-7 md:gap-y-10 lg:gap-y-5"}>
         <div className={"p-4 bg-brownish-amber/20 rounded-lg flex items-center justify-between gap-x-4 md:gap-x-5 md:p-5 lg:p-4 lg:gap-x-4"}>
           <Input className={"bg-white w-full md:text-xl md:p-6 lg:px-4 lg:py-6 lg:text-base"} placeholder={"Paste a link, add a note..."} />

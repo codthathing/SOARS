@@ -6,11 +6,11 @@ import {useAppSelector} from "@/src/store/store";
 
 const SAVES_ICON_MAP = { "link": LinkIcon, "file": File, "note": NotepadText };
 
-export default function HomeSaves() {
+export default function HomeSaves({ className }: {className?: string}) {
   const saves = useAppSelector(state => state.saves);
 
   return (
-    <div className={"flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-2"}>
+    <div className={`flex flex-col gap-y-4 md:grid md:grid-cols-2 ${className} md:gap-2`}>
       {saves.map(({ id, type, link, size, edited, title, favorite, tags }) => {
         const Icon = SAVES_ICON_MAP[type];
 
