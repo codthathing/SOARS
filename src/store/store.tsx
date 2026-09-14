@@ -36,56 +36,29 @@ const savesSlice = createSlice({
 
 
 
-export const fetchUserEmail = createAsyncThunk("fetch/user/email", async ({email, password}: {email: string; password?: string}) => {
-  const res = await fetch("/api/users/me", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({email, password})
-  })
-
-  const data = await res.json();
-
-  if (!res.ok) throw new Error(data.error);
-
-  return data;
-})
-
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    user: null,
-    error: false
-  },
-  reducers: {
-    updateUser: (state, action) => {
-      state.user = action.payload
-    }
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchUserEmail.fulfilled, (state, action) => {
-      state.user = action.payload;
-    }).addCase(fetchUserEmail.rejected, (state) => {
-      state.error = true;
-    })
-  }
+  initialState: { id: "", email: "" },
+  reducers: {},
 })
 
-export const { updateUser } = userSlice.actions;
 
 
-export const store = configureStore({
-  reducer: {
-    user: userSlice.reducer,
-    categories: categoriesSlice.reducer,
-    saves: savesSlice.reducer,
-  },
-  devTools: process.env.NODE_ENV === 'development'
-});
+export const makeStore = (userPreloadState: {id: string; email: string}) => {
+  return configureStore({
+    reducer: {
+      user: userSlice.reducer,
+      categories: categoriesSlice.reducer,
+      saves: savesSlice.reducer,
+    },
+    devTools: process.env.NODE_ENV !== "production",
+    preloadedState: { user: userPreloadState }
+  })
+}
 
-type RootState = ReturnType<typeof store.getState>;
-type AppDispatch = typeof store.dispatch;
+type AppStore = ReturnType<typeof makeStore>;
+type RootState = ReturnType<AppStore['getState']>;
+type AppDispatch = AppStore['dispatch'];
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

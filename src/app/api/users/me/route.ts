@@ -27,14 +27,13 @@ export const POST = async (request: NextRequest) => {
   if (!userObj.length) return Response.json({ error: "User not found! Create an account" }, { status: 404 });
 
   const user = userObj[0];
-  const { password: _, ...safeUser } = user;
 
   if (password !== undefined) {
     const isValid = await bcrypt.compare(password, user["password"]);
     if (!isValid) return Response.json({ error: "Wrong password!" }, { status: 401 });
 
     const cookieStore = await cookies();
-    cookieStore.set("USER_ID", safeUser["id"], {
+    cookieStore.set("USER_ID", user["id"], {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
@@ -42,5 +41,5 @@ export const POST = async (request: NextRequest) => {
     });
   }
 
-  return Response.json(safeUser);
+  return Response.json({ "success": "User exists!" });
 }

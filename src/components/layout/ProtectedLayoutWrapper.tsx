@@ -1,21 +1,10 @@
 "use client";
-import { updateUser, useAppDispatch, useAppSelector } from "@/src/store/store";
-import { ReactNode, useEffect } from "react";
+import {  makeStore } from "@/src/store/store";
+import { ReactNode } from "react";
+import { Provider } from "react-redux";
 
-interface UserProp {
-  id: string;
-  email: string
-}
-
-export default function ProtectedLayoutWrapper({ children, userData }: { children: ReactNode; userData: UserProp }) {
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    if (!user) dispatch(updateUser(userData));
-  }, [userData]);
-
+export default function ProtectedLayoutWrapper({ children, userData }: { children: ReactNode; userData:  {id: string; email: string} }) {
   return (
-    <>{children}</>
+    <Provider store={makeStore(userData)}>{children}</Provider>
   )
 }

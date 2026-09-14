@@ -5,6 +5,12 @@ import { Button } from "@/src/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/src/components/ui/card";
 import { Check, Globe, Icon, LinkIcon } from "lucide-react";
 
+const tags = [
+  {id: 0, text: "dev", icon: "#", style: "bg-brownish-amber text-white"},
+  {id: 1, text: "reading", icon: "#", style: "bg-brownish-amber/20 text-brownish-amber"},
+  {id: 2, text: "Add tag", icon: "+", style: "bg-transparent text-charcoal-black font-light border border-soft-lavender"},
+]
+
 export default function AddResourcePage() {
   return (
     <>
@@ -32,10 +38,7 @@ export default function AddResourcePage() {
         <input type="text" className="outline-none bg-soft-lavender/30 text-charcoal-black p-4 md:p-5 rounded-lg md:rounded-xl text-sm md:text-xl" placeholder="Add a note (optional)" />
         <div className="flex flex-col gap-y-2.5">
           <h3 className="text-sm text-charcoal-black capitalize md:text-base">tags</h3>
-          <div className={"flex flex-wrap gap-2"}>
-            <Badge className={"bg-brownish-amber/20 text-brownish-amber md:text-base"}>#{"dev"}</Badge>
-            <Badge className={"bg-brownish-amber/20 text-brownish-amber md:text-base"}>#{"reading"}</Badge>
-          </div>
+          <div className={"flex flex-wrap gap-2"}>{tags.map(({ id, text, icon, style }) => <Badge key={id} className={`${style} md:text-base px-2 md:px-3.5 lg:px-3`}>{icon}{text}</Badge>)}</div>
         </div>
         <Button className={"w-full flex items-center gap-x-1 md:gap-x-2.5 capitalize bg-brownish-amber/50 hover:bg-brownish-amber cursor-pointer text-white text-base p-6 md:text-2xl md:px-3 md:py-8 lg:text-xl lg:px-5 lg:py-6.5"}><Check className="size-4 md:size-5.5"/> <span>save resource</span></Button>
       </section>

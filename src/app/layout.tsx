@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import {ReactNode} from "react";
-import PageLayoutWrapper from "@/src/components/layout/PageLayoutWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <PageLayoutWrapper className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</PageLayoutWrapper>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
     </html>
   );
 }

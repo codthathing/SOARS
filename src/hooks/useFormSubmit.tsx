@@ -1,5 +1,3 @@
-import { AsyncThunkAction } from "@reduxjs/toolkit";
-import { useAppDispatch } from "../store/store";
 import { useRouter } from "next/navigation";
 import { FormikState } from "formik";
 
@@ -7,12 +5,11 @@ type resetFormType<Values> = (nextState?: Partial<FormikState<Values>>) => void;
 type setSubmittingType = (isSubmitting: boolean) => void;
 
 export const useFormSubmit = () => {
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
-  return async <Returned, ThunkArg, Values>(method: AsyncThunkAction<Returned, ThunkArg, any>, buttonLink: string, resetForm: resetFormType<Values>, setSubmitting: setSubmittingType) => {
+  return async <Values,>(method: () => Promise<void>, buttonLink: string, resetForm: resetFormType<Values>, setSubmitting: setSubmittingType) => {
     try {
-      await dispatch(method).unwrap();
+      await method();
       router.push(buttonLink || "");
       resetForm();
     } catch (e) {
