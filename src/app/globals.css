@@ -9,6 +9,8 @@
   --color-soft-lavender: #E6E6FA; /* approachable and calming */
   --color-charcoal-black: #2C2C2C; /* sleek, timeless */
   --color-brownish-amber: #D97706;
+  --color-light-red: #FDEAEA;
+  --color-deep-red: #C0392B;
 }
 
 @utility shadow-inset-focus {

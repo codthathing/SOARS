@@ -1,5 +1,5 @@
 "use client";
-import {Archive, Bookmark, Folder, Home, Plus, Search, Settings, Star, Tags, Trash} from "lucide-react";
+import {Archive, Bookmark, Folder, Home, Plus, Search, Settings, Star, Tags, Trash2} from "lucide-react";
 import {useState} from "react";
 import Image from "next/image";
 import {Progress} from "@/src/components/ui/progress";
@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 type FooterIconName = keyof typeof FOOTER_ICON_MAP;
 
-const FOOTER_ICON_MAP = { "home": Home, "bookmarks": Bookmark, "search": Search, "settings": Settings, "collections": Folder, "tags": Tags, "favorites": Star, "archive": Archive, "trash": Trash };
+const FOOTER_ICON_MAP = { "home": Home, "bookmarks": Bookmark, "search": Search, "settings": Settings, "collections": Folder, "tags": Tags, "favorites": Star, "archive": Archive, "trash": Trash2 };
 
 const footer: { id: number; text: FooterIconName; path: string; order?: string }[] = [
   { id: 1, text: "home", path: "/home", order: "order-1 md:order-none" },
@@ -53,18 +53,18 @@ export default function HomeFooter() {
           <Progress value={62} className="bg-white" indicatorClassName={"bg-brownish-amber"} />
           <span className={"font-light lg:text-sm"}>6.2 GB of 10GB</span>
         </div>
-        <div className={`cursor-pointer flex items-center py-2.5 px-4 rounded-lg gap-x-2.5 w-full`}>
+        <div onClick={() => router.push("/settings")} className={`cursor-pointer flex items-center py-2.5 px-4 rounded-lg gap-x-2.5 w-full`}>
           <Settings className={"size-7"} />
           <span className={"capitalize leading-none text-xl lg:text-base"}>settings</span>
         </div>
       </section>
       {showOtherOptions && <div
         className={"absolute w-[87.5%] p-4 -top-24 bg-white/75 border border-brownish-amber rounded-2xl left-0 right-0 mx-auto flex justify-between md:hidden"}>
-        {footer.slice(4, 9).map(({id, text}) => {
+        {footer.slice(4, 9).map(({id, text, path}) => {
           const Icon = FOOTER_ICON_MAP[text];
 
           return (
-            <div key={id} className={`cursor-pointer flex flex-col items-center gap-y-0.5`}>
+            <div key={id} onClick={() => router.push(path)} className={`cursor-pointer flex flex-col items-center gap-y-0.5 ${pathname.includes(path) ? "text-brownish-amber md:bg-brownish-amber/20 md:text-brownish-amber" : ""}`}>
               <Icon className={"size-5"}/>
               <span className={"capitalize leading-none text-sm"}>{text}</span>
             </div>
