@@ -48,7 +48,7 @@ export default function HomeFooter() {
         </div>
       </div>
       <section className={"hidden md:flex flex-col gap-y-4"}>
-        <div className={"bg-soft-lavender p-2.5 rounded-md flex flex-col gap-y-2.5"}>
+        <div onClick={() => router.push("/storage")} className={"bg-soft-lavender p-2.5 rounded-md flex flex-col gap-y-2.5 cursor-pointer"}>
           <h1 className={"font-bold text-xl capitalize lg:text-base"}>storage</h1>
           <Progress value={62} className="bg-white" indicatorClassName={"bg-brownish-amber"} />
           <span className={"font-light lg:text-sm"}>6.2 GB of 10GB</span>
