@@ -1,4 +1,4 @@
-import {configureStore, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {configureStore, createSlice} from "@reduxjs/toolkit";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 type IconName = "bookmark" | "directory" | "star" | "archive";
