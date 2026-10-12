@@ -1,35 +1,26 @@
-// src/lib/users.ts
-import "server-only"; // npm i server-only: stops this file ever being bundled for the browser
+import "server-only";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export type User = { id: string; email: string; password: string; [key: string]: unknown };
+export type User = { id: string; email: string; password: string; };
 
-async function api<T>(path: string, retries = 2): Promise<T | null> {
-  if (!API_URL) throw new Error("API_URL is not set");
+async function api<T>(path: string): Promise<T | null> {
+  if (!BASE_URL) throw new Error("BASE_URL is not set");
 
-  let res: Response;
   try {
-    res = await fetch(`${API_URL}${path}`, {
-      cache: "no-store",
-      signal: AbortSignal.timeout(15_000),
-    });
+    const res = await fetch(`${BASE_URL}${path}`, { cache: "no-store" });
+
+    if (!res.ok) throw new Error(`User API failed (${res.status}) for ${path}`);
+
+    return res.json();
   } catch (error) {
-    if (retries > 0) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      return api<T>(path, retries - 1);
-    }
+    console.error(`Error: ${error}`);
+
     throw error;
   }
-
-  if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`User API failed (${res.status}) for ${path}`);
-
-  return res.json();
 }
 
-export const findUserById = (id: string) =>
-  api<User>(`/users/${encodeURIComponent(id)}`);
+export const findUserById = (id: string) => api<User>(`/users/${encodeURIComponent(id)}`);
 
 export const findUserByEmail = async (email: string) => {
   const users = await api<User[]>(`/users?email=${encodeURIComponent(email)}`);
