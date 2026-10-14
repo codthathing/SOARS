@@ -7,13 +7,13 @@ type setSubmittingType = (isSubmitting: boolean) => void;
 export const useFormSubmit = () => {
   const router = useRouter();
 
-  return async <Values,>(method: () => Promise<void>, buttonLink: string, resetForm: resetFormType<Values>, setSubmitting: setSubmittingType) => {
+  return async <Values,>(method: () => Promise<void>, buttonLink: string, resetForm: resetFormType<Values>, setSubmitting: setSubmittingType, onError?: (message: string) => void) => {
     try {
       await method();
       router.push(buttonLink || "");
       resetForm();
     } catch (e) {
-      console.error(`Error: ${e instanceof Error ? e.message : typeof e === "object" && e !== null && "message" in e ? String((e as { message: unknown }).message) : String(e)}`);
+      onError?.(e instanceof Error ? e.message : "Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
     }

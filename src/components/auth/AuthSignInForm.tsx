@@ -18,7 +18,7 @@ export default function AuthSignInForm({ children }: { children: ReactNode; }) {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, { resetForm, setSubmitting }) => await submitAction(() => fetchUserEmail(values.email, values.password), "/landing", resetForm, setSubmitting)}
+      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => await submitAction(() => fetchUserEmail(values.email, values.password), "/landing", resetForm, setSubmitting, (message) => setFieldError("email", message))}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

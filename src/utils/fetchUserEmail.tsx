@@ -1,13 +1,17 @@
-export const fetchUserEmail = async (email: string, password: string) => {
-  const res = await fetch("/api/users/me", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({email, password})
-  })
+export async function fetchUserEmail(email: string, password: string): Promise<void> {
+  let res: Response;
 
-  const data = await res.json();
+  try {
+    res = await fetch("/api/users/me", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+  } catch {
+    throw new Error("Network error. Check your connection and try again.");
+  }
 
-  if (!res.ok) throw new Error(data.error);
+  const data = await res.json().catch(() => null);
+
+  if (!res.ok) throw new Error(data?.error ?? "Something went wrong. Please try again.");
 }
