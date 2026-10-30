@@ -6,8 +6,8 @@ type IconName = "bookmark" | "directory" | "star" | "archive";
 const categories: { id: number; icon: IconName; count: number; title: string }[] = [
   { id: 0, icon: "bookmark", count: 248, title: "total saves" },
   { id: 1, icon: "directory", count: 12, title: "collections" },
-  { id: 3, icon: "star", count: 34, title: "favorites" },
-  { id: 2, icon: "archive", count: 57, title: "archives" },
+  // { id: 3, icon: "star", count: 34, title: "favorites" },
+  // { id: 2, icon: "archive", count: 57, title: "archives" },
 ]
 
 const categoriesSlice = createSlice({
@@ -19,12 +19,12 @@ const categoriesSlice = createSlice({
 
 type SavesIconName = "link" | "file" | "note";
 
-const saves: { id: number; type: SavesIconName; link?: string; size?: string; edited?: string; title: string; favorite: boolean; tags: string[] }[] = [
-  { id: 0, type: "link", link: "medium", title: "the grammar of the great queen of British colonel", favorite: true, tags: ["design", "reading"] },
+const saves: { id: number; type: SavesIconName; url?: string; size?: string; edited?: string; title: string; favorite: boolean; tags: string[] }[] = [
+  { id: 0, type: "link", url: "medium.com", title: "the grammar of the great queen of British colonel", favorite: true, tags: ["design", "reading"] },
   { id: 1, type: "file", size: "2.4 MB", title: "q3 product income for the house of the b4 companies", favorite: false, tags: ["work"] },
   { id: 2, type: "note", edited: "2d", title: "ideas for the onboarding of the interns at microsoft", favorite: false, tags: ["ideas"] },
-  { id: 3, type: "link", link: "tailwindcss", title: "tailwind css v4 documentation for learners", favorite: true, tags: ["dev"] },
-  { id: 4, type: "link", link: "youtube", title: "color theory crash course for pros", favorite: false, tags: ["design", "learning"] },
+  { id: 3, type: "link", url: "tailwindcss.com", title: "tailwind css v4 documentation for learners", favorite: true, tags: ["dev"] },
+  { id: 4, type: "link", url: "youtube.com", title: "color theory crash course for pros", favorite: false, tags: ["design", "learning"] },
   { id: 5, type: "file", size: "1.8 KB", title: "invoice - march product sales", favorite: false, tags: ["finance"] },
 ]
 

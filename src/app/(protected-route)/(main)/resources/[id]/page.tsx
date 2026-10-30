@@ -6,18 +6,20 @@ import { Globe, Share, Star } from "lucide-react";
 
 const resourceButtons = [
   {id: 0, text: "open", style: "bg-brownish-amber text-white" },
-  {id: 1, text: "favorite", style: "bg-brownish-amber/20 text-brownish-amber", Icon: Star },
-  {id: 2, text: "share", style: "border border-soft-lavender md:col-start-1 md:col-span-2 lg:col-auto bg-transparent text-charcoal-black", Icon: Share },
+  // {id: 1, text: "favorite", style: "bg-brownish-amber/20 text-brownish-amber", Icon: Star },
+  // {id: 2, text: "share", style: "border border-soft-lavender md:col-start-1 md:col-span-2 lg:col-auto bg-transparent text-charcoal-black", Icon: Share },
 ]
 
 const resourceDetails = [
-  {id: 0, topic: "saved", description: "aug 2, 2026"},
+  // {id: 0, topic: "saved", description: "aug 2, 2026"},
   {id: 1, topic: "collection", description: "dev resources"},
   {id: 2, topic: "size", description: "-"},
-  {id: 3, topic: "views", description: "12"},
+  // {id: 3, topic: "views", description: "12"},
 ]
 
 export default function ResourcePage() {
+  const type: string = "file";
+
   return (
     <>
       <HomeHeader topic="resource" showAvatar={false} showArrowLeft={true} />
@@ -34,7 +36,12 @@ export default function ResourcePage() {
               </CardDescription>
             </CardContent>
           </Card>
-          <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-2 md:gap-2.5 lg:gap-x-2">{resourceButtons.map(({id, text, style, Icon}) => <Button key={id} className={`capitalize ${style} flex-1 md:text-xl md:rounded-xl md:py-6 md:px-6 lg:text-base lg:px-5`}>{Icon && <Icon className="size-3 md:size-4.5" />}<span>{text}</span></Button>)}</div>
+          <div className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-x-2 md:gap-2.5 lg:gap-x-2">
+            {type === "link" && <Button className={`capitalize bg-brownish-amber cursor-pointer hover:bg-brownish-amber text-white flex-1 md:text-xl md:rounded-xl md:py-6 md:px-6 lg:text-base lg:px-5`}>open</Button>}
+            {(type === "file" || type === "note") && <Button className={`capitalize cursor-pointer bg-brownish-amber/20 hover:bg-brownish-amber/20 text-brownish-amber flex-1 md:text-xl md:rounded-xl md:py-6 md:px-6 lg:text-base lg:px-5`}>view</Button>}
+            {type === "file" && <Button className={`capitalize border border-soft-lavender cursor-pointer md:col-start-1 md:col-span-2 lg:col-auto bg-transparent hover:bg-transparent text-charcoal-black flex-1 md:text-xl md:rounded-xl md:py-6 md:px-6 lg:text-base lg:px-5`}>download</Button>}
+            {/* {resourceButtons.map(({id, text, style, Icon}) => <Button key={id} className={`capitalize ${style} flex-1 md:text-xl md:rounded-xl md:py-6 md:px-6 lg:text-base lg:px-5`}>{Icon && <Icon className="size-3 md:size-4.5" />}<span>{text}</span></Button>)} */}
+          </div>
           <div className="bg-brownish-amber/20 p-4 flex flex-col gap-y-1.5 rounded-xl">
             <h3 className="text-charcoal-black font-semibold first-letter:capitalize text-xs md:text-sm">my notes</h3>
             <p className="text-sm text-charcoal-black md:text-base">Great reference for the align/justify properties — bookmarked for the dashboard rebuild.</p>

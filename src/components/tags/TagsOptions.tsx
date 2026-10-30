@@ -19,7 +19,7 @@ export default function TagsOptions() {
     <>
       <div className="rounded-xl bg-white p-4 flex flex-wrap gap-2.5 lg:gap-2.5 lg:p-4">
         {tags.map(({ id, text, count }) => (
-          <div key={id} className={`text-sm md:text-base lg:text-sm px-2 lg:px-4 lg:py-1 flex items-center gap-x-0.75 lg:gap-x-1.5 rounded-xl ${text === currentFilterOption ? "bg-brownish-amber text-white font-semibold" : "bg-brownish-amber/20 text-brownish-amber font-light"}`} onClick={() => setCurrentFilterOption(text)}>
+          <div key={id} className={`text-sm cursor-pointer md:text-base lg:text-sm px-2 lg:px-4 lg:py-1 flex items-center gap-x-0.75 lg:gap-x-1.5 rounded-xl ${text === currentFilterOption ? "bg-brownish-amber text-white font-semibold" : "bg-brownish-amber/20 text-brownish-amber font-light"}`} onClick={() => setCurrentFilterOption(text)}>
             <span>#{text}</span>
             <span className={`px-1 text-xs lg:px-2 rounded-lg lg:text-xs ${text === currentFilterOption ? "bg-soft-lavender/40" : "bg-brownish-amber/15"}`}>{count}</span>
           </div>

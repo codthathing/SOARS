@@ -1,5 +1,5 @@
 "use client";
-import {Archive, Bookmark, Folder, Home, Plus, Search, Settings, Star, Tags, Trash2} from "lucide-react";
+import {Archive, Bookmark, Bot, Folder, Home, Plus, Search, Settings, Star, Tags, Trash2} from "lucide-react";
 import {useState} from "react";
 import Image from "next/image";
 import {Progress} from "@/src/components/ui/progress";
@@ -7,18 +7,19 @@ import { usePathname, useRouter } from "next/navigation";
 
 type FooterIconName = keyof typeof FOOTER_ICON_MAP;
 
-const FOOTER_ICON_MAP = { "home": Home, "bookmarks": Bookmark, "search": Search, "settings": Settings, "collections": Folder, "tags": Tags, "favorites": Star, "archive": Archive, "trash": Trash2 };
+const FOOTER_ICON_MAP = { "home": Home, "bookmarks": Bookmark, "search": Search, "settings": Settings, "soarsAI": Bot, "collections": Folder, "tags": Tags, "favorites": Star, "archive": Archive, "trash": Trash2 };
 
 const footer: { id: number; text: FooterIconName; path: string; order?: string }[] = [
   { id: 1, text: "home", path: "/home", order: "order-1 md:order-none" },
-  { id: 2, text: "bookmarks", path: "/bookmarks", order: "order-2 md:order-none" },
+  // { id: 2, text: "bookmarks", path: "/bookmarks", order: "order-2 md:order-none" },
   { id: 4, text: "search", path: "/search", order: "order-4 md:order-none" },
   { id: 5, text: "settings", path: "/settings", order: "order-5 md:order-none" },
   { id: 6, text: "collections", path: "/collections" },
   { id: 7, text: "tags", path: "/tags" },
-  { id: 8, text: "favorites", path: "/favorites" },
-  { id: 9, text: "archive", path: "/archive" },
-  { id: 0, text: "trash", path: "/trash" },
+  { id: 8, text: "soarsAI", path: "/soars-ai" },
+  // { id: 8, text: "favorites", path: "/favorites" },
+  // { id: 9, text: "archive", path: "/archive" },
+  // { id: 0, text: "trash", path: "/trash" },
 ];
 
 export default function HomeFooter() {
