@@ -1,52 +1,127 @@
-import HomeHeader from "@/src/components/home/HomeHeader";
-import { Button } from "@/src/components/ui/button";
-import { FolderIcon, PlusIcon } from "lucide-react";
+
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import HomeHeader from "@/src/components/home/HomeHeader";
+import { FolderIcon, PlusIcon } from "lucide-react";
+
+interface Collection {
+  id: string;
+  title: string;
+  created_at: string;
+}
+
+interface Resource {
+  id: string;
+  collection_id: string;
+}
+
+const collectionColors = [
+  "bg-emerald-green",
+  "bg-pink-500",
+  "bg-soft-lavender",
+  "bg-brownish-amber",
+];
 
 export default function CollectionsPage() {
+  const [collections, setCollections] = useState<Collection[]>([]);
+  const [resources, setResources] = useState<Resource[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const response = await fetch("/api/resources", {
+          cache: "no-store",
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Unable to load collections.");
+        }
+
+        setCollections(data.collections ?? []);
+        setResources(data.resources ?? []);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Unable to load collections."
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
   return (
     <>
       <HomeHeader topic="collections" showAvatar showArrowLeft={false} />
-      <section className={"flex flex-col px-6 py-4 gap-y-4 h-full overflow-y-auto md:p-7 md:gap-y-8 lg:gap-y-5"}>
+
+      <section className="flex h-full flex-col gap-y-4 overflow-y-auto px-6 py-4 md:gap-y-8 md:p-7 lg:gap-y-5">
         <div className="flex justify-between">
-          <span className="text-charcoal-black text-sm font-light">6 collections</span>
-          {/* <Button className={"capitalize bg-brownish-amber md:text-xl md:p-6 lg:text-base lg:px-5"}>+ save</Button> */}
+          <span className="text-sm font-light text-charcoal-black">
+            {collections.length} collections
+          </span>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-y-2.5 md:gap-4">
-          <Link href={"/collections/new"} className="border border-soft-lavender cursor-pointer rounded-xl flex flex-col gap-y-2 md:gap-y-2.5 lg:gap-y-2 justify-center items-center py-7 md:p-0">
-            <PlusIcon className="size-4 md:size-6 lg:size-5 text-charcoal-black" />
-            <span className="first-letter:capitalize text-charcoal-black text-xs md:text-base font-light">create collection</span>
-          </Link>
-          <Link href={"/collections/1"} className="rounded-xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-center py-7 md:py-8 lg:py-6 md:flex-1 bg-emerald-green"><FolderIcon className="size-8 md:size-10 lg:size-8 text-charcoal-black" /></div>
-            <div className="p-2.5 md:p-3 flex flex-col bg-white">
-              <h1 className="font-semibold capitalize text-base md:text-lg lg:text-base text-charcoal-black">all resources</h1>
-              <span className="text-charcoal-black text-sm md:text-base lg:text-sm font-light">18 items</span>
-            </div>
-          </Link>
-          <Link href={"/collections/1"} className="rounded-xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-center py-7 md:py-8 lg:py-6 md:flex-1 bg-pink-500"><FolderIcon className="size-8 md:size-10 lg:size-8 text-charcoal-black" /></div>
-            <div className="p-2.5 md:p-3 flex flex-col bg-white">
-              <h1 className="font-semibold capitalize text-base md:text-lg lg:text-base text-charcoal-black">design inspiration</h1>
-              <span className="text-charcoal-black text-sm md:text-base lg:text-sm font-light">10 items</span>
-            </div>
-          </Link>
-          <Link href={"/collections/1"} className="rounded-xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-center py-7 md:py-8 lg:py-6 md:flex-1 bg-soft-lavender"><FolderIcon className="size-8 md:size-10 lg:size-8 text-charcoal-black" /></div>
-            <div className="p-2.5 md:p-3 flex flex-col bg-white">
-              <h1 className="font-semibold capitalize text-base md:text-lg lg:text-base text-charcoal-black">frontend</h1>
-              <span className="text-charcoal-black text-sm md:text-base lg:text-sm font-light">2 items</span>
-            </div>
-          </Link>
-          <Link href={"/collections/1"} className="rounded-xl overflow-hidden flex flex-col">
-            <div className="flex items-center justify-center py-7 md:py-8 lg:py-6 md:flex-1 bg-brownish-amber"><FolderIcon className="size-8 md:size-10 lg:size-8 text-charcoal-black" /></div>
-            <div className="p-2.5 md:p-3 flex flex-col bg-white">
-              <h1 className="font-semibold capitalize text-base md:text-lg lg:text-base text-charcoal-black">cyber security</h1>
-              <span className="text-charcoal-black text-sm md:text-base lg:text-sm font-light">6 items</span>
-            </div>
-          </Link>
-        </div>
+
+        {loading ? (
+          <p className="text-sm text-charcoal-black">Loading collections...</p>
+        ) : error ? (
+          <p className="text-sm text-red-600">{error}</p>
+        ) : (
+          <div className="grid gap-y-2.5 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
+            <Link
+              href="/collections/new"
+              className="flex cursor-pointer flex-col items-center justify-center gap-y-2 rounded-xl border border-soft-lavender py-7 md:gap-y-2.5 md:p-0"
+            >
+              <PlusIcon className="size-4 text-charcoal-black md:size-6 lg:size-5" />
+              <span className="text-xs font-light capitalize text-charcoal-black md:text-base">
+                create collection
+              </span>
+            </Link>
+
+            {collections.map((collection, index) => {
+              const count = resources.filter(
+                (resource) => resource.collection_id === collection.id
+              ).length;
+
+              return (
+                <Link
+                  key={collection.id}
+                  href={`/collections/${collection.id}`}
+                  className="flex flex-col overflow-hidden rounded-xl"
+                >
+                  <div
+                    className={`flex items-center justify-center py-7 md:flex-1 md:py-8 lg:py-6 ${
+                      collectionColors[index % collectionColors.length]
+                    }`}
+                  >
+                    <FolderIcon className="size-8 text-charcoal-black md:size-10 lg:size-8" />
+                  </div>
+
+                  <div className="flex flex-col bg-white p-2.5 md:p-3">
+                    <h1 className="line-clamp-1 text-base font-semibold capitalize text-charcoal-black md:text-lg lg:text-base">
+                      {collection.title}
+                    </h1>
+                    <span className="text-sm font-light text-charcoal-black md:text-base lg:text-sm">
+                      {count} {count === 1 ? "item" : "items"}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        )}
+
+        {!loading && !error && collections.length === 0 && (
+          <p className="text-sm text-charcoal-black">
+            You haven't created any collections yet.
+          </p>
+        )}
       </section>
     </>
-  )
+  );
 }

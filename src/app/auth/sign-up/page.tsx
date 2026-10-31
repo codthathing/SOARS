@@ -16,7 +16,7 @@ export default function Page() {
       <AuthOption />
       <AuthSignUpForm>
         <AuthInputField type="text" name="name" placeholder="Name" />
-        <AuthInputField type="email" name="email" placeholder="Email/Mobile Number" />
+        <AuthInputField type="email" name="email" placeholder="Email" />
         <AuthInputField type="password" name="password" placeholder="Password" />
         <div className="flex items-center gap-x-1.5 text-xs md:text-base">
           <input type="checkbox" name="agreement" className="w-3 h-3 md:w-4 md:h-4 accent-brownish-amber" />

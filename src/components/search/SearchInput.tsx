@@ -1,17 +1,23 @@
+
 "use client";
-import { useState } from "react";
+
 import Input from "../common/Input";
+import type { Dispatch, SetStateAction } from "react";
 
-export default function SearchInput() {
-  const [search, setSearch] = useState("");
+interface SearchInputProps {
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+}
 
+export default function SearchInput({
+  value,
+  setValue,
+}: SearchInputProps) {
   return (
-    <>
-      <Input value={search} setValue={setSearch} placeholder="Search resource name" />
-      <div className="flex justify-between">
-        <span className={`text-charcoal-black text-sm font-light ${search ? "visible" : "invisible"}`}>24 results for "{search}"</span>
-        <span className="text-charcoal-black text-sm font-light capitalize justify-self-end">sort:relevant</span>
-      </div>
-    </>
+    <Input
+      value={value}
+      setValue={setValue}
+      placeholder="Search resource name"
+    />
   );
 }

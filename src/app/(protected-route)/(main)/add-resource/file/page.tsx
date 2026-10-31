@@ -16,28 +16,71 @@ export default function page() {
   const [details, setDetails] = useState({error: "", title: "upload a PDF file to save", size: "max file size: 12 MB"});
   const [title, setTitle] = useState("");
 
-  const handleFileChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const selected = e.target.files?.[0];
-    if (!selected) return;
+const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
+  const selected = e.target.files?.[0];
+  if (!selected) return;
 
-    if (selected.type !== "application/pdf") {
-      setDetails(prev => ({ ...prev, error: "Only PDF files are allowed" }));
-
-      return;
-    }
-
-    const MAX_SIZE = 5 * 1024 * 1024;
-
-    if (selected.size > MAX_SIZE) {
-      setDetails(prev => ({ ...prev, error: "File must be 5MB or smaller" }));
-
-      return;
-    }
-
-    setDetails({error: "", title: selected.name, size: `file size: ${formatFileSize(selected.size)}`})
-    
-    console.log(selected);
+  if (selected.type !== "application/pdf") {
+    setDetails((prev) => ({ ...prev, error: "Only PDF files are allowed" }));
+    return;
   }
+
+  if (selected.size > 5 * 1024 * 1024) {
+    setDetails((prev) => ({ ...prev, error: "File must be 5MB or smaller" }));
+    return;
+  }
+
+  setDetails({
+    error: "",
+    title: "Processing PDF...",
+    size: `file size: ${formatFileSize(selected.size)}`,
+  });
+
+  try {
+const formData = new FormData();
+formData.append("file", selected);
+formData.append("title", title.trim());
+
+    const response = await fetch("/api/files/preview", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Unable to upload PDF.");
+    }
+
+sessionStorage.setItem(
+  "soars-resource-draft",
+  JSON.stringify({
+    type: "file",
+    file: data.file,
+    analysis: data.analysis,
+    collections: data.collections,
+    userTitle: data.userTitle,
+  })
+);
+
+window.location.href = "/add-resource/preview";
+
+    setDetails({
+      error: "",
+      title: selected.name,
+      size: `file size: ${formatFileSize(selected.size)}`,
+    });
+
+    // We'll connect this to the file preview page next.
+    window.location.href = "/add-resource/preview";
+  } catch (error) {
+    setDetails((prev) => ({
+      ...prev,
+      error:
+        error instanceof Error ? error.message : "Unable to upload PDF.",
+    }));
+  }
+};
 
   return (
     <>

@@ -3,8 +3,6 @@ import { NextRequest } from "next/server";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const POST = async () => {}
-
 export const PATCH = async (request: NextRequest) => {
   const { id, password } = await request.json();
 

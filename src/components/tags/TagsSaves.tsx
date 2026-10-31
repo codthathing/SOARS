@@ -1,9 +1,32 @@
+
 "use client";
-import {useAppSelector} from "@/src/store/store";
+
 import ResourceCard from "../common/ResourceCard";
+import type { Save } from "@/src/store/store";
 
-export default function TagsSaves() {
-  const saves = useAppSelector(state => state.saves);
+interface TagsSavesProps {
+  resources: Save[];
+  selectedTag: string;
+}
 
-  return <ResourceCard resources={saves} className="lg:grid-cols-3" />
+export default function TagsSaves({
+  resources,
+  selectedTag,
+}: TagsSavesProps) {
+  if (!selectedTag) return null;
+
+  if (resources.length === 0) {
+    return (
+      <p className="text-sm text-charcoal-black">
+        No resources have this tag.
+      </p>
+    );
+  }
+
+  return (
+    <ResourceCard
+      resources={resources}
+      className="lg:grid-cols-3"
+    />
+  );
 }

@@ -24,8 +24,18 @@ const categoriesSlice = createSlice({
   initialState: categories,
   reducers: {
     setCategories: (_, action: PayloadAction<Category[]>) => action.payload,
+    setCollectionCount: (state, action: PayloadAction<number>) => {
+  const collectionCategory = state.find(
+    (category) => category.title === "collections"
+  );
+
+  if (collectionCategory) {
+    collectionCategory.count = action.payload;
+  }
+},
   },
 });
+
 
 type SavesIconName = "link" | "file" | "note";
 
@@ -35,12 +45,15 @@ export interface Save {
   url?: string;
   hostname?: string;
   size?: number;
+  data?: string;
+  text?: string;
   edited?: string;
   title: string;
   summary?: string;
   description?: string;
   favorite: boolean;
   tags: string[];
+  tagIds?: string[];
   collection_id?: string;
   created_at?: string;
   updated_at?: string;
@@ -83,8 +96,8 @@ export const {
   toggleFavorite,
 } = savesSlice.actions;
 
-export const { setCategories } = categoriesSlice.actions;
-
+export const { setCategories, setCollectionCount } =
+  categoriesSlice.actions;
 export const makeStore = (userPreloadState: {
   id: string;
   email: string;

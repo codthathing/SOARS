@@ -1,31 +1,59 @@
+
 "use client";
-import { useState } from "react";
 
-const tags = [
-  { id: 0, text: "design", count: 42 },
-  { id: 1, text: "dev", count: 38 },
-  { id: 2, text: "reading", count: 27 },
-  { id: 3, text: "work", count: 24 },
-  { id: 4, text: "ideas", count: 19 },
-  { id: 5, text: "learning", count: 16 },
-  { id: 6, text: "finance", count: 11 },
-  { id: 7, text: "travel", count: 8 },
-];
+interface Tag {
+  text: string;
+  count: number;
+}
 
-export default function TagsOptions() {
-  const [currentFilterOption, setCurrentFilterOption] = useState("design");
+interface TagsOptionsProps {
+  tags: Tag[];
+  selectedTag: string;
+  onSelect: (tag: string) => void;
+}
 
+export default function TagsOptions({
+  tags,
+  selectedTag,
+  onSelect,
+}: TagsOptionsProps) {
   return (
     <>
-      <div className="rounded-xl bg-white p-4 flex flex-wrap gap-2.5 lg:gap-2.5 lg:p-4">
-        {tags.map(({ id, text, count }) => (
-          <div key={id} className={`text-sm cursor-pointer md:text-base lg:text-sm px-2 lg:px-4 lg:py-1 flex items-center gap-x-0.75 lg:gap-x-1.5 rounded-xl ${text === currentFilterOption ? "bg-brownish-amber text-white font-semibold" : "bg-brownish-amber/20 text-brownish-amber font-light"}`} onClick={() => setCurrentFilterOption(text)}>
+      <div className="flex flex-wrap gap-2.5 rounded-xl bg-white p-4 lg:gap-2.5 lg:p-4">
+        {tags.map(({ text, count }) => (
+          <button
+            type="button"
+            key={text}
+            onClick={() => onSelect(selectedTag === text ? "" : text)}
+            className={`flex cursor-pointer items-center gap-x-0.75 rounded-xl px-2 text-sm md:text-base lg:gap-x-1.5 lg:px-4 lg:py-1 lg:text-sm ${
+              text === selectedTag
+                ? "bg-brownish-amber font-semibold text-white"
+                : "bg-brownish-amber/20 font-light text-brownish-amber"
+            }`}
+          >
             <span>#{text}</span>
-            <span className={`px-1 text-xs lg:px-2 rounded-lg lg:text-xs ${text === currentFilterOption ? "bg-soft-lavender/40" : "bg-brownish-amber/15"}`}>{count}</span>
-          </div>
+            <span
+              className={`rounded-lg px-1 text-xs lg:px-2 lg:text-xs ${
+                text === selectedTag
+                  ? "bg-soft-lavender/40"
+                  : "bg-brownish-amber/15"
+              }`}
+            >
+              {count}
+            </span>
+          </button>
         ))}
+
+        {tags.length === 0 && (
+          <p className="text-sm text-charcoal-black">No tags found.</p>
+        )}
       </div>
-      <h1 className="text-base lg:text-base font-semibold first-letter:capitalize">tagged "#{currentFilterOption}"</h1>
+
+      {selectedTag && (
+        <h1 className="text-base font-semibold first-letter:capitalize lg:text-base">
+          Tagged &quot;#{selectedTag}&quot;
+        </h1>
+      )}
     </>
   );
 }

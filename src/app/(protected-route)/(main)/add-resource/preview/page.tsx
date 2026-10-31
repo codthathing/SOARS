@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Badge } from "@/src/components/ui/badge";
@@ -16,9 +17,11 @@ import {
   LinkIcon,
   Plus,
   X,
+  FileText,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAppDispatch, addSave } from "@/src/store/store";
 
 interface Collection {
   id: string;
@@ -29,7 +32,8 @@ interface Collection {
 
 interface ResourceDraft {
   type: "link" | "file" | "note";
-  metadata: {
+
+  metadata?: {
     url: string;
     hostname: string;
     title: string;
@@ -37,6 +41,20 @@ interface ResourceDraft {
     image?: string;
     favicon?: string;
   };
+
+  file?: {
+    id: string;
+    name: string;
+    size: number;
+    storagePath: string;
+    text: string;
+    extractedTextLength: number;
+  };
+
+  note?: {
+    text: string;
+  };
+
   analysis: {
     summary: string;
     tags: string[];
@@ -46,6 +64,7 @@ interface ResourceDraft {
       title: string;
     };
   };
+
   collections: Collection[];
   userTitle?: string;
 }
@@ -58,6 +77,10 @@ type SelectedCollection = {
 
 export default function Page() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
+
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
 
   const [draft, setDraft] = useState<ResourceDraft | null>(null);
   const [tags, setTags] = useState<string[]>([]);
@@ -83,19 +106,53 @@ export default function Page() {
     try {
       const parsedDraft = JSON.parse(storedDraft) as ResourceDraft;
 
+      if (
+        !parsedDraft.analysis ||
+        !["link", "file", "note"].includes(parsedDraft.type)
+      ) {
+        throw new Error("Invalid resource draft");
+      }
+
+      if (
+        parsedDraft.type === "note" &&
+        typeof parsedDraft.note?.text !== "string"
+      ) {
+        throw new Error("Invalid note draft");
+      }
+
+      if (
+        parsedDraft.type === "file" &&
+        !parsedDraft.file
+      ) {
+        throw new Error("Invalid file draft");
+      }
+
+      if (
+        parsedDraft.type === "link" &&
+        !parsedDraft.metadata
+      ) {
+        throw new Error("Invalid link draft");
+      }
+
       setDraft(parsedDraft);
       setTags(parsedDraft.analysis.tags || []);
       setNote(parsedDraft.analysis.summary || "");
 
       const recommendation = parsedDraft.analysis.collection;
 
-      if (recommendation?.type === "existing" && recommendation.collectionId) {
+      if (
+        recommendation?.type === "existing" &&
+        recommendation.collectionId
+      ) {
         setSelectedCollection({
           type: "existing",
           collectionId: recommendation.collectionId,
           title: recommendation.title,
         });
-      } else if (recommendation?.type === "new" && recommendation.title) {
+      } else if (
+        recommendation?.type === "new" &&
+        recommendation.title
+      ) {
         setSelectedCollection({
           type: "new",
           collectionId: null,
@@ -128,18 +185,99 @@ export default function Page() {
     setShowNewTag(false);
   };
 
-  if (!draft) {
-    return null;
-  }
+  const handleSaveResource = async () => {
+    if (!draft || saving) return;
 
-  const { metadata, analysis, type } = draft;
+    setSaving(true);
+    setSaveError("");
 
-  const displayTitle = draft.userTitle?.trim() || metadata.title;
+    try {
+      const response = await fetch("/api/resources", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: draft.type,
+          title:
+            draft.userTitle?.trim() ||
+            draft.metadata?.title ||
+            draft.file?.name ||
+            "Untitled resource",
+          summary: note,
+          tags,
+          collection: selectedCollection,
+
+          ...(draft.type === "link" && {
+            url: draft.metadata?.url,
+            metadata: {
+              hostname: draft.metadata?.hostname,
+              description: draft.metadata?.description,
+              image: draft.metadata?.image,
+              favicon: draft.metadata?.favicon,
+            },
+          }),
+
+          ...(draft.type === "file" && {
+            file: {
+              id: draft.file?.id,
+              name: draft.file?.name,
+              size: draft.file?.size,
+              text: draft.file?.text,
+            },
+          }),
+
+          ...(draft.type === "note" && {
+            text: draft.note?.text,
+          }),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Unable to save resource.");
+      }
+
+      const savedResource = data.resource;
+
+      dispatch(
+        addSave({
+          ...savedResource,
+          tags: savedResource.tagNames,
+          tagIds: savedResource.tags,
+          favorite: false,
+        })
+      );
+
+      sessionStorage.removeItem("soars-resource-draft");
+      router.push("/home");
+    } catch (error) {
+      console.error("Save resource error:", error);
+
+      setSaveError(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong while saving."
+      );
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  if (!draft) return null;
+
+  const { metadata, type } = draft;
+
+  const displayTitle =
+    draft.userTitle?.trim() ||
+    metadata?.title ||
+    draft.file?.name ||
+    "Untitled resource";
 
   return (
     <div className="overflow-y-auto flex flex-col gap-y-4 md:gap-y-10 lg:gap-y-5">
-      {/* Only display the original URL for link resources */}
-      {type === "link" && (
+      {type === "link" && metadata && (
         <div className="bg-soft-lavender/30 p-4 rounded-lg flex gap-x-4 items-center md:p-5 md:rounded-xl">
           <LinkIcon className="text-charcoal-black/90 size-4 md:size-5" />
 
@@ -149,7 +287,7 @@ export default function Page() {
             rel="noopener noreferrer"
             className="text-sm text-charcoal-black md:text-xl underline underline-offset-4 truncate"
           >
-            {metadata.url}
+            {metadata.hostname}
           </a>
         </div>
       )}
@@ -162,12 +300,14 @@ export default function Page() {
         <Card className="flex flex-row items-center border-none shadow-none gap-x-3 lg:gap-x-4 p-0">
           <CardHeader className="flex items-center justify-end p-0 w-12 h-fit">
             <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-soft-lavender overflow-hidden">
-              {metadata.favicon ? (
+              {type === "link" && metadata?.favicon ? (
                 <img
                   src={metadata.favicon}
                   alt=""
                   className="w-6 h-6 object-contain"
                 />
+              ) : type === "file" || type === "note" ? (
+                <FileText className="size-6 text-brownish-amber" />
               ) : (
                 <Globe size={16} className="text-brownish-amber" />
               )}
@@ -179,8 +319,7 @@ export default function Page() {
               {displayTitle}
             </CardTitle>
 
-            {/* Description is only available for link resources */}
-            {type === "link" && metadata.description && (
+            {type === "link" && metadata?.description && (
               <CardDescription className="flex items-center gap-x-1">
                 <span className="leading-none md:text-base lg:text-sm line-clamp-2">
                   {metadata.hostname} · {metadata.description}
@@ -188,15 +327,16 @@ export default function Page() {
               </CardDescription>
             )}
 
-            {type === "link" && (
-              <a
-                href={metadata.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-brownish-amber hover:underline w-fit"
-              >
-                {metadata.hostname}
-              </a>
+            {type === "file" && draft.file && (
+              <CardDescription className="text-xs md:text-sm">
+                PDF · {(draft.file.size / (1024 * 1024)).toFixed(2)} MB
+              </CardDescription>
+            )}
+
+            {type === "note" && (
+              <CardDescription className="text-xs md:text-sm">
+                Text note
+              </CardDescription>
             )}
           </CardContent>
         </Card>
@@ -305,29 +445,34 @@ export default function Page() {
               {selectedCollection.title}
             </h1>
 
-          <span
-            className={`text-sm md:text-base lg:text-[10px] font-light capitalize ${
-              selectedCollection.type === "new"
-                ? "text-brownish-amber"
-                : "text-charcoal-black"
-            }`}
-          >
-            {selectedCollection.type === "existing"
-              ? "Already Exists"
-              : selectedCollection.type === "new"
-                ? "New Collection"
-                : "Default Collection"}
-          </span>
+            <span
+              className={`text-sm md:text-base lg:text-[10px] font-light capitalize ${
+                selectedCollection.type === "new"
+                  ? "text-brownish-amber"
+                  : "text-charcoal-black"
+              }`}
+            >
+              {selectedCollection.type === "existing"
+                ? "Already Exists"
+                : selectedCollection.type === "new"
+                  ? "New Collection"
+                  : "Default Collection"}
+            </span>
           </div>
         </div>
       </div>
 
+      {saveError && (
+        <p className="text-sm text-red-500">{saveError}</p>
+      )}
+
       <Button
-        className="w-full flex items-center gap-x-1 md:gap-x-2.5 capitalize bg-brownish-amber/50 hover:bg-brownish-amber cursor-pointer text-white text-base p-6 md:text-2xl md:px-3 md:py-8 lg:text-xl lg:px-5 lg:py-6.5"
-        disabled
+        onClick={handleSaveResource}
+        disabled={saving}
+        className="w-full flex items-center gap-x-1 md:gap-x-2.5 capitalize bg-brownish-amber hover:bg-brownish-amber cursor-pointer text-white text-base p-6 md:text-2xl md:px-3 md:py-8 lg:text-xl lg:px-5 lg:py-6.5 disabled:opacity-50"
       >
         <Check className="size-4 md:size-5.5" />
-        <span>save resource</span>
+        <span>{saving ? "saving resource..." : "save resource"}</span>
       </Button>
     </div>
   );
