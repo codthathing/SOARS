@@ -1,50 +1,94 @@
-import {configureStore, createSlice} from "@reduxjs/toolkit";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  TypedUseSelectorHook,
+  useDispatch,
+  useSelector,
+} from "react-redux";
 
 type IconName = "bookmark" | "directory" | "star" | "archive";
 
-const categories: { id: number; icon: IconName; count: number; title: string }[] = [
+interface Category {
+  id: number;
+  icon: IconName;
+  count: number;
+  title: string;
+}
+
+const categories: Category[] = [
   { id: 0, icon: "bookmark", count: 248, title: "total saves" },
   { id: 1, icon: "directory", count: 12, title: "collections" },
-  // { id: 3, icon: "star", count: 34, title: "favorites" },
-  // { id: 2, icon: "archive", count: 57, title: "archives" },
-]
+];
 
 const categoriesSlice = createSlice({
   name: "categories",
   initialState: categories,
-  reducers: {}
-})
-
+  reducers: {
+    setCategories: (_, action: PayloadAction<Category[]>) => action.payload,
+  },
+});
 
 type SavesIconName = "link" | "file" | "note";
 
-const saves: { id: number; type: SavesIconName; url?: string; size?: string; edited?: string; title: string; favorite: boolean; tags: string[] }[] = [
-  { id: 0, type: "link", url: "medium.com", title: "the grammar of the great queen of British colonel", favorite: true, tags: ["design", "reading"] },
-  { id: 1, type: "file", size: "2.4 MB", title: "q3 product income for the house of the b4 companies", favorite: false, tags: ["work"] },
-  { id: 2, type: "note", edited: "2d", title: "ideas for the onboarding of the interns at microsoft", favorite: false, tags: ["ideas"] },
-  { id: 3, type: "link", url: "tailwindcss.com", title: "tailwind css v4 documentation for learners", favorite: true, tags: ["dev"] },
-  { id: 4, type: "link", url: "youtube.com", title: "color theory crash course for pros", favorite: false, tags: ["design", "learning"] },
-  { id: 5, type: "file", size: "1.8 KB", title: "invoice - march product sales", favorite: false, tags: ["finance"] },
-]
+export interface Save {
+  id: string;
+  type: SavesIconName;
+  url?: string;
+  hostname?: string;
+  size?: number;
+  edited?: string;
+  title: string;
+  summary?: string;
+  description?: string;
+  favorite: boolean;
+  tags: string[];
+  collection_id?: string;
+  created_at?: string;
+  updated_at?: string;
+}
 
 const savesSlice = createSlice({
   name: "saves",
-  initialState: saves,
-  reducers: {}
-})
+  initialState: [] as Save[],
+  reducers: {
+    setSaves: (_, action: PayloadAction<Save[]>) => action.payload,
 
+    addSave: (state, action: PayloadAction<Save>) => {
+      state.unshift(action.payload);
+    },
 
+    removeSave: (state, action: PayloadAction<string>) => {
+      return state.filter((save) => save.id !== action.payload);
+    },
+
+    toggleFavorite: (state, action: PayloadAction<string>) => {
+      const save = state.find((item) => item.id === action.payload);
+
+      if (save) {
+        save.favorite = !save.favorite;
+      }
+    },
+  },
+});
 
 const userSlice = createSlice({
   name: "user",
   initialState: { id: "", email: "" },
   reducers: {},
-})
+});
 
+export const {
+  setSaves,
+  addSave,
+  removeSave,
+  toggleFavorite,
+} = savesSlice.actions;
 
+export const { setCategories } = categoriesSlice.actions;
 
-export const makeStore = (userPreloadState: {id: string; email: string}) => {
+export const makeStore = (userPreloadState: {
+  id: string;
+  email: string;
+}) => {
   return configureStore({
     reducer: {
       user: userSlice.reducer,
@@ -52,13 +96,15 @@ export const makeStore = (userPreloadState: {id: string; email: string}) => {
       saves: savesSlice.reducer,
     },
     devTools: process.env.NODE_ENV !== "production",
-    preloadedState: { user: userPreloadState }
-  })
-}
+    preloadedState: {
+      user: userPreloadState,
+    },
+  });
+};
 
 type AppStore = ReturnType<typeof makeStore>;
-type RootState = ReturnType<AppStore['getState']>;
-type AppDispatch = AppStore['dispatch'];
+type RootState = ReturnType<AppStore["getState"]>;
+type AppDispatch = AppStore["dispatch"];
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

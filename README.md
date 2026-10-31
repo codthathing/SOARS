@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SOARS
 
-## Getting Started
+## Prerequisites
 
-First, run the development server:
+Install the following before running the application:
+
+- [Node.js](https://nodejs.org/) (LTS version)
+- [Git](https://git-scm.com/)
+- [Ollama](https://ollama.com/)
+- npm (included with Node.js)
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+```
+
+Navigate into the project directory:
+
+```bash
+cd SOARS
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+## Install the AI Model
+
+Download and install the Gemma 4 E2B model using Ollama:
+
+```bash
+ollama pull gemma4:e2b
+```
+
+Ensure Ollama is running before starting the application.
+
+## Environment Variables
+
+Create a `.env.local` file in the project root and add:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:4000
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=gemma4:e2b
+```
+
+## Running the Application
+
+**1. Start the mock API server**
+
+Open a terminal in the project directory:
+
+```bash
+npm run mock-api
+```
+
+The mock API server runs at:
+
+```text
+http://localhost:4000
+```
+
+**2. Start the Next.js development server**
+
+Open another terminal in the project directory:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**3. Ensure Ollama is running**
 
-## Learn More
+Ollama must be running locally for AI-powered link analysis and preview generation.
 
-To learn more about Next.js, take a look at the following resources:
+## Demo Login
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Use the following credentials to access the application:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Field | Credentials |
+|---|---|
+| Email | akinwunmiolusegun277@gmail.com |
+| Password | #Pheezy123 |
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
