@@ -302,7 +302,7 @@ export default function ResourcePage() {
                       <Folder className="size-3.5" />
                       Collection
                     </CardTitle>
-                    <CardDescription className="break-words text-sm font-bold capitalize text-charcoal-black md:text-lg lg:text-sm">
+                    <CardDescription className="wrap-break-word text-sm font-bold capitalize text-charcoal-black md:text-lg lg:text-sm">
                       {collectionTitle}
                     </CardDescription>
                   </CardContent>
