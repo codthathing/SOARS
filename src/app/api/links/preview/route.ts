@@ -28,12 +28,6 @@ export async function POST(request: NextRequest) {
     // 3. Let Gemma analyse the webpage.
     const analysis = await analyzeLink(metadata, collections);
 
-    // return NextResponse.json({
-    //   success: true,
-    //   metadata,
-    //   analysis,
-    // });
-
     return NextResponse.json({
       success: true,
       metadata,
@@ -43,11 +37,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Link preview error:", error);
 
-    return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Unable to generate link preview.",
-      },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to generate link preview." }, { status: 500 });
   }
 }

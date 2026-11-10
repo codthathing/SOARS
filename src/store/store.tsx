@@ -1,9 +1,5 @@
 import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  TypedUseSelectorHook,
-  useDispatch,
-  useSelector,
-} from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 type IconName = "bookmark" | "directory" | "star" | "archive";
 
@@ -25,14 +21,10 @@ const categoriesSlice = createSlice({
   reducers: {
     setCategories: (_, action: PayloadAction<Category[]>) => action.payload,
     setCollectionCount: (state, action: PayloadAction<number>) => {
-  const collectionCategory = state.find(
-    (category) => category.title === "collections"
-  );
+      const collectionCategory = state.find((category) => category.title === "collections");
 
-  if (collectionCategory) {
-    collectionCategory.count = action.payload;
-  }
-},
+      if (collectionCategory) collectionCategory.count = action.payload;
+    },
   },
 });
 
@@ -64,21 +56,16 @@ const savesSlice = createSlice({
   initialState: [] as Save[],
   reducers: {
     setSaves: (_, action: PayloadAction<Save[]>) => action.payload,
-
     addSave: (state, action: PayloadAction<Save>) => {
       state.unshift(action.payload);
     },
-
     removeSave: (state, action: PayloadAction<string>) => {
       return state.filter((save) => save.id !== action.payload);
     },
-
     toggleFavorite: (state, action: PayloadAction<string>) => {
       const save = state.find((item) => item.id === action.payload);
 
-      if (save) {
-        save.favorite = !save.favorite;
-      }
+      if (save) save.favorite = !save.favorite;
     },
   },
 });
@@ -89,19 +76,10 @@ const userSlice = createSlice({
   reducers: {},
 });
 
-export const {
-  setSaves,
-  addSave,
-  removeSave,
-  toggleFavorite,
-} = savesSlice.actions;
+export const { setSaves, addSave, removeSave, toggleFavorite } = savesSlice.actions;
+export const { setCategories, setCollectionCount } = categoriesSlice.actions;
 
-export const { setCategories, setCollectionCount } =
-  categoriesSlice.actions;
-export const makeStore = (userPreloadState: {
-  id: string;
-  email: string;
-}) => {
+export const makeStore = (userPreloadState: {id: string; email: string;}) => {
   return configureStore({
     reducer: {
       user: userSlice.reducer,

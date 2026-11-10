@@ -1,8 +1,6 @@
-
 import "server-only";
 
-const OLLAMA_URL =
-  process.env.OLLAMA_BASE_URL || "http://localhost:11434";
+const OLLAMA_URL = process.env.OLLAMA_BASE_URL || "http://localhost:11434";
 
 const MODEL = process.env.OLLAMA_MODEL || "gemma4:e2b";
 
@@ -46,8 +44,6 @@ export async function askGemma(prompt: string): Promise<string> {
 
   return result.message.content;
 }
-
-
 
 export async function askGemmaJson<T>(prompt: string): Promise<T> {
   const response = await fetch(`${OLLAMA_URL}/api/chat`, {

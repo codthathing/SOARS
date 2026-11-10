@@ -1,4 +1,3 @@
-
 "use client";
 
 import ResourceCard from "../common/ResourceCard";
@@ -9,24 +8,12 @@ interface TagsSavesProps {
   selectedTag: string;
 }
 
-export default function TagsSaves({
-  resources,
-  selectedTag,
-}: TagsSavesProps) {
+export default function TagsSaves({ resources, selectedTag }: TagsSavesProps) {
   if (!selectedTag) return null;
 
   if (resources.length === 0) {
-    return (
-      <p className="text-sm text-charcoal-black">
-        No resources have this tag.
-      </p>
-    );
+    return <p className="text-sm text-charcoal-black">No resources have this tag.</p>;
   }
 
-  return (
-    <ResourceCard
-      resources={resources}
-      className="lg:grid-cols-3"
-    />
-  );
+  return <ResourceCard resources={resources} className="lg:grid-cols-3" />;
 }

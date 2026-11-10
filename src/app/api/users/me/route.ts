@@ -4,8 +4,6 @@ import { cookies } from "next/headers";
 import { findUserByEmail } from "@/src/lib/users";
 
 export const POST = async (request: NextRequest) => {
-console.log("sign-in route hit");
-
   try {
     const { email, password } = await request.json();
 

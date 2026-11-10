@@ -1,4 +1,3 @@
-
 import "server-only";
 
 import { lookup } from "node:dns/promises";
@@ -27,11 +26,7 @@ async function validatePublicUrl(value: string): Promise<URL> {
 
   const hostname = url.hostname.replace(/^\[|\]$/g, "");
 
-  if (
-    hostname === "localhost" ||
-    hostname.endsWith(".localhost") ||
-    hostname.endsWith(".local")
-  ) {
+  if (hostname === "localhost" || hostname.endsWith(".localhost") || hostname.endsWith(".local")) {
     throw new Error("This URL is not allowed.");
   }
 
@@ -99,9 +94,7 @@ async function fetchPublicPage(initialUrl: string) {
       throw new Error("This link does not point to an HTML webpage.");
     }
 
-    const contentLength = Number(
-      response.headers.get("content-length") || 0
-    );
+    const contentLength = Number(response.headers.get("content-length") || 0);
 
     if (contentLength > 2 * 1024 * 1024) {
       throw new Error("Webpage is too large to preview.");
@@ -119,9 +112,7 @@ async function fetchPublicPage(initialUrl: string) {
   throw new Error("Too many website redirects.");
 }
 
-export async function getLinkMetadata(
-  inputUrl: string
-): Promise<LinkMetadata> {
+export async function getLinkMetadata(inputUrl: string): Promise<LinkMetadata> {
   const { html, url: finalUrl } = await fetchPublicPage(inputUrl);
 
   const $ = load(html);
@@ -153,38 +144,13 @@ export async function getLinkMetadata(
     }
   };
 
-  const title =
-    getMeta(
-      'meta[property="og:title"]',
-      'meta[name="twitter:title"]'
-    ) ||
-    $("title").first().text().trim() ||
-    pageUrl.hostname;
+  const title = getMeta('meta[property="og:title"]', 'meta[name="twitter:title"]') || $("title").first().text().trim() || pageUrl.hostname;
 
-  const description = getMeta(
-    'meta[property="og:description"]',
-    'meta[name="description"]',
-    'meta[name="twitter:description"]'
-  );
+  const description = getMeta('meta[property="og:description"]', 'meta[name="description"]', 'meta[name="twitter:description"]');
 
-  const image = resolveUrl(
-    getMeta(
-      'meta[property="og:image"]',
-      'meta[name="twitter:image"]'
-    )
-  );
+  const image = resolveUrl(getMeta('meta[property="og:image"]', 'meta[name="twitter:image"]'));
 
-  const faviconHref =
-    $('link[rel="icon"]').first().attr("href") ||
-    $('link[rel="shortcut icon"]').first().attr("href") ||
-    "/favicon.ico";
+  const faviconHref = $('link[rel="icon"]').first().attr("href") || $('link[rel="shortcut icon"]').first().attr("href") || "/favicon.ico";
 
-  return {
-    url: finalUrl,
-    hostname: pageUrl.hostname.replace(/^www\./, ""),
-    title,
-    description,
-    image,
-    favicon: resolveUrl(faviconHref),
-  };
+  return { url: finalUrl, hostname: pageUrl.hostname.replace(/^www\./, ""), title, description, image, favicon: resolveUrl(faviconHref) };
 }

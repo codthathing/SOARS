@@ -1,6 +1,4 @@
-
 "use client";
-
 import { useEffect, useState } from "react";
 import Filters from "@/src/components/common/FilterTabs";
 import HomeHeader from "@/src/components/home/HomeHeader";
@@ -44,9 +42,7 @@ export default function SearchPage() {
         setResources(data.resources ?? []);
         setCollections(data.collections ?? []);
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Unable to load resources."
-        );
+        setError(err instanceof Error ? err.message : "Unable to load resources.");
       } finally {
         setLoading(false);
       }
@@ -70,38 +66,19 @@ export default function SearchPage() {
             : error
               ? error
               : filter === "collections"
-                ? `${collections.filter((collection) =>
-                    collection.title.toLowerCase().includes(search.toLowerCase())
-                  ).length} collections`
-                : `${resources.filter((resource) => {
-                    const matchesType =
-                      filter === "all" || resource.type === filter.slice(0, -1);
+                ? `${collections.filter((collection) => collection.title.toLowerCase().includes(search.toLowerCase())).length} collections`
+                : `${
+                    resources.filter((resource) => {
+                      const matchesType = filter === "all" || resource.type === filter.slice(0, -1);
 
-                    const searchable = [
-                      resource.title,
-                      resource.summary,
-                      resource.url,
-                      resource.hostname,
-                      ...(resource.tags ?? []),
-                    ]
-                      .join(" ")
-                      .toLowerCase();
+                      const searchable = [resource.title, resource.summary, resource.url, resource.hostname, ...(resource.tags ?? [])].join(" ").toLowerCase();
 
-                    return (
-                      matchesType &&
-                      searchable.includes(search.toLowerCase())
-                    );
-                  }).length} results`}
+                      return matchesType && searchable.includes(search.toLowerCase());
+                    }).length
+                  } results`}
         </div>
 
-        {!loading && !error && (
-          <SearchSaves
-            resources={resources}
-            collections={collections}
-            search={search}
-            filter={filter}
-          />
-        )}
+        {!loading && !error && <SearchSaves resources={resources} collections={collections} search={search} filter={filter} />}
       </section>
     </>
   );

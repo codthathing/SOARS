@@ -1,4 +1,3 @@
-
 export type ResourceType = "link" | "file" | "note";
 
 export interface Resource {

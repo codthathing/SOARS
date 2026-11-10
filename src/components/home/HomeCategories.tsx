@@ -1,11 +1,5 @@
 "use client";
-
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/src/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/src/components/ui/card";
 import { Bookmark, Folder, Star, Archive } from "lucide-react";
 import { useAppSelector } from "@/src/store/store";
 
@@ -25,26 +19,16 @@ export default function HomeCategories() {
       {categories.map(({ id, icon, count, title }) => {
         const Icon = ICON_MAP[icon];
 
-        const displayCount =
-          title === "total saves" ? saves.length : count;
+        const displayCount = (title === "total saves") ? saves.length : count;
 
         return (
           <Card key={id} className="flex-1">
             <CardHeader className="w-full flex flex-col md:gap-y-3 lg:gap-y-3.5">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-brownish-amber/20">
-                <Icon
-                  size={18}
-                  className="text-brownish-amber"
-                />
+                <Icon size={18} className="text-brownish-amber" />
               </div>
-
-              <CardTitle className="md:text-2xl lg:text-xl">
-                {displayCount}
-              </CardTitle>
-
-              <CardDescription className="md:text-base lg:text-base capitalize">
-                {title}
-              </CardDescription>
+              <CardTitle className="md:text-2xl lg:text-xl">{displayCount}</CardTitle>
+              <CardDescription className="md:text-base lg:text-base capitalize">{title}</CardDescription>
             </CardHeader>
           </Card>
         );

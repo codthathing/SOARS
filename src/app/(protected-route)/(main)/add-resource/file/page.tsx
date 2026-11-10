@@ -4,7 +4,6 @@ import { Button } from "@/src/components/ui/button";
 import { File } from "lucide-react";
 import { ChangeEventHandler, useRef, useState } from "react";
 
-
 const formatFileSize = (bytes: number) => {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -13,74 +12,60 @@ const formatFileSize = (bytes: number) => {
 
 export default function page() {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [details, setDetails] = useState({error: "", title: "upload a PDF file to save", size: "max file size: 12 MB"});
+  const [details, setDetails] = useState({ error: "", title: "upload a PDF file to save", size: "max file size: 12 MB" });
   const [title, setTitle] = useState("");
 
-const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
-  const selected = e.target.files?.[0];
-  if (!selected) return;
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
+    const selected = e.target.files?.[0];
+    if (!selected) return;
 
-  if (selected.type !== "application/pdf") {
-    setDetails((prev) => ({ ...prev, error: "Only PDF files are allowed" }));
-    return;
-  }
-
-  if (selected.size > 5 * 1024 * 1024) {
-    setDetails((prev) => ({ ...prev, error: "File must be 5MB or smaller" }));
-    return;
-  }
-
-  setDetails({
-    error: "",
-    title: "Processing PDF...",
-    size: `file size: ${formatFileSize(selected.size)}`,
-  });
-
-  try {
-const formData = new FormData();
-formData.append("file", selected);
-formData.append("title", title.trim());
-
-    const response = await fetch("/api/files/preview", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.error || "Unable to upload PDF.");
+    if (selected.type !== "application/pdf") {
+      setDetails((prev) => ({ ...prev, error: "Only PDF files are allowed" }));
+      return;
     }
 
-sessionStorage.setItem(
-  "soars-resource-draft",
-  JSON.stringify({
-    type: "file",
-    file: data.file,
-    analysis: data.analysis,
-    collections: data.collections,
-    userTitle: data.userTitle,
-  })
-);
+    if (selected.size > 5 * 1024 * 1024) {
+      setDetails((prev) => ({ ...prev, error: "File must be 5MB or smaller" }));
+      return;
+    }
 
-window.location.href = "/add-resource/preview";
+    setDetails({ error: "", title: "Processing PDF...", size: `file size: ${formatFileSize(selected.size)}` });
 
-    setDetails({
-      error: "",
-      title: selected.name,
-      size: `file size: ${formatFileSize(selected.size)}`,
-    });
+    try {
+      const formData = new FormData();
+      formData.append("file", selected);
+      formData.append("title", title.trim());
 
-    // We'll connect this to the file preview page next.
-    window.location.href = "/add-resource/preview";
-  } catch (error) {
-    setDetails((prev) => ({
-      ...prev,
-      error:
-        error instanceof Error ? error.message : "Unable to upload PDF.",
-    }));
-  }
-};
+      const response = await fetch("/api/files/preview", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok)  throw new Error(data.error || "Unable to upload PDF.");
+
+      sessionStorage.setItem(
+        "soars-resource-draft",
+        JSON.stringify({
+          type: "file",
+          file: data.file,
+          analysis: data.analysis,
+          collections: data.collections,
+          userTitle: data.userTitle,
+        }),
+      );
+
+      window.location.href = "/add-resource/preview";
+
+      setDetails({ error: "", title: selected.name, size: `file size: ${formatFileSize(selected.size)}` });
+
+      // We'll connect this to the file preview page next.
+      window.location.href = "/add-resource/preview";
+    } catch (error) {
+      setDetails((prev) => ({ ...prev, error: error instanceof Error ? error.message : "Unable to upload PDF." }));
+    }
+  };
 
   return (
     <>
@@ -97,5 +82,5 @@ window.location.href = "/add-resource/preview";
       <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter title (optional)" className="outline-none border-none rounded-lg md:rounded-xl bg-soft-lavender/30 p-4 md:p-5 w-4/5 mt-6" />
       {details.error && <p className="text-red-500 text-base">{details.error}</p>}
     </>
-  )
+  );
 }

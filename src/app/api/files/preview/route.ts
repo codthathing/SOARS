@@ -23,26 +23,17 @@ export async function POST(request: NextRequest) {
     const userTitle = formData.get("title");
 
     if (!(file instanceof File)) {
-      return NextResponse.json(
-        { error: "Please select a PDF file." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Please select a PDF file." }, { status: 400 });
     }
 
     if (file.size === 0 || file.size > MAX_SIZE) {
-      return NextResponse.json(
-        { error: "PDF must be between 1 byte and 5MB." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "PDF must be between 1 byte and 5MB." }, { status: 400 });
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
 
     if (buffer.subarray(0, 5).toString() !== "%PDF-") {
-      return NextResponse.json(
-        { error: "Invalid PDF file." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid PDF file." }, { status: 400 });
     }
 
     const fileId = crypto.randomUUID();
@@ -56,15 +47,9 @@ export async function POST(request: NextRequest) {
 
     const extractedText = await extractPdfText(buffer);
 
-    const collections = await db.get<Collection[]>(
-      `/collections?u_id=${encodeURIComponent(user.id)}`
-    );
+    const collections = await db.get<Collection[]>(`/collections?u_id=${encodeURIComponent(user.id)}`);
 
-    const analysis = await analyzeFile(
-      file.name,
-      extractedText,
-      collections
-    );
+    const analysis = await analyzeFile(file.name, extractedText, collections);
 
     return NextResponse.json({
       success: true,
@@ -78,8 +63,7 @@ export async function POST(request: NextRequest) {
       },
       analysis,
       collections,
-      userTitle:
-        typeof userTitle === "string" ? userTitle.trim() : "",
+      userTitle: typeof userTitle === "string" ? userTitle.trim() : "",
     });
   } catch (error) {
     if (filePath) {
@@ -88,14 +72,6 @@ export async function POST(request: NextRequest) {
 
     console.error("PDF upload error:", error);
 
-    return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Unable to process PDF.",
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to process PDF." }, { status: 500 });
   }
 }

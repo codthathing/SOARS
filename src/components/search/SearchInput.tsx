@@ -1,4 +1,3 @@
-
 "use client";
 
 import Input from "../common/Input";
@@ -9,15 +8,6 @@ interface SearchInputProps {
   setValue: Dispatch<SetStateAction<string>>;
 }
 
-export default function SearchInput({
-  value,
-  setValue,
-}: SearchInputProps) {
-  return (
-    <Input
-      value={value}
-      setValue={setValue}
-      placeholder="Search resource name"
-    />
-  );
+export default function SearchInput({ value, setValue }: SearchInputProps) {
+  return <Input value={value} setValue={setValue} placeholder="Search resource name" />;
 }

@@ -1,12 +1,5 @@
-
 import "server-only";
-
-import {
-  readFile,
-  writeFile,
-  rename,
-  mkdir,
-} from "node:fs/promises";
+import { readFile, writeFile, rename, mkdir } from "node:fs/promises";
 import path from "node:path";
 import type { Database } from "./types";
 
@@ -23,11 +16,7 @@ async function ensureDatabase() {
   } catch {
     await writeFile(
       DB_PATH,
-      JSON.stringify(
-        { resources: [], collections: [], tags: [] },
-        null,
-        2
-      )
+      JSON.stringify({ resources: [], collections: [], tags: [] }, null, 2)
     );
   }
 }
