@@ -6,6 +6,49 @@
       "email": "akinwunmiolusegun277@gmail.com",
       "password": "$2b$10$ig84fmv.qAm/UHYNGMaAQ.jpCnohvef9RG8QubqN.KGzPUj70UT8W",
       "created_at": "2026-11-10T15:39:09.994Z"
+    },
+    {
+      "id": "c666f193-6128-4cb3-a02d-6bc17bb5db4b",
+      "name": "Oluwasegun Samson Akinwunmi",
+      "email": "codthathing.dev@yahoo.com",
+      "password": "$2b$10$6n1l.Ro6vdlALCud8GGoLu01bTMANSUjcg9S6YElYzGgxa8llrybO",
+      "created_at": "2026-11-12T15:28:16.708Z"
+    }
+  ],
+  "links": [
+    {
+      "id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "url": "https://github.com/codthathing",
+      "hostname": "github.com",
+      "description": "Frontend Engineer.\n. codthathing has 20 repositories available. Follow their code on GitHub.",
+      "image": "https://avatars.githubusercontent.com/u/116083752?v=4?s=400",
+      "favicon": "https://github.githubassets.com/favicons/favicon.svg"
+    }
+  ],
+  "files": [
+    {
+      "id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
+      "original_filename": "Akinwunmi_Oluwasegun_Resume.pdf",
+      "storage_key": "uploads/cb24c156-7c66-45e7-aa47-c2cd887a0551/423c2859-44f2-40c0-a823-cf828297e20c.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 48125,
+      "checksum": "",
+      "text": "Akinwunmi Oluwasegun\nMOBILE-ALT +234-90-4344-5618 | Envelope codthathing.dev@yahoo.com\nEDUCATION\nUNIVERSITY OF LAGOS\nBachelor Of Science (Computer\nScience)\nNovember 2023 - 2027 | MAP-MARKER-ALT NIGERIA\nCGPA: 4.52/5.00\nLINKS\nLink LeetCode\nX @codthathing\na Github: @codthathing\n] LinkedIn: @codthathing\nLink Portfolio Website\nTECHNICAL SKILLS\nFRONTEND DEVELOPMENT\n•HTML •CSS •Tailwind CSS •Redux\nBACKEND DEVELOPMENT\n•NodeJs •MySQL •Supabase\nPROGRAMMING LANGUAGES\n• JavaScript • TypeScript • Java • C# • PHP\n• Python\nFRAMEWORKS\n•ReactJs •ExpressJs •FastAPI •NextJs\nTOOLS AND SOFTWARE\n• Git • Github • Jest • React Testing Library\n• Redux\nCOURSEWORK\n• Data Structures And Algorithm (DSA)\n• Software Engineering\n• System Analysis and Design\n• Object Oriented Programming (OOP)\nPERSONAL SKILLS\n• Analytical Problem-Solving\n• Creative UI/UX Design\n• Agile Development\nEXPERIENCE\nCALOR STICHES | FRONTEND ENGINEER ( VOLUNTEER ) Link\nWebsite\nCALENDAR-ALT June 2024 - Present\n• Built an online store for a client’s clothing brand. Moved it from React to\nNextJs and TypeScript as it grew.\n• Developed collection pages, multi-filter browsing, search, wishlist, cart, and\ncheckout UI with multiple payment options.\n• Added sign-in pop-ups, naira and dollar prices, and smooth animations that\nwork on phones and desktops.\n• Designing an offline-first cart and wishlist with DexieJs and a Spring\nBoot/PostgreSQL backend for accounts and orders.\n• Tech Stack - NextJs, TypeScript, CSS, Motion.\nBT TECHNOLOGIES LTD | NETWORK & IT SUPPORT INTERN\nCALENDAR-ALT April 2026 - July 2026\n• Installed and terminated Cat6 cabling, access points, 8+ VoIP phones and\n20+ media converters across a hospital and university campus.\n• Participated in splicing 100+ fibre cores at 20+ sites, progressing to\nindependent splicing with verified links by VFL and OTDR.\n• Found and fixed network faults in many departments, such as a fibre signal\nloss caused by a wrong splice.\n• Documented and ran integrated tests on Open Hospital (Java/Spring Boot)\nand designed an office network in Cisco Packet Tracer.\n• Skills - Fibre splicing, OTDR, VFL, LAN testing, Cisco Packet Tracer.\nPROJECTS\nSOARS Link Website a Github\n• Designed a responsive 18-page system (mobile, tablet, desktop) for\nan app to save, organize, archive and share links and files.\n• Built the frontend sub-routes covering collections, tags, search,\nfavorites, archive, trash and sharing in Next.js, TypeScript and\nTailwind.\n• Architecting the backend with Supabase authentication, an ASP.NET\nCore (C#) API, PostgreSQL for resource data, and AWS S3 for file\nstorage.\n• Tech Stack - NextJs, TypeScript, Tailwind CSS.\nFREE CHAT Link Website a Github\n• Built a responsive chat frontend in React and Tailwind with auth,\nmessaging and profile flows, using Redux for state.\n• Developed a Python backend with FastAPI and SQLAlchemy, tested\nagainst SQLite, and wrote Jest and RTL tests for the UI.\n• Structured the frontend for API integration for connection to the\nbackend with WebSockets is the next phase.\n• Tech Stack - React, Redux, Tailwind, Jest, FastAPI, SQLAlchemy."
+    }
+  ],
+  "notes": [
+    {
+      "id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
+      "slug": "",
+      "content": "I've been really going through a lot but I know I will pass this phase and enter the phase where it's just about me winning in this life and I am sure it's not longer far fetched"
+    }
+  ],
+  "note_versions": [
+    {
+      "id": 1,
+      "note_id": "1007df77-e735-456f-9725-04fd27cd27ae",
+      "content": "Tomatoes, pepper, onions.",
+      "edited_at": "2026-08-05T07:00:00Z"
     }
   ],
   "resources": [
@@ -16,20 +59,8 @@
       "type": "link",
       "title": "codthathing - Overview",
       "summary": "This is the GitHub profile for codthathing, identified as a Frontend Engineer. The profile provides access to 20 repositories where their code can be followed.",
-      "tags": [
-        "020dba44-cea7-473d-b020-e35600beb433",
-        "4df6ed31-0c47-4035-9072-c981fe410a56",
-        "c7664d2c-bfe3-4fab-b875-b7a3ac0494bf",
-        "69e4a02f-5907-4fe8-8383-1d397ce48a43",
-        "40efcedf-0355-4d23-9312-743942c8f262"
-      ],
       "created_at": "2026-11-10T17:47:56.158Z",
-      "updated_at": "2026-11-10T17:47:56.158Z",
-      "url": "https://github.com/codthathing",
-      "hostname": "github.com",
-      "description": "Frontend Engineer.\n. codthathing has 20 repositories available. Follow their code on GitHub.",
-      "image": "https://avatars.githubusercontent.com/u/116083752?v=4?s=400",
-      "favicon": "https://github.githubassets.com/favicons/favicon.svg"
+      "updated_at": "2026-11-10T17:47:56.158Z"
     },
     {
       "id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
@@ -38,18 +69,8 @@
       "type": "file",
       "title": "Akinwunmi_Oluwasegun_Resume.pdf",
       "summary": "A Computer Science student with strong skills in full-stack web development, specializing in React, Next.js, and TypeScript. The candidate has practical experience building complex e-commerce applications and designing full-stack projects utilizing technologies like Node.js, Python, PostgreSQL, and Supabase.",
-      "tags": [
-        "a4a056d8-0d54-4449-a359-ea76f8a627ae",
-        "faede011-f884-41ba-beac-4dcd48e4bc2a",
-        "3d3b2b80-3376-43de-8024-98c9304fcc4b",
-        "c4b23c3c-2294-4e75-9e33-33b20510cb9f",
-        "b6732973-5d97-431a-a58d-f3438c3fa97a"
-      ],
       "created_at": "2026-11-10T17:49:16.377Z",
-      "updated_at": "2026-11-10T17:49:16.377Z",
-      "data": "uploads/cb24c156-7c66-45e7-aa47-c2cd887a0551/423c2859-44f2-40c0-a823-cf828297e20c.pdf",
-      "size": 48125,
-      "text": "Akinwunmi Oluwasegun\nMOBILE-ALT +234-90-4344-5618 | Envelope codthathing.dev@yahoo.com\nEDUCATION\nUNIVERSITY OF LAGOS\nBachelor Of Science (Computer\nScience)\nNovember 2023 - 2027 | MAP-MARKER-ALT NIGERIA\nCGPA: 4.52/5.00\nLINKS\nLink LeetCode\nX @codthathing\na Github: @codthathing\n] LinkedIn: @codthathing\nLink Portfolio Website\nTECHNICAL SKILLS\nFRONTEND DEVELOPMENT\n•HTML •CSS •Tailwind CSS •Redux\nBACKEND DEVELOPMENT\n•NodeJs •MySQL •Supabase\nPROGRAMMING LANGUAGES\n• JavaScript • TypeScript • Java • C# • PHP\n• Python\nFRAMEWORKS\n•ReactJs •ExpressJs •FastAPI •NextJs\nTOOLS AND SOFTWARE\n• Git • Github • Jest • React Testing Library\n• Redux\nCOURSEWORK\n• Data Structures And Algorithm (DSA)\n• Software Engineering\n• System Analysis and Design\n• Object Oriented Programming (OOP)\nPERSONAL SKILLS\n• Analytical Problem-Solving\n• Creative UI/UX Design\n• Agile Development\nEXPERIENCE\nCALOR STICHES | FRONTEND ENGINEER ( VOLUNTEER ) Link\nWebsite\nCALENDAR-ALT June 2024 - Present\n• Built an online store for a client’s clothing brand. Moved it from React to\nNextJs and TypeScript as it grew.\n• Developed collection pages, multi-filter browsing, search, wishlist, cart, and\ncheckout UI with multiple payment options.\n• Added sign-in pop-ups, naira and dollar prices, and smooth animations that\nwork on phones and desktops.\n• Designing an offline-first cart and wishlist with DexieJs and a Spring\nBoot/PostgreSQL backend for accounts and orders.\n• Tech Stack - NextJs, TypeScript, CSS, Motion.\nBT TECHNOLOGIES LTD | NETWORK & IT SUPPORT INTERN\nCALENDAR-ALT April 2026 - July 2026\n• Installed and terminated Cat6 cabling, access points, 8+ VoIP phones and\n20+ media converters across a hospital and university campus.\n• Participated in splicing 100+ fibre cores at 20+ sites, progressing to\nindependent splicing with verified links by VFL and OTDR.\n• Found and fixed network faults in many departments, such as a fibre signal\nloss caused by a wrong splice.\n• Documented and ran integrated tests on Open Hospital (Java/Spring Boot)\nand designed an office network in Cisco Packet Tracer.\n• Skills - Fibre splicing, OTDR, VFL, LAN testing, Cisco Packet Tracer.\nPROJECTS\nSOARS Link Website a Github\n• Designed a responsive 18-page system (mobile, tablet, desktop) for\nan app to save, organize, archive and share links and files.\n• Built the frontend sub-routes covering collections, tags, search,\nfavorites, archive, trash and sharing in Next.js, TypeScript and\nTailwind.\n• Architecting the backend with Supabase authentication, an ASP.NET\nCore (C#) API, PostgreSQL for resource data, and AWS S3 for file\nstorage.\n• Tech Stack - NextJs, TypeScript, Tailwind CSS.\nFREE CHAT Link Website a Github\n• Built a responsive chat frontend in React and Tailwind with auth,\nmessaging and profile flows, using Redux for state.\n• Developed a Python backend with FastAPI and SQLAlchemy, tested\nagainst SQLite, and wrote Jest and RTL tests for the UI.\n• Structured the frontend for API integration for connection to the\nbackend with WebSockets is the next phase.\n• Tech Stack - React, Redux, Tailwind, Jest, FastAPI, SQLAlchemy."
+      "updated_at": "2026-11-10T17:49:16.377Z"
     },
     {
       "id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
@@ -58,16 +79,70 @@
       "type": "note",
       "title": "Untitled resource",
       "summary": "The user is reflecting on overcoming a difficult personal phase and expressing strong determination to achieve success in life. They feel optimistic that their goals are achievable and not far-fetched.",
-      "tags": [
-        "f58926a7-a951-49df-8316-f6eec95cbdfc",
-        "2efcc9c7-c3c9-4a48-ad4a-2cbf1f4a57ea",
-        "ca289e71-7c34-4f41-b43e-7f0f11e582b6",
-        "bc948652-00c5-4e74-884a-15ca79687d67",
-        "297f25fc-70a2-4bc7-9b80-0f54a53d17cc"
-      ],
       "created_at": "2026-11-10T17:50:58.724Z",
-      "updated_at": "2026-11-10T17:50:58.724Z",
-      "text": "I've been really going through a lot but I know I will pass this phase and enter the phase where it's just about me winning in this life and I am sure it's not longer far fetched"
+      "updated_at": "2026-11-10T17:50:58.724Z"
+    }
+  ],
+  "resource_tags": [
+    {
+      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "tag_id": "020dba44-cea7-473d-b020-e35600beb433"
+    },
+    {
+      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "tag_id": "4df6ed31-0c47-4035-9072-c981fe410a56"
+    },
+    {
+      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "tag_id": "c7664d2c-bfe3-4fab-b875-b7a3ac0494bf"
+    },
+    {
+      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "tag_id": "69e4a02f-5907-4fe8-8383-1d397ce48a43"
+    },
+    {
+      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "tag_id": "40efcedf-0355-4d23-9312-743942c8f262"
+    },
+    {
+      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
+      "tag_id": "a4a056d8-0d54-4449-a359-ea76f8a627ae"
+    },
+    {
+      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
+      "tag_id": "faede011-f884-41ba-beac-4dcd48e4bc2a"
+    },
+    {
+      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
+      "tag_id": "3d3b2b80-3376-43de-8024-98c9304fcc4b"
+    },
+    {
+      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
+      "tag_id": "c4b23c3c-2294-4e75-9e33-33b20510cb9f"
+    },
+    {
+      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
+      "tag_id": "b6732973-5d97-431a-a58d-f3438c3fa97a"
+    },
+    {
+      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
+      "tag_id": "f58926a7-a951-49df-8316-f6eec95cbdfc"
+    },
+    {
+      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
+      "tag_id": "2efcc9c7-c3c9-4a48-ad4a-2cbf1f4a57ea"
+    },
+    {
+      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
+      "tag_id": "ca289e71-7c34-4f41-b43e-7f0f11e582b6"
+    },
+    {
+      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
+      "tag_id": "bc948652-00c5-4e74-884a-15ca79687d67"
+    },
+    {
+      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
+      "tag_id": "297f25fc-70a2-4bc7-9b80-0f54a53d17cc"
     }
   ],
   "collections": [
@@ -174,6 +249,31 @@
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
       "text": "overcoming challenges",
       "created_at": "2026-11-10T17:50:54.107Z"
+    }
+  ],
+  "favorites": [
+    {
+      "id": 1,
+      "resource_id": "9ed10f6c-b37c-4bd7-bb07-062eef603269",
+      "u_id": "663f301d-50ff-4426-b0db-2fbc0034ee33",
+      "starred_at": ""
+    }
+  ],
+  "archive": [
+    {
+      "id": 1,
+      "resource_id": "d8c3a8fe-00d9-4ce1-bdf8-7b1be2034608",
+      "u_id": "54c1ad52-e534-4b3c-80e0-4cabb59a4e0d",
+      "archived_at": "2026-07-02T10:15:00Z"
+    }
+  ],
+  "trash": [
+    {
+      "id": 1,
+      "resource_id": "8a865a43-2bf5-487d-b57b-e67417f116c4",
+      "u_id": "afb7a860-56f9-4864-9567-1a3a3ebacd01",
+      "deleted_at": "2026-08-01T14:22:00Z",
+      "expires_at": "2026-08-31T14:22:00Z"
     }
   ]
 }

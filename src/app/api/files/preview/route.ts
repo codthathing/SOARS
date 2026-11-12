@@ -6,7 +6,7 @@ import { db } from "@/src/lib/db/api";
 import type { Collection } from "@/src/lib/db/types";
 import { mkdir, writeFile, unlink } from "node:fs/promises";
 import path from "node:path";
-import crypto from "node:crypto";
+import crypto, { createHash } from "node:crypto";
 
 export const runtime = "nodejs";
 
@@ -45,6 +45,8 @@ export async function POST(request: NextRequest) {
 
     await writeFile(filePath, buffer, { flag: "wx" });
 
+    const checksum = createHash("sha256").update(buffer).digest("hex");
+
     const extractedText = await extractPdfText(buffer);
 
     const collections = await db.get<Collection[]>(`/collections?u_id=${encodeURIComponent(user.id)}`);
@@ -58,6 +60,7 @@ export async function POST(request: NextRequest) {
         name: file.name,
         size: file.size,
         storagePath: `uploads/${user.id}/${fileId}.pdf`,
+        checksum,
         text: extractedText.slice(0, 60000),
         extractedTextLength: extractedText.length,
       },

@@ -1,10 +1,10 @@
 import HomeFooter from "@/src/components/home/HomeFooter";
 import ProtectedLayoutWrapper from "@/src/components/layout/ProtectedLayoutWrapper";
-import { getUserFromSession } from "@/src/utils/getUserFromSession";
+import { getUserDetails } from "@/src/utils/getUserDetails";
 import { ReactNode } from "react";
 
 export default async function PageLayout({ children }: { children: ReactNode }) {
-  const data = await getUserFromSession();
+  const data = await getUserDetails();
 
   return (
     <ProtectedLayoutWrapper userData={data}>

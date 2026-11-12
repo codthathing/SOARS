@@ -48,8 +48,7 @@ export default function Page() {
 
       if (!response.ok)  throw new Error(data.error || "Unable to generate link preview.");
 
-      sessionStorage.setItem(
-        "soars-resource-draft",
+      sessionStorage.setItem("soars-resource-draft",
         JSON.stringify({
           type: "link",
           ...data,

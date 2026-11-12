@@ -2,7 +2,8 @@
 import * as Yup from "yup";
 import { ReactNode } from "react";
 import { Form, Formik } from "formik";
-import { useFormSubmitBasic } from "@/src/hooks/useFormSubmit";
+import { useFormSubmit } from "@/src/hooks/useFormSubmit";
+import { authResetPassword } from "@/src/lib/auth/authService";
 
 const validationSchema = Yup.object().shape({
   password: Yup.string().required("Kindly enter a password.").min(8, "Password must be at least 8 characters."),
@@ -12,12 +13,12 @@ const validationSchema = Yup.object().shape({
 const initialValues = {  password: "", confirmPassword: "" };
 
 export default function AuthResetPasswordForm({ children }: { children: ReactNode; }) {
-  const submitAction = useFormSubmitBasic();
+  const submitAction = useFormSubmit();
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (_values, { resetForm, setSubmitting }) => submitAction("/auth/sign-in", resetForm, setSubmitting)}
+      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => submitAction(() => authResetPassword(values.password), "/auth/sign-in", resetForm, setSubmitting, (message) => setFieldError("password", message))}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

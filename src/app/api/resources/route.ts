@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
       }
     } else if (body.collectionId) {
       collection = collections.find((item) => item.id === body.collectionId);
-
+ 
       if (!collection) {
         return NextResponse.json({ error: "The selected collection does not exist." }, { status: 400 });
       }

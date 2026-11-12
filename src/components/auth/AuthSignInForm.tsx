@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { ReactNode } from "react";
 import { Form, Formik } from "formik";
 import { useFormSubmit } from "@/src/hooks/useFormSubmit";
-import { fetchUserEmail } from "@/src/utils/fetchUserEmail";
+import { authAuthenticateUser } from "@/src/lib/auth/authService";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Kindly enter correct email format.").required("Kindly enter your email."),
@@ -18,7 +18,7 @@ export default function AuthSignInForm({ children }: { children: ReactNode; }) {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => await submitAction(() => fetchUserEmail(values.email, values.password), "/landing", resetForm, setSubmitting, (message) => setFieldError("email", message))}
+      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => await submitAction(() => authAuthenticateUser(values), "/landing", resetForm, setSubmitting, (message) => setFieldError("email", message))}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

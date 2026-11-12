@@ -1,6 +1,6 @@
 "use client";
 
-import { makeStore } from "@/src/store/store";
+import { makeStore, Store } from "@/src/store/store";
 import { ReactNode, useRef } from "react";
 import { Provider } from "react-redux";
 import AddResourceHydrator from "@/src/components/add-resource/AddResourceHydrator";
@@ -10,7 +10,7 @@ export default function ProtectedLayoutWrapper({
   userData,
 }: {
   children: ReactNode;
-  userData: { id: string; email: string };
+  userData: Store;
 }) {
   const storeRef = useRef<ReturnType<typeof makeStore> | null>(null);
 

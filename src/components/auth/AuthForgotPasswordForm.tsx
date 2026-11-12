@@ -2,7 +2,8 @@
 import * as Yup from "yup";
 import { ReactNode } from "react";
 import { Form, Formik } from "formik";
-import { useFormSubmitBasic } from "@/src/hooks/useFormSubmit";
+import { useFormSubmit } from "@/src/hooks/useFormSubmit";
+import { authAuthenticateUser } from "@/src/lib/auth/authService";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Kindly enter correct email format.").required("Kindly enter your email."),
@@ -11,12 +12,12 @@ const validationSchema = Yup.object().shape({
 const initialValues = { email: "" };
 
 export default function AuthForgotPasswordForm({ children }: { children: ReactNode; }) {
-  const submitAction = useFormSubmitBasic();
+  const submitAction = useFormSubmit();
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (_values, { resetForm, setSubmitting }) => submitAction("/auth/otp-verification", resetForm, setSubmitting)}
+      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => submitAction(() => authAuthenticateUser(values), "/auth/otp-verification", resetForm, setSubmitting, (message) => setFieldError("email", message))}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

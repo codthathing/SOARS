@@ -11,8 +11,8 @@ interface Category {
 }
 
 const categories: Category[] = [
-  { id: 0, icon: "bookmark", count: 248, title: "total saves" },
-  { id: 1, icon: "directory", count: 12, title: "collections" },
+  { id: 0, icon: "bookmark", count: 0, title: "total saves" },
+  { id: 1, icon: "directory", count: 0, title: "collections" },
 ];
 
 const categoriesSlice = createSlice({
@@ -72,14 +72,19 @@ const savesSlice = createSlice({
 
 const userSlice = createSlice({
   name: "user",
-  initialState: { id: "", email: "" },
+  initialState: { id: "", email: "", name: "" },
   reducers: {},
 });
 
 export const { setSaves, addSave, removeSave, toggleFavorite } = savesSlice.actions;
 export const { setCategories, setCollectionCount } = categoriesSlice.actions;
 
-export const makeStore = (userPreloadState: {id: string; email: string;}) => {
+
+export interface Store {
+  user: {id: string; name: string; email: string}
+}
+
+export const makeStore = (userPreloadState: Store) => {
   return configureStore({
     reducer: {
       user: userSlice.reducer,
@@ -87,9 +92,7 @@ export const makeStore = (userPreloadState: {id: string; email: string;}) => {
       saves: savesSlice.reducer,
     },
     devTools: process.env.NODE_ENV !== "production",
-    preloadedState: {
-      user: userPreloadState,
-    },
+    preloadedState: userPreloadState,
   });
 };
 

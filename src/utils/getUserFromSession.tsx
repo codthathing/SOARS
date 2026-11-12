@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { findUserById, toPublicUser } from "@/src/lib/users";
+import { findUserById, toPublicUser } from "@/src/lib/auth/api";
 
 export const getUserFromSession = async () => {
   const userId = (await cookies()).get("USER_ID")?.value;
