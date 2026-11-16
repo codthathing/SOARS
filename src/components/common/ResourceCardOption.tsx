@@ -1,14 +1,13 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { MoreVertical } from "lucide-react";
 import { CardFooter } from "../ui/card";
-import type { Save } from "@/src/store/store";
+import { UserResource } from "@/src/lib/db/types";
 
 interface ResourceCardOptionProps {
   id: string;
-  type: Save["type"];
+  type: UserResource["type"];
   url?: string;
 }
 
@@ -45,7 +44,7 @@ export default function ResourceCardOption({ id, type, url }: ResourceCardOption
   };
 
   return (
-    <CardFooter className="relative h-fit md:w-5 md:p-0 lg:w-7">
+    <CardFooter className="relative h-fit md:w-5 md:p-0 lg:w-7 shrink-0">
       <button type="button" aria-label="Resource options" aria-expanded={showOptions} onClick={() => setShowOptions((prev) => !prev)} className="cursor-pointer rounded-md p-1 hover:bg-soft-lavender">
         <MoreVertical className="size-3 lg:size-4" />
       </button>

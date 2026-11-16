@@ -1,9 +1,9 @@
 "use client";
-import {useAppSelector} from "@/src/store/store";
 import ResourceCard from "../common/ResourceCard";
+import { UserResource } from "@/src/lib/db/types";
 
 export default function ArchiveSaves() {
-  const saves = useAppSelector(state => state.saves);
+  const archives: UserResource[] = [];
 
-  return <ResourceCard resources={saves} className="lg:grid-cols-3" />
+  return <ResourceCard resources={archives} className="lg:grid-cols-3" />
 }

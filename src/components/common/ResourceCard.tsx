@@ -4,7 +4,7 @@ import { Globe, LinkIcon, NotepadText, File } from "lucide-react";
 import { Badge } from "@/src/components/ui/badge";
 import { useRouter } from "next/navigation";
 import ResourceCardOption from "./ResourceCardOption";
-import type { Save } from "@/src/store/store";
+import { UserResource } from "@/src/lib/db/types";
 
 const SAVES_ICON_MAP = {
   link: LinkIcon,
@@ -13,7 +13,7 @@ const SAVES_ICON_MAP = {
 };
 
 interface ResourceCardInterface {
-  resources: Save[];
+  resources: UserResource[];
   className?: string;
 }
 
@@ -28,23 +28,23 @@ export default function ResourceCard({ resources, className }: ResourceCardInter
 
   return (
     <div className={`flex flex-col gap-y-4 md:grid md:grid-cols-2 md:gap-2 ${className ?? ""}`}>
-      {resources.map(({ id, type, url, size, title, tags }) => {
+      {resources.map(({ id, type, url, size_bytes, title, tags }) => {
         const Icon = SAVES_ICON_MAP[type];
 
         return (
-          <Card key={id} className="flex flex-row gap-x-3 lg:gap-x-4">
-            <CardHeader className="flex h-fit w-14 items-center justify-end p-0">
+          <Card key={id} className="flex flex-row gap-x-3 lg:gap-x-4 shrink-0">
+            <CardHeader className="flex h-fit w-14 items-center justify-end p-0 shrink-0">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-soft-lavender">
                 <Icon size={16} className="text-brownish-amber" />
               </div>
             </CardHeader>
-            <CardContent onClick={() => router.push(`/resources/${id}`)} className="flex flex-1 cursor-pointer flex-col gap-y-2 px-0 lg:gap-y-3">
+            <CardContent onClick={() => router.push(`/resources/${id}`)} className="flex flex-1 cursor-pointer flex-col gap-y-2 px-0 lg:gap-y-3 overflow-x-hidden">
               <CardTitle className="line-clamp-1 capitalize md:text-base">{title}</CardTitle>
               <CardDescription className="flex items-center gap-x-1">
                 <Globe size={14} />
                 <span className="leading-none md:text-xs lg:text-sm">
                   {type === "link" && url}
-                  {type === "file" && `${size ? formatFileSize(size) : "PDF"} · PDF`}
+                  {type === "file" && `${size_bytes ? formatFileSize(size_bytes) : "PDF"} · PDF`}
                   {type === "note" && "Note"}
                 </span>
               </CardDescription>

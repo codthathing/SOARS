@@ -22,5 +22,5 @@ export const proxy = (request: NextRequest) => {
 }
 
 export const config = {
-  matcher: ["/", "/auth/:path", "/onboarding/:path", "/landing", "/home", "/bookmarks", "/add-resource/:path", "/collections/:path*", "/search", "/tags", "/favorites", "/archive", "/trash", "/settings", "/storage", "/notifications", "/recent-saves", "/resources/:path", "/search", "/soars-ai"]
+  matcher: ["/", "/auth/:path", "/onboarding/:path", "/landing", "/home", "/bookmarks", "/add-resource/:path*", "/collections/:path*", "/search", "/tags", "/favorites", "/archive", "/trash", "/settings", "/storage", "/notifications", "/recent-saves", "/resources/:path", "/search", "/soars-ai"]
 }

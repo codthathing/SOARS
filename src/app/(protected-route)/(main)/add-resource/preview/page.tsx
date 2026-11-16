@@ -5,14 +5,8 @@ import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/src
 import { Check, FolderIcon, Globe, LinkIcon, Plus, X, FileText } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch, addSave } from "@/src/store/store";
-
-interface Collection {
-  id: string;
-  u_id: string;
-  title: string;
-  created_at: string;
-}
+import { addCollection, addResource, addTags, useAppDispatch } from "@/src/store/store";
+import { Collection, Tag, UserResource } from "@/src/lib/db/types";
 
 interface ResourceDraft {
   type: "link" | "file" | "note";
@@ -28,15 +22,19 @@ interface ResourceDraft {
 
   file?: {
     id: string;
-    name: string;
-    size: number;
+    title: string;
+    original_filename: string;
+    size_bytes: number;
     storagePath: string;
     text: string;
-    extractedTextLength: number;
+    checksum: string;
+    mime_type: string;
   };
 
   note?: {
-    text: string;
+    content: string;
+    slug: string;
+    title: string;
   };
 
   analysis: {
@@ -49,7 +47,6 @@ interface ResourceDraft {
     };
   };
 
-  collections: Collection[];
   userTitle?: string;
 }
 
@@ -59,24 +56,27 @@ type SelectedCollection = {
   title: string;
 };
 
+interface ResourceDetails {
+  draft: ResourceDraft | null; 
+  tags: string[];
+  summary: string;
+  collection: SelectedCollection;
+}
+
+interface SaveResourceData {
+  resource: UserResource;
+  newTags: Tag[];
+  newCollection?: Collection;
+}
+
 export default function Page() {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const [saving, setSaving] = useState(false);
-  const [saveError, setSaveError] = useState("");
-
-  const [draft, setDraft] = useState<ResourceDraft | null>(null);
-  const [tags, setTags] = useState<string[]>([]);
-  const [note, setNote] = useState("");
-  const [newTag, setNewTag] = useState("");
   const [showNewTag, setShowNewTag] = useState(false);
-
-  const [selectedCollection, setSelectedCollection] = useState<SelectedCollection>({
-    type: "default",
-    collectionId: null,
-    title: "All resources",
-  });
+  const [newTag, setNewTag] = useState("");
+  const [savingDetails, setSavingDetails] = useState({ saving: false, error: "" });
+  const [resourceDetails, setResourceDetails] = useState<ResourceDetails>({ draft: null, tags: [], summary: "", collection: { type: "default", collectionId: null, title: "All resources" } })
 
   useEffect(() => {
     const storedDraft = sessionStorage.getItem("soars-resource-draft");
@@ -89,64 +89,43 @@ export default function Page() {
     try {
       const parsedDraft = JSON.parse(storedDraft) as ResourceDraft;
 
-      if (!parsedDraft.analysis || !["link", "file", "note"].includes(parsedDraft.type)) {
-        throw new Error("Invalid resource draft");
-      }
+      if (!parsedDraft.analysis || !["link", "file", "note"].includes(parsedDraft.type)) throw new Error("Invalid resource draft");
 
-      if (parsedDraft.type === "note" && typeof parsedDraft.note?.text !== "string") {
-        throw new Error("Invalid note draft");
-      }
+      if (parsedDraft.type === "note" && typeof parsedDraft.note?.content !== "string") throw new Error("Invalid note draft");
 
-      if (parsedDraft.type === "file" && !parsedDraft.file) {
-        throw new Error("Invalid file draft");
-      }
+      if (parsedDraft.type === "file" && !parsedDraft.file) throw new Error("Invalid file draft");
 
-      if (parsedDraft.type === "link" && !parsedDraft.metadata) {
-        throw new Error("Invalid link draft");
-      }
+      if (parsedDraft.type === "link" && !parsedDraft.metadata) throw new Error("Invalid link draft");
 
-      setDraft(parsedDraft);
-      setTags(parsedDraft.analysis.tags || []);
-      setNote(parsedDraft.analysis.summary || "");
-
-      const recommendation = parsedDraft.analysis.collection;
-
-      if (recommendation?.type === "existing" && recommendation.collectionId) {
-        setSelectedCollection({ type: "existing", collectionId: recommendation.collectionId, title: recommendation.title });
-      } else if (recommendation?.type === "new" && recommendation.title) {
-        setSelectedCollection({ type: "new", collectionId: null, title: recommendation.title });
-      }
+      setResourceDetails({ draft: parsedDraft, tags: parsedDraft.analysis.tags, summary: parsedDraft.analysis.summary, collection: parsedDraft.analysis.collection });
     } catch {
       sessionStorage.removeItem("soars-resource-draft");
       router.replace("/add-resource/link");
     }
   }, [router]);
 
-  const removeTag = (tagToRemove: string) => {
-    setTags((prev) => prev.filter((tag) => tag !== tagToRemove));
-  };
+  const removeTag = (tagToRemove: string) => setResourceDetails((prev) => ({...prev, tags: prev.tags.filter((tag) => tag !== tagToRemove)}));
 
   const addTag = () => {
     const trimmedTag = newTag.trim().toLowerCase();
 
     if (!trimmedTag) return;
 
-    if (tags.some((tag) => tag.toLowerCase() === trimmedTag)) {
+    if (resourceDetails.tags.some((tag) => tag.toLowerCase() === trimmedTag)) {
       setNewTag("");
       setShowNewTag(false);
       return;
     }
 
-    setTags((prev) => [...prev, trimmedTag]);
+    setResourceDetails((prev) => ({...prev, tags: [...prev.tags, trimmedTag]}));
     setNewTag("");
     setShowNewTag(false);
   };
 
   const handleSaveResource = async () => {
-    if (!draft || saving) return;
+    if (!resourceDetails.draft || savingDetails.saving) return;
 
-    setSaving(true);
-    setSaveError("");
+    setSavingDetails({ saving: true, error: "" });
 
     try {
       const response = await fetch("/api/resources", {
@@ -155,33 +134,38 @@ export default function Page() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          type: draft.type,
-          title: draft.userTitle?.trim() || draft.metadata?.title || draft.file?.name || "Untitled resource",
-          summary: note,
-          tags,
-          collection: selectedCollection,
+          type: resourceDetails.draft.type,
+          title: resourceDetails.draft.userTitle?.trim() || resourceDetails.draft.metadata?.title || resourceDetails.draft.file?.title || resourceDetails.draft.note?.title,
+          summary: resourceDetails.summary,
+          tags: resourceDetails.tags,
+          collection: resourceDetails.collection,
 
-          ...(draft.type === "link" && {
-            url: draft.metadata?.url,
+          ...(resourceDetails.draft.type === "link" && {
             metadata: {
-              hostname: draft.metadata?.hostname,
-              description: draft.metadata?.description,
-              image: draft.metadata?.image,
-              favicon: draft.metadata?.favicon,
+              url: resourceDetails.draft.metadata?.url,
+              hostname: resourceDetails.draft.metadata?.hostname,
+              description: resourceDetails.draft.metadata?.description,
+              image: resourceDetails.draft.metadata?.image,
+              favicon: resourceDetails.draft.metadata?.favicon,
             },
           }),
 
-          ...(draft.type === "file" && {
+          ...(resourceDetails.draft.type === "file" && {
             file: {
-              id: draft.file?.id,
-              name: draft.file?.name,
-              size: draft.file?.size,
-              text: draft.file?.text,
+              id: resourceDetails.draft.file?.id,
+              original_filename: resourceDetails.draft.file?.original_filename,
+              mime_type: resourceDetails.draft.file?.mime_type,
+              checksum: resourceDetails.draft.file?.checksum,
+              size_bytes: resourceDetails.draft.file?.size_bytes,
+              text: resourceDetails.draft.file?.text,
             },
           }),
 
-          ...(draft.type === "note" && {
-            text: draft.note?.text,
+          ...(resourceDetails.draft.type === "note" && {
+            note: {
+              content: resourceDetails.draft.note?.content,
+              slug: resourceDetails.draft.note?.slug
+            }
           }),
         }),
       });
@@ -192,33 +176,35 @@ export default function Page() {
         throw new Error(data.error || "Unable to save resource.");
       }
 
-      const savedResource = data.resource;
+      const { resource, newTags, newCollection } = data as SaveResourceData;
 
-      dispatch(addSave({ ...savedResource, tags: savedResource.tagNames, tagIds: savedResource.tags, favorite: false }));
+      dispatch(addResource(resource));
+      if (newTags.length > 0) dispatch(addTags(newTags));
+      if (newCollection) dispatch(addCollection(newCollection));
 
       sessionStorage.removeItem("soars-resource-draft");
       router.push("/home");
     } catch (error) {
       console.error("Save resource error:", error);
 
-      setSaveError(error instanceof Error ? error.message : "Something went wrong while saving.");
+      setSavingDetails((prev) => ({...prev, error: error instanceof Error ? error.message : "Something went wrong while saving."}));
     } finally {
-      setSaving(false);
+      setSavingDetails((prev) => ({...prev, saving: false}));
     }
   };
 
-  if (!draft) return null;
+  if (!resourceDetails.draft) return null;
 
-  const { metadata, type } = draft;
+  const { metadata, type, file, note } = resourceDetails.draft;
 
-  const displayTitle = draft.userTitle?.trim() || metadata?.title || draft.file?.name || "Untitled resource";
+  const displayTitle = resourceDetails.draft.userTitle?.trim() || metadata?.title || file?.title || note?.title;
 
   return (
     <div className="overflow-y-auto flex flex-col gap-y-4 md:gap-y-10 lg:gap-y-5">
       {type === "link" && metadata && (
         <div className="bg-soft-lavender/30 p-4 rounded-lg flex gap-x-4 items-center md:p-5 md:rounded-xl">
           <LinkIcon className="text-charcoal-black/90 size-4 md:size-5" />
-          <a href={metadata.url} target="_blank" rel="noopener noreferrer" className="text-sm text-charcoal-black md:text-xl underline underline-offset-4 truncate">{metadata.hostname}</a>
+          <a href={metadata.url} target="_blank" rel="noopener noreferrer" className="text-sm text-charcoal-black md:text-xl underline underline-offset-4 truncate">{metadata.url}</a>
         </div>
       )}
 
@@ -237,21 +223,20 @@ export default function Page() {
                 </span>
               </CardDescription>
             )}
-            {type === "file" && draft.file && <CardDescription className="text-xs md:text-sm">PDF · {(draft.file.size / (1024 * 1024)).toFixed(2)} MB</CardDescription>}
+            {type === "file" && resourceDetails.draft.file && <CardDescription className="text-xs md:text-sm">PDF · {(resourceDetails.draft.file.size_bytes / (1024 * 1024)).toFixed(2)} MB</CardDescription>}
             {type === "note" && <CardDescription className="text-xs md:text-sm">Text note</CardDescription>}
           </CardContent>
         </Card>
       </div>
 
-      <textarea value={note} onChange={(e) => setNote(e.target.value)} className="outline-none bg-soft-lavender/30 text-charcoal-black p-4 md:p-5 rounded-lg md:rounded-xl text-sm md:text-xl resize-y min-h-24" placeholder="Add a note (optional)" />
+      <textarea value={resourceDetails.summary} name="summary" onChange={(e) => setResourceDetails((prev) => ({...prev, summary: e.target.value}))} className="outline-none bg-soft-lavender/30 text-charcoal-black p-4 md:p-5 rounded-lg md:rounded-xl text-sm md:text-xl resize-y min-h-24" placeholder="Add a note (optional)" />
 
       <div className="flex flex-col gap-y-2.5">
         <h3 className="text-sm text-charcoal-black capitalize md:text-base">tags</h3>
         <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
+          {resourceDetails.tags.map((tag) => (
             <Badge key={tag} className="bg-brownish-amber/20 text-brownish-amber md:text-base px-2 md:px-3.5 lg:px-3 flex items-center gap-x-1.5">
               <span>#{tag}</span>
-
               <button type="button" onClick={() => removeTag(tag)} aria-label={`Remove ${tag} tag`}>
                 <X className="size-2.5 cursor-pointer" />
               </button>
@@ -285,30 +270,24 @@ export default function Page() {
       <div className="flex flex-col gap-y-2.5">
         <h3 className="text-sm text-charcoal-black capitalize md:text-base">collection</h3>
         <div className="rounded-xl overflow-hidden flex flex-col w-1/4 relative">
-          <button type="button" aria-label="Use All resources collection" className="absolute top-2 right-2 z-10" onClick={() =>
-            setSelectedCollection({
-              type: "default",
-              collectionId: null,
-              title: "All resources",
-            })
-          }>
+          <button type="button" aria-label="Use All resources collection" className="absolute top-2 right-2 z-10" onClick={() => setResourceDetails((prev) => ({...prev, collection: { type: "default", collectionId: null, title: "All resources" }}))}>
             <X className="size-4 cursor-pointer" />
           </button>
           <div className="flex items-center justify-center py-7 md:py-8 lg:py-3 md:flex-1 bg-emerald-green">
             <FolderIcon className="size-8 md:size-10 lg:size-5 text-charcoal-black" />
           </div>
           <div className="p-2.5 md:p-2.5 flex flex-col bg-white">
-            <h1 className="font-semibold capitalize text-base md:text-lg lg:text-xs text-charcoal-black">{selectedCollection.title}</h1>
-            <span className={`text-sm md:text-base lg:text-[10px] font-light capitalize ${selectedCollection.type === "new" ? "text-brownish-amber" : "text-charcoal-black"}`}>{selectedCollection.type === "existing" ? "Already Exists" : selectedCollection.type === "new" ? "New Collection" : "Default Collection"}</span>
+            <h1 className="font-semibold capitalize text-base md:text-lg lg:text-xs text-charcoal-black">{resourceDetails.collection.title}</h1>
+            <span className={`text-sm md:text-base lg:text-[10px] font-light capitalize ${resourceDetails.collection.type === "new" ? "text-brownish-amber" : "text-charcoal-black"}`}>{resourceDetails.collection.type === "existing" ? "Already Exists" : resourceDetails.collection.type === "new" ? "New Collection" : "Default Collection"}</span>
           </div>
         </div>
       </div>
 
-      {saveError && <p className="text-sm text-red-500">{saveError}</p>}
+      {savingDetails.error && <p className="text-sm text-red-500">{savingDetails.error}</p>}
 
-      <Button onClick={handleSaveResource} disabled={saving} className="w-full flex items-center gap-x-1 md:gap-x-2.5 capitalize bg-brownish-amber hover:bg-brownish-amber cursor-pointer text-white text-base p-6 md:text-2xl md:px-3 md:py-8 lg:text-xl lg:px-5 lg:py-6.5 disabled:opacity-50">
+      <Button onClick={handleSaveResource} disabled={savingDetails.saving} className="w-full flex items-center gap-x-1 md:gap-x-2.5 capitalize bg-brownish-amber hover:bg-brownish-amber cursor-pointer text-white text-base p-6 md:text-2xl md:px-3 md:py-8 lg:text-xl lg:px-5 lg:py-6.5 disabled:opacity-50">
         <Check className="size-4 md:size-5.5" />
-        <span>{saving ? "saving resource..." : "save resource"}</span>
+        <span>{savingDetails.saving ? "saving resource..." : "save resource"}</span>
       </Button>
     </div>
   );

@@ -15,32 +15,13 @@
       "created_at": "2026-11-12T15:28:16.708Z"
     }
   ],
-  "links": [
-    {
-      "id": "c25439e7-e678-45ea-b593-37177eae91d9",
-      "url": "https://github.com/codthathing",
-      "hostname": "github.com",
-      "description": "Frontend Engineer.\n. codthathing has 20 repositories available. Follow their code on GitHub.",
-      "image": "https://avatars.githubusercontent.com/u/116083752?v=4?s=400",
-      "favicon": "https://github.githubassets.com/favicons/favicon.svg"
-    }
-  ],
-  "files": [
-    {
-      "id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "original_filename": "Akinwunmi_Oluwasegun_Resume.pdf",
-      "storage_key": "uploads/cb24c156-7c66-45e7-aa47-c2cd887a0551/423c2859-44f2-40c0-a823-cf828297e20c.pdf",
-      "mime_type": "application/pdf",
-      "size_bytes": 48125,
-      "checksum": "",
-      "text": "Akinwunmi Oluwasegun\nMOBILE-ALT +234-90-4344-5618 | Envelope codthathing.dev@yahoo.com\nEDUCATION\nUNIVERSITY OF LAGOS\nBachelor Of Science (Computer\nScience)\nNovember 2023 - 2027 | MAP-MARKER-ALT NIGERIA\nCGPA: 4.52/5.00\nLINKS\nLink LeetCode\nX @codthathing\na Github: @codthathing\n] LinkedIn: @codthathing\nLink Portfolio Website\nTECHNICAL SKILLS\nFRONTEND DEVELOPMENT\n•HTML •CSS •Tailwind CSS •Redux\nBACKEND DEVELOPMENT\n•NodeJs •MySQL •Supabase\nPROGRAMMING LANGUAGES\n• JavaScript • TypeScript • Java • C# • PHP\n• Python\nFRAMEWORKS\n•ReactJs •ExpressJs •FastAPI •NextJs\nTOOLS AND SOFTWARE\n• Git • Github • Jest • React Testing Library\n• Redux\nCOURSEWORK\n• Data Structures And Algorithm (DSA)\n• Software Engineering\n• System Analysis and Design\n• Object Oriented Programming (OOP)\nPERSONAL SKILLS\n• Analytical Problem-Solving\n• Creative UI/UX Design\n• Agile Development\nEXPERIENCE\nCALOR STICHES | FRONTEND ENGINEER ( VOLUNTEER ) Link\nWebsite\nCALENDAR-ALT June 2024 - Present\n• Built an online store for a client’s clothing brand. Moved it from React to\nNextJs and TypeScript as it grew.\n• Developed collection pages, multi-filter browsing, search, wishlist, cart, and\ncheckout UI with multiple payment options.\n• Added sign-in pop-ups, naira and dollar prices, and smooth animations that\nwork on phones and desktops.\n• Designing an offline-first cart and wishlist with DexieJs and a Spring\nBoot/PostgreSQL backend for accounts and orders.\n• Tech Stack - NextJs, TypeScript, CSS, Motion.\nBT TECHNOLOGIES LTD | NETWORK & IT SUPPORT INTERN\nCALENDAR-ALT April 2026 - July 2026\n• Installed and terminated Cat6 cabling, access points, 8+ VoIP phones and\n20+ media converters across a hospital and university campus.\n• Participated in splicing 100+ fibre cores at 20+ sites, progressing to\nindependent splicing with verified links by VFL and OTDR.\n• Found and fixed network faults in many departments, such as a fibre signal\nloss caused by a wrong splice.\n• Documented and ran integrated tests on Open Hospital (Java/Spring Boot)\nand designed an office network in Cisco Packet Tracer.\n• Skills - Fibre splicing, OTDR, VFL, LAN testing, Cisco Packet Tracer.\nPROJECTS\nSOARS Link Website a Github\n• Designed a responsive 18-page system (mobile, tablet, desktop) for\nan app to save, organize, archive and share links and files.\n• Built the frontend sub-routes covering collections, tags, search,\nfavorites, archive, trash and sharing in Next.js, TypeScript and\nTailwind.\n• Architecting the backend with Supabase authentication, an ASP.NET\nCore (C#) API, PostgreSQL for resource data, and AWS S3 for file\nstorage.\n• Tech Stack - NextJs, TypeScript, Tailwind CSS.\nFREE CHAT Link Website a Github\n• Built a responsive chat frontend in React and Tailwind with auth,\nmessaging and profile flows, using Redux for state.\n• Developed a Python backend with FastAPI and SQLAlchemy, tested\nagainst SQLite, and wrote Jest and RTL tests for the UI.\n• Structured the frontend for API integration for connection to the\nbackend with WebSockets is the next phase.\n• Tech Stack - React, Redux, Tailwind, Jest, FastAPI, SQLAlchemy."
-    }
-  ],
+  "links": [],
+  "files": [],
   "notes": [
     {
-      "id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "slug": "",
-      "content": "I've been really going through a lot but I know I will pass this phase and enter the phase where it's just about me winning in this life and I am sure it's not longer far fetched"
+      "id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
+      "slug": "year-of-roller-coasters-and-unwavering-grind",
+      "content": "This year had a lot of roller coaster in store for me, I mean I went from having a girlfriend and being happy with her to breaking up within 2 months, had a internship but had to quit because it was taking a toll on me mentally and several frictions in the workplace, got several interviews and thought this is  the year I was going to breakout in tech but still none, I hope next year becomes better but all I know is that I won't stop grinding until I become filthy rich."
     }
   ],
   "note_versions": [
@@ -53,202 +34,87 @@
   ],
   "resources": [
     {
-      "id": "c25439e7-e678-45ea-b593-37177eae91d9",
+      "id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "collection_id": "3f6ef299-e8da-4fc2-bd97-3ed6aa69222f",
-      "type": "link",
-      "title": "codthathing - Overview",
-      "summary": "This is the GitHub profile for codthathing, identified as a Frontend Engineer. The profile provides access to 20 repositories where their code can be followed.",
-      "created_at": "2026-11-10T17:47:56.158Z",
-      "updated_at": "2026-11-10T17:47:56.158Z"
-    },
-    {
-      "id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "collection_id": "3f6ef299-e8da-4fc2-bd97-3ed6aa69222f",
-      "type": "file",
-      "title": "Akinwunmi_Oluwasegun_Resume.pdf",
-      "summary": "A Computer Science student with strong skills in full-stack web development, specializing in React, Next.js, and TypeScript. The candidate has practical experience building complex e-commerce applications and designing full-stack projects utilizing technologies like Node.js, Python, PostgreSQL, and Supabase.",
-      "created_at": "2026-11-10T17:49:16.377Z",
-      "updated_at": "2026-11-10T17:49:16.377Z"
-    },
-    {
-      "id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "collection_id": "764ad5e2-965a-4d5c-adc1-79c79f8f72e4",
+      "collection_id": "49675ce8-ce8e-458d-80d8-3a5e32299555",
       "type": "note",
-      "title": "Untitled resource",
-      "summary": "The user is reflecting on overcoming a difficult personal phase and expressing strong determination to achieve success in life. They feel optimistic that their goals are achievable and not far-fetched.",
-      "created_at": "2026-11-10T17:50:58.724Z",
-      "updated_at": "2026-11-10T17:50:58.724Z"
+      "title": "Year of Roller Coasters and Unwavering Grind",
+      "summary": "The year was marked by significant personal turbulence, including a rapid breakup and the withdrawal from an internship due to mental strain and workplace friction. Despite multiple interviews for a tech breakthrough, the user remains determined to keep grinding toward financial success in the future.",
+      "created_at": "2026-11-16T16:52:55.848Z",
+      "updated_at": "2026-11-16T16:52:55.848Z"
     }
   ],
   "resource_tags": [
     {
-      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
-      "tag_id": "020dba44-cea7-473d-b020-e35600beb433"
+      "id": "2a571598-111d-4c0c-a7ee-93b289f10d9a",
+      "resource_id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
+      "tag_id": "3d9e8ce2-aa55-451f-bcac-7749397237e9"
     },
     {
-      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
-      "tag_id": "4df6ed31-0c47-4035-9072-c981fe410a56"
+      "id": "e69f3289-dd61-4e71-b89d-6a6b750b5f5b",
+      "resource_id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
+      "tag_id": "493e289b-f3f6-4c6a-9437-0bc185371417"
     },
     {
-      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
-      "tag_id": "c7664d2c-bfe3-4fab-b875-b7a3ac0494bf"
+      "id": "6f28b46e-292a-4642-a85e-2781422ea7df",
+      "resource_id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
+      "tag_id": "ebefe5f4-0a25-4376-940f-5903236d3993"
     },
     {
-      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
-      "tag_id": "69e4a02f-5907-4fe8-8383-1d397ce48a43"
+      "id": "caf541ea-6a49-4ad5-97a8-62a2674addde",
+      "resource_id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
+      "tag_id": "b695b654-d8c3-4f0f-a2b4-ed16163aff86"
     },
     {
-      "resource_id": "c25439e7-e678-45ea-b593-37177eae91d9",
-      "tag_id": "40efcedf-0355-4d23-9312-743942c8f262"
-    },
-    {
-      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "tag_id": "a4a056d8-0d54-4449-a359-ea76f8a627ae"
-    },
-    {
-      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "tag_id": "faede011-f884-41ba-beac-4dcd48e4bc2a"
-    },
-    {
-      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "tag_id": "3d3b2b80-3376-43de-8024-98c9304fcc4b"
-    },
-    {
-      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "tag_id": "c4b23c3c-2294-4e75-9e33-33b20510cb9f"
-    },
-    {
-      "resource_id": "a7f09a85-3446-4f87-be16-2ac9d1058736",
-      "tag_id": "b6732973-5d97-431a-a58d-f3438c3fa97a"
-    },
-    {
-      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "tag_id": "f58926a7-a951-49df-8316-f6eec95cbdfc"
-    },
-    {
-      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "tag_id": "2efcc9c7-c3c9-4a48-ad4a-2cbf1f4a57ea"
-    },
-    {
-      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "tag_id": "ca289e71-7c34-4f41-b43e-7f0f11e582b6"
-    },
-    {
-      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "tag_id": "bc948652-00c5-4e74-884a-15ca79687d67"
-    },
-    {
-      "resource_id": "061328fb-ea12-4c0b-ba8d-ce151fd8cc44",
-      "tag_id": "297f25fc-70a2-4bc7-9b80-0f54a53d17cc"
+      "id": "db423bed-e9e2-4664-a02c-c583ae8b46d5",
+      "resource_id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
+      "tag_id": "f8b87d29-3233-4bb1-a0c1-f1c16d6d3333"
     }
   ],
   "collections": [
     {
-      "id": "3f6ef299-e8da-4fc2-bd97-3ed6aa69222f",
+      "id": "49675ce8-ce8e-458d-80d8-3a5e32299555",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "title": "Frontend Engineering",
-      "created_at": "2026-11-10T17:47:18.029Z"
+      "title": "Personal Challenges and Growth",
+      "created_at": "2026-11-16T16:52:55.578Z"
     },
     {
-      "id": "764ad5e2-965a-4d5c-adc1-79c79f8f72e4",
+      "id": "e46e5457-1205-4666-bdad-5868e03887c5",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "title": "Personal Reflection",
-      "created_at": "2026-11-10T17:50:48.406Z"
+      "title": "Frontend Engineering",
+      "created_at": "2026-11-16T16:53:45.203Z"
     }
   ],
   "tags": [
     {
-      "id": "020dba44-cea7-473d-b020-e35600beb433",
+      "id": "3d9e8ce2-aa55-451f-bcac-7749397237e9",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "frontend",
-      "created_at": "2026-11-10T17:47:21.230Z"
+      "text": "career setback",
+      "created_at": "2026-11-16T16:52:55.951Z"
     },
     {
-      "id": "4df6ed31-0c47-4035-9072-c981fe410a56",
+      "id": "493e289b-f3f6-4c6a-9437-0bc185371417",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "javascript",
-      "created_at": "2026-11-10T17:47:21.241Z"
+      "text": "relationship struggles",
+      "created_at": "2026-11-16T16:52:56.072Z"
     },
     {
-      "id": "c7664d2c-bfe3-4fab-b875-b7a3ac0494bf",
+      "id": "ebefe5f4-0a25-4376-940f-5903236d3993",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "github",
-      "created_at": "2026-11-10T17:47:26.699Z"
+      "text": "mental health",
+      "created_at": "2026-11-16T16:52:56.159Z"
     },
     {
-      "id": "69e4a02f-5907-4fe8-8383-1d397ce48a43",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "webdev",
-      "created_at": "2026-11-10T17:47:26.727Z"
-    },
-    {
-      "id": "40efcedf-0355-4d23-9312-743942c8f262",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "coding",
-      "created_at": "2026-11-10T17:47:55.925Z"
-    },
-    {
-      "id": "a4a056d8-0d54-4449-a359-ea76f8a627ae",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "frontend development",
-      "created_at": "2026-11-10T17:48:51.193Z"
-    },
-    {
-      "id": "faede011-f884-41ba-beac-4dcd48e4bc2a",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "nextjs",
-      "created_at": "2026-11-10T17:48:51.225Z"
-    },
-    {
-      "id": "3d3b2b80-3376-43de-8024-98c9304fcc4b",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "typescript",
-      "created_at": "2026-11-10T17:48:56.020Z"
-    },
-    {
-      "id": "c4b23c3c-2294-4e75-9e33-33b20510cb9f",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "react",
-      "created_at": "2026-11-10T17:48:56.051Z"
-    },
-    {
-      "id": "b6732973-5d97-431a-a58d-f3438c3fa97a",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "full stack",
-      "created_at": "2026-11-10T17:49:16.246Z"
-    },
-    {
-      "id": "f58926a7-a951-49df-8316-f6eec95cbdfc",
+      "id": "b695b654-d8c3-4f0f-a2b4-ed16163aff86",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
       "text": "motivation",
-      "created_at": "2026-11-10T17:50:48.490Z"
+      "created_at": "2026-11-16T16:52:56.263Z"
     },
     {
-      "id": "2efcc9c7-c3c9-4a48-ad4a-2cbf1f4a57ea",
+      "id": "f8b87d29-3233-4bb1-a0c1-f1c16d6d3333",
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "personal growth",
-      "created_at": "2026-11-10T17:50:48.581Z"
-    },
-    {
-      "id": "ca289e71-7c34-4f41-b43e-7f0f11e582b6",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "resilience",
-      "created_at": "2026-11-10T17:50:54.048Z"
-    },
-    {
-      "id": "bc948652-00c5-4e74-884a-15ca79687d67",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "life goals",
-      "created_at": "2026-11-10T17:50:54.073Z"
-    },
-    {
-      "id": "297f25fc-70a2-4bc7-9b80-0f54a53d17cc",
-      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
-      "text": "overcoming challenges",
-      "created_at": "2026-11-10T17:50:54.107Z"
+      "text": "ambition",
+      "created_at": "2026-11-16T16:52:56.361Z"
     }
   ],
   "favorites": [

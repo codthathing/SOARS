@@ -12,7 +12,7 @@ const formatFileSize = (bytes: number) => {
 
 export default function page() {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [details, setDetails] = useState({ error: "", title: "upload a PDF file to save", size: "max file size: 12 MB" });
+  const [details, setDetails] = useState({ error: "", original_filename: "upload a PDF file to save", size_bytes: "max file size: 12 MB" });
   const [title, setTitle] = useState("");
 
   const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
@@ -29,7 +29,7 @@ export default function page() {
       return;
     }
 
-    setDetails({ error: "", title: "Processing PDF...", size: `file size: ${formatFileSize(selected.size)}` });
+    setDetails({ error: "", original_filename: "Processing PDF...", size_bytes: `file size: ${formatFileSize(selected.size)}` });
 
     try {
       const formData = new FormData();
@@ -51,14 +51,13 @@ export default function page() {
           type: "file",
           file: data.file,
           analysis: data.analysis,
-          collections: data.collections,
           userTitle: data.userTitle,
         }),
       );
 
       window.location.href = "/add-resource/preview";
 
-      setDetails({ error: "", title: selected.name, size: `file size: ${formatFileSize(selected.size)}` });
+      setDetails({ error: "", original_filename: selected.name, size_bytes: `file size: ${formatFileSize(selected.size)}` });
 
       // We'll connect this to the file preview page next.
       window.location.href = "/add-resource/preview";
@@ -74,8 +73,8 @@ export default function page() {
         <File fill="currentColor" className="size-3 text-brownish-amber lg:size-6" />
         <div className="flex flex-col gap-y-0.5 items-center">
           <input type="file" accept="application/pdf,.pdf" ref={fileInputRef} onChange={handleFileChange} hidden />
-          <h1 className="text-sm font-bold first-letter:uppercase text-charcoal-black">{details.title}</h1>
-          <p className="first-letter:uppercase text-charcoal-black text-xs">{details.size}</p>
+          <h1 className="text-sm font-bold first-letter:uppercase text-charcoal-black">{details.original_filename}</h1>
+          <p className="first-letter:uppercase text-charcoal-black text-xs">{details.size_bytes}</p>
         </div>
         <Button onClick={() => fileInputRef.current?.click()} className="bg-brownish-amber/50 text-white capitalize text-sm cursor-pointer hover:bg-brownish-amber/50">upload file</Button>
       </div>

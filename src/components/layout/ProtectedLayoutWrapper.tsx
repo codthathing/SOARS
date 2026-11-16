@@ -1,9 +1,7 @@
 "use client";
-
 import { makeStore, Store } from "@/src/store/store";
 import { ReactNode, useRef } from "react";
 import { Provider } from "react-redux";
-import AddResourceHydrator from "@/src/components/add-resource/AddResourceHydrator";
 
 export default function ProtectedLayoutWrapper({
   children,
@@ -20,7 +18,6 @@ export default function ProtectedLayoutWrapper({
 
   return (
     <Provider store={storeRef.current}>
-      <AddResourceHydrator />
       {children}
     </Provider>
   );

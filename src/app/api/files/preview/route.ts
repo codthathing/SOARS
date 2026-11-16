@@ -57,15 +57,15 @@ export async function POST(request: NextRequest) {
       success: true,
       file: {
         id: fileId,
-        name: file.name,
-        size: file.size,
-        storagePath: `uploads/${user.id}/${fileId}.pdf`,
+        title: analysis.title,
+        original_filename: file.name,
+        size_bytes: file.size,
+        storage_key: `uploads/${user.id}/${fileId}.pdf`,
+        mime_type: file.type,
         checksum,
         text: extractedText.slice(0, 60000),
-        extractedTextLength: extractedText.length,
       },
-      analysis,
-      collections,
+      analysis: (({ title, ...rest }) => rest)(analysis),
       userTitle: typeof userTitle === "string" ? userTitle.trim() : "",
     });
   } catch (error) {

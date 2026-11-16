@@ -6,36 +6,8 @@ import { Badge } from "@/src/components/ui/badge";
 import { Button } from "@/src/components/ui/button";
 import { Card, CardContent, CardTitle, CardDescription } from "@/src/components/ui/card";
 import { Globe, File, NotepadText, Download, ExternalLink, Folder, CalendarDays } from "lucide-react";
-
-type ResourceType = "link" | "file" | "note";
-
-interface Resource {
-  id: string;
-  u_id: string;
-  collection_id: string;
-  type: ResourceType;
-  title: string;
-  summary: string;
-  tags: string[];
-  url?: string;
-  hostname?: string;
-  description?: string;
-  size?: number;
-  data?: string;
-  text?: string;
-  created_at: string;
-  updated_at: string;
-}
-
-interface Collection {
-  id: string;
-  title: string;
-}
-
-interface ResourcesResponse {
-  resources?: Resource[];
-  collections?: Collection[];
-}
+import { selectAllCollections, selectAllResources, useAppSelector } from "@/src/store/store";
+import { UserResource } from "@/src/lib/db/types";
 
 const formatFileSize = (bytes: number) => {
   if (bytes < 1024) return `${bytes} B`;
@@ -44,52 +16,24 @@ const formatFileSize = (bytes: number) => {
 };
 
 export default function ResourcePage() {
+  const resources = useAppSelector(selectAllResources);
+  const collections = useAppSelector(selectAllCollections);
+  const [error, setError] = useState<string>("");
+
   const params = useParams<{ id: string }>();
   const id = params.id;
 
-  const [resource, setResource] = useState<Resource | null>(null);
-  const [collections, setCollections] = useState<Collection[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  let resource: UserResource | undefined = undefined;
 
-  useEffect(() => {
-    const fetchResource = async () => {
-      try {
-        setLoading(true);
-        setError("");
+  try {
+    resource = resources.find((resource) => resource.id === id);
 
-        const response = await fetch("/api/resources", {
-          cache: "no-store",
-        });
-
-        const data: ResourcesResponse | Resource[] = await response.json();
-
-        if (!response.ok) {
-          throw new Error("Unable to load your resources.");
-        }
-
-        const resources = Array.isArray(data) ? data : (data.resources ?? []);
-
-        const foundResource = resources.find((item) => item.id === id);
-
-        if (!foundResource) {
-          throw new Error("This resource could not be found.");
-        }
-
-        setResource(foundResource);
-
-        if (!Array.isArray(data)) {
-          setCollections(data.collections ?? []);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Something went wrong.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (id) fetchResource();
-  }, [id]);
+    if (!resource) {
+      throw new Error("This resource could not be found.");
+    }
+  } catch (error) {
+    setError(error instanceof Error ? error.message : "Something went wrong.");
+  }
 
   const collectionTitle = collections.find((item) => item.id === resource?.collection_id)?.title ?? "Uncategorized";
 
@@ -123,9 +67,7 @@ export default function ResourcePage() {
       <HomeHeader topic="resource" showAvatar={false} showArrowLeft={true} />
 
       <section className="flex h-full flex-col gap-y-5 overflow-y-auto px-6 py-4 md:h-auto md:flex-row md:gap-x-7 md:p-7">
-        {loading ? (
-          <div className="flex w-full items-center justify-center py-20 text-sm text-charcoal-black">Loading resource...</div>
-        ) : error || !resource ? (
+        {(error || !resource) ? (
           <div className="flex w-full flex-col items-center justify-center gap-y-3 py-20 text-center">
             <p className="text-sm text-charcoal-black">{error || "Resource not found."}</p>
             <Button onClick={() => window.location.reload()} className="bg-brownish-amber text-white hover:bg-brownish-amber">Try again</Button>
@@ -151,7 +93,7 @@ export default function ResourcePage() {
                     {resource.type === "file" && (
                       <CardDescription className="flex items-center gap-x-1">
                         <File className="size-4" />
-                        <span className="leading-none md:text-base lg:text-sm">PDF · {resource.size ? formatFileSize(resource.size) : "File"}</span>
+                        <span className="leading-none md:text-base lg:text-sm">PDF · {resource.size_bytes ? formatFileSize(resource.size_bytes) : "File"}</span>
                       </CardDescription>
                     )}
 
@@ -177,7 +119,7 @@ export default function ResourcePage() {
 
               <div className="flex flex-col gap-y-1.5 rounded-xl bg-brownish-amber/20 p-4">
                 <h3 className="text-xs font-semibold capitalize text-charcoal-black md:text-sm">{resource.type === "note" ? "My notes" : "AI summary"}</h3>
-                <p className="whitespace-pre-wrap text-sm text-charcoal-black md:text-base">{resource.type === "note" ? resource.text || "No note content available." : resource.summary || "No summary available."}</p>
+                <p className="whitespace-pre-wrap text-sm text-charcoal-black md:text-base">{resource.type === "note" ? resource.content || "No note content available." : resource.summary || "No summary available."}</p>
               </div>
 
               {resource.type !== "note" && resource.description && (

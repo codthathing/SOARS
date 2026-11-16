@@ -35,7 +35,7 @@ export default function Page() {
         },
         body: JSON.stringify({
           title: details.title,
-          note,
+          content: note,
         }),
       });
 
@@ -47,11 +47,8 @@ export default function Page() {
         "soars-resource-draft",
         JSON.stringify({
           type: "note",
-          note: {
-            text: data.note,
-          },
+          note: data.note,
           analysis: data.analysis,
-          collections: data.collections,
           userTitle: data.userTitle,
         }),
       );

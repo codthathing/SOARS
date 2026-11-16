@@ -14,7 +14,13 @@ async function api<T>(path: string, options?: RequestInit): Promise<T> {
     },
   });
 
-  if (!response.ok) throw new Error(`Database request failed: ${response.status}`);
+  if (!response.ok) {
+    const errorText = await response.text();
+
+    console.error("Database API Error:", { endpoint: path, status: response.status, response: errorText });
+    
+    throw new Error(`Database request failed ${response.status}: ${errorText}`)
+  };
 
   return response.json();
 }

@@ -1,10 +1,10 @@
 "use client";
-import {useAppSelector} from "@/src/store/store";
+import { UserResource } from "@/src/lib/db/types";
 import ResourceCard from "../common/ResourceCard";
 
 
 export default function BookmarksSaves() {
-  const saves = useAppSelector(state => state.saves);
+  const bookmarks: UserResource[] = [];
 
-  return <ResourceCard resources={saves} className="lg:grid-cols-3" />
+  return <ResourceCard resources={bookmarks} className="lg:grid-cols-3" />
 }

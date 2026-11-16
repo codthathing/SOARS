@@ -1,42 +1,51 @@
 export type ResourceType = "link" | "file" | "note";
 
-// export interface Resource {
-//   id: string;
-//   u_id: string;
-//   collection_id: string;
-//   type: ResourceType;
+export interface UserResource {
+  id: string;
+  u_id: string;
+  collection_id: string;
+  type: ResourceType;
+  title: string;
+  summary: string;
+  tags: string[];
+  created_at: string;
+  updated_at: string;
 
-//   title: string;
-//   summary: string;
-//   tags: string[]; // IDs of tags
+  // Link-specific fields
+  url?: string;
+  hostname?: string;
+  description?: string;
+  image?: string;
+  favicon?: string;
 
-//   // Link-specific fields
-//   url?: string;
-//   hostname?: string;
-//   description?: string;
-//   image?: string;
-//   favicon?: string;
+  // File-specific fields
+  original_filename?: string;
+  storage_key?: string;
+  mime_type?: string;
+  size_bytes?: number;
+  checksum?: string;
+  text?: string;
 
-//   // File-specific fields
-//   size?: number;
-//   data?: string;
-
-//   // Note-specific fields
-//   text?: string;
-
-//   created_at: string;
-//   updated_at: string;
-// }
+  // Note-specific fields
+  slug?: string;
+  content?: string;
+}
 
 export interface Resource {
   id: string;
   u_id: string;
   collection_id: string;
-  type: string;
+  type: ResourceType;
   title: string;
   summary: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface ResourceTag {
+  id: string;
+  resource_id: string;
+  tag_id: string;
 }
 
 export interface Link {
@@ -78,11 +87,17 @@ export interface Collection {
   created_at: string;
 }
 
+type IconName = "bookmark" | "directory" | "star" | "archive";
+
+export interface Category {
+  id: number;
+  icon: IconName;
+  count: number;
+  title: string;
+}
+
 export interface Database {
   resources: Resource[];
   collections: Collection[];
   tags: Tag[];
 }
-
-
-

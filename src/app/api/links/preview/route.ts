@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   try {
     const user = await getUserFromSession();
 
-    const { url } = await request.json();
+    const { url, title } = await request.json();
 
     if (!url || typeof url !== "string") {
       return NextResponse.json({ error: "Please provide a valid URL." }, { status: 400 });
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       success: true,
       metadata,
       analysis,
-      collections,
+      userTitle: title.trim(),
     });
   } catch (error) {
     console.error("Link preview error:", error);

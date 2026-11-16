@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import HomeHeader from "@/src/components/home/HomeHeader";
 import { Button } from "@/src/components/ui/button";
 import { Plus } from "lucide-react";
+import { addCollection, useAppDispatch } from "@/src/store/store";
 
 export default function NewCollectionPage() {
   const [collection, setCollection] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleCreate = async () => {
     const title = collection.trim();
@@ -35,8 +37,8 @@ export default function NewCollectionPage() {
         throw new Error(data.error || "Unable to create collection.");
       }
 
+      dispatch(addCollection(data.collection));      
       router.push("/collections");
-      router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong.");
     } finally {

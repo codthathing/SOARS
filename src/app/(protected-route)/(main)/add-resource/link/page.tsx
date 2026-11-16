@@ -41,6 +41,7 @@ export default function Page() {
         },
         body: JSON.stringify({
           url: url.href,
+          title: details.title
         }),
       });
 
@@ -52,7 +53,6 @@ export default function Page() {
         JSON.stringify({
           type: "link",
           ...data,
-          userTitle: details.title.trim(),
         }),
       );
 

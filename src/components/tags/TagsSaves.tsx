@@ -1,10 +1,9 @@
 "use client";
-
+import { UserResource } from "@/src/lib/db/types";
 import ResourceCard from "../common/ResourceCard";
-import type { Save } from "@/src/store/store";
 
 interface TagsSavesProps {
-  resources: Save[];
+  resources: UserResource[];
   selectedTag: string;
 }
 

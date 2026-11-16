@@ -1,12 +1,12 @@
 "use client";
 import HomeHeader from "@/src/components/home/HomeHeader";
 import ResourceCard from "@/src/components/common/ResourceCard";
-import { useAppSelector } from "@/src/store/store";
+import { selectAllResources, useAppSelector } from "@/src/store/store";
 
 export default function RecentSavesPage() {
-  const saves = useAppSelector((state) => state.saves);
+  const resources = useAppSelector(selectAllResources);
 
-  const recentSaves = [...saves].sort((a, b) => new Date(b.created_at ?? 0).getTime() - new Date(a.created_at ?? 0).getTime()).slice(0, 20);
+  const recentSaves = [...resources].sort((a, b) => new Date(b.created_at ?? 0).getTime() - new Date(a.created_at ?? 0).getTime()).slice(0, 20);
 
   return (
     <>

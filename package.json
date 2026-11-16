@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "mock-api": "json-server --watch db.json --port 4000 --host 127.0.0.1"
+    "mock-api": "json-server --port 4000 --host 127.0.0.1 db.json"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

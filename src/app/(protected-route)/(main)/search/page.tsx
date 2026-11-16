@@ -1,15 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import Filters from "@/src/components/common/FilterTabs";
 import HomeHeader from "@/src/components/home/HomeHeader";
 import SearchInput from "@/src/components/search/SearchInput";
 import SearchSaves from "@/src/components/search/SearchSaves";
-import type { Save } from "@/src/store/store";
-
-interface Collection {
-  id: string;
-  title: string;
-}
+import { selectAllCollections, selectAllResources, useAppSelector } from "@/src/store/store";
 
 const searchFilters = [
   { id: 0, text: "all" },
@@ -22,34 +17,25 @@ const searchFilters = [
 export default function SearchPage() {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("all");
-  const [resources, setResources] = useState<Save[]>([]);
-  const [collections, setCollections] = useState<Collection[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
-  useEffect(() => {
-    const loadResources = async () => {
-      try {
-        const response = await fetch("/api/resources", {
-          cache: "no-store",
-        });
-        const data = await response.json();
+  const resources = useAppSelector(selectAllResources);
+  const collections = useAppSelector(selectAllCollections);
 
-        if (!response.ok) {
-          throw new Error(data.error || "Unable to load resources.");
-        }
+  const query = search.trim().toLowerCase();
 
-        setResources(data.resources ?? []);
-        setCollections(data.collections ?? []);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unable to load resources.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const matchingCollections = useMemo(() => collections.filter((collection) => collection.title.toLowerCase().includes(query)), [collections, query]);
 
-    loadResources();
-  }, []);
+  const matchingResources = useMemo(() =>
+    resources.filter((resource) => {
+      const matchesType = (filter === "all") || (resource.type === filter.slice(0, -1));
+
+      const searchable = [resource.title, resource.summary, resource.url, resource.hostname, ...(resource.tags ?? [])].filter(Boolean).join(" ").toLowerCase();
+
+      return matchesType && searchable.includes(query);
+    }),
+  [resources, filter, query]);
+
+  const resultCount = (filter === "collections") ? matchingCollections.length : matchingResources.length;
 
   return (
     <>
@@ -61,24 +47,10 @@ export default function SearchPage() {
         <Filters filters={searchFilters} value={filter} onChange={setFilter} />
 
         <div className="text-sm font-light text-charcoal-black">
-          {loading
-            ? "Loading..."
-            : error
-              ? error
-              : filter === "collections"
-                ? `${collections.filter((collection) => collection.title.toLowerCase().includes(search.toLowerCase())).length} collections`
-                : `${
-                    resources.filter((resource) => {
-                      const matchesType = filter === "all" || resource.type === filter.slice(0, -1);
-
-                      const searchable = [resource.title, resource.summary, resource.url, resource.hostname, ...(resource.tags ?? [])].join(" ").toLowerCase();
-
-                      return matchesType && searchable.includes(search.toLowerCase());
-                    }).length
-                  } results`}
+          {filter === "collections" ? `${resultCount} collections` : `${resultCount} results`}
         </div>
 
-        {!loading && !error && <SearchSaves resources={resources} collections={collections} search={search} filter={filter} />}
+        <SearchSaves resources={matchingResources} collections={matchingCollections} filter={filter} />
       </section>
     </>
   );

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserFromSession } from "@/src/utils/getUserFromSession";
 import { db } from "@/src/lib/db/api";
-import type { Resource } from "@/src/lib/db/types";
+import type { File, Resource } from "@/src/lib/db/types";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -12,17 +12,15 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     const user = await getUserFromSession();
     const { id } = await params;
 
-    const resources = await db.get<Resource[]>(`/resources?id=${encodeURIComponent(id)}&u_id=${encodeURIComponent(user.id)}`);
+    const fileDetails = await db.get<File>(`/files/${encodeURIComponent(id)}`);
 
-    const resource = resources[0];
-
-    if (!resource || resource.type !== "file" || !resource.data) {
+    if (!fileDetails) {
       return NextResponse.json({ error: "PDF not found." }, { status: 404 });
     }
 
     const uploadDirectory = path.resolve(process.cwd(), "uploads", user.id);
 
-    const filePath = path.resolve(process.cwd(), resource.data);
+    const filePath = path.resolve(process.cwd(), fileDetails.storage_key);
 
     if (!filePath.startsWith(uploadDirectory + path.sep)) {
       return NextResponse.json({ error: "Invalid file location." }, { status: 403 });
@@ -32,7 +30,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     const download = request.nextUrl.searchParams.get("download") === "1";
 
-    const filename = `${resource.title || "document"}.pdf`.replace(/[<>:"/\\|?*\x00-\x1F]/g, "_").replace(/[\r\n]/g, "_");
+    const filename = `${fileDetails.original_filename || "document"}`.replace(/[<>:"/\\|?*\x00-\x1F]/g, "_").replace(/[\r\n]/g, "_");
 
     return new NextResponse(new Uint8Array(file), {
       status: 200,

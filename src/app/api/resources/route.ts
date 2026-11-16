@@ -1,19 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserFromSession } from "@/src/utils/getUserFromSession";
 import { db } from "@/src/lib/db/api";
-import type { Collection, Resource, Tag } from "@/src/lib/db/types";
+import type { Collection, File, Link, Note, Resource, ResourceTag, Tag } from "@/src/lib/db/types";
 import { stat } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { getUserDetails } from "@/src/utils/getUserDetails";
 
 export const runtime = "nodejs";
 
 interface SaveResourceBody {
   type: "link" | "file" | "note";
-  url?: string;
   title: string;
   summary: string;
-  text?: string;
   tags: string[];
   collection?: {
     type: "existing" | "new" | "default";
@@ -22,44 +21,51 @@ interface SaveResourceBody {
   };
   collectionId?: string | null;
   metadata?: {
-    hostname?: string;
-    description?: string;
-    image?: string;
-    favicon?: string;
+    hostname: string;
+    description: string;
+    image: string;
+    favicon: string;
+    url: string;
   };
   file?: {
     id: string;
-    name: string;
-    size: number;
+    original_filename: string;
+    mime_type: string;
+    checksum: string;
+    size_bytes: number;
     text: string;
   };
+  note?: {
+    content: string;
+    slug: string;
+  }
 }
 
+
 export async function POST(request: NextRequest) {
+  let created: string[] = [];
+
   try {
     const user = await getUserFromSession();
     const body = (await request.json()) as SaveResourceBody;
 
-    // Validate common resource fields.
     if (!["link", "file", "note"].includes(body.type) || typeof body.title !== "string" || !body.title.trim() || typeof body.summary !== "string" || !Array.isArray(body.tags)) {
       return NextResponse.json({ error: "Please provide valid resource details." }, { status: 400 });
     }
 
-    // Validate link-specific fields.
-    if (body.type === "link" && (typeof body.url !== "string" || !body.metadata?.hostname)) {
+    if (body.type === "link" && (typeof body.metadata?.url !== "string" || !body.metadata?.hostname)) {
       return NextResponse.json({ error: "Please provide valid link details." }, { status: 400 });
     }
 
-    // Validate note-specific fields.
-    if (body.type === "note" && (typeof body.text !== "string" || !body.text.trim())) {
+    if (body.type === "note" && (typeof body.note?.content !== "string" || !body.note?.content.trim())) {
       return NextResponse.json({ error: "Please provide valid note content." }, { status: 400 });
     }
 
-    // Validate uploaded PDF and verify its stored location.
+
     let storagePath: string | undefined;
 
     if (body.type === "file") {
-      if (!body.file || typeof body.file.id !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.file.id) || typeof body.file.name !== "string" || typeof body.file.size !== "number" || typeof body.file.text !== "string") {
+      if (!body.file || typeof body.file.id !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body.file.id) || typeof body.file.original_filename !== "string" || typeof body.file.size_bytes !== "number" || typeof body.file.text !== "string") {
         return NextResponse.json({ error: "Please provide valid PDF details." }, { status: 400 });
       }
 
@@ -67,48 +73,36 @@ export async function POST(request: NextRequest) {
 
       const uploadDirectory = path.resolve(process.cwd(), "uploads", user.id);
 
-      if (!absolutePath.startsWith(uploadDirectory + path.sep)) {
-        return NextResponse.json({ error: "Invalid file location." }, { status: 400 });
-      }
+      if (!absolutePath.startsWith(uploadDirectory + path.sep)) return NextResponse.json({ error: "Invalid file location." }, { status: 400 });
 
       const fileStats = await stat(absolutePath);
 
-      if (!fileStats.isFile() || fileStats.size !== body.file.size) {
-        return NextResponse.json({ error: "The uploaded PDF could not be verified." }, { status: 400 });
-      }
+      if (!fileStats.isFile() || fileStats.size !== body.file.size_bytes) return NextResponse.json({ error: "The uploaded PDF could not be verified." }, { status: 400 });
 
       storagePath = `uploads/${user.id}/${body.file.id}.pdf`;
     }
 
-    // Fetch this user's collections and tags.
-    const [collections, existingTags] = await Promise.all([db.get<Collection[]>(`/collections?u_id=${encodeURIComponent(user.id)}`), db.get<Tag[]>(`/tags?u_id=${encodeURIComponent(user.id)}`)]);
 
-    // Resolve the collection selection.
+    const [collections, existingTags] = await Promise.all([db.get<Collection[]>(`/collections?u_id=${encodeURIComponent(user.id)}`), db.get<Tag[]>(`/tags?u_id=${encodeURIComponent(user.id)}`)]);
     let collection: Collection | undefined;
+    let newCollection: Collection | undefined;
 
     if (body.collection?.type === "existing") {
       collection = collections.find((item) => item.id === body.collection?.collectionId);
 
-      if (!collection) {
-        return NextResponse.json({ error: "The selected collection does not exist." }, { status: 400 });
-      }
+      if (!collection) return NextResponse.json({ error: "The selected collection does not exist." }, { status: 400 });
     } else if (body.collectionId) {
       collection = collections.find((item) => item.id === body.collectionId);
  
-      if (!collection) {
-        return NextResponse.json({ error: "The selected collection does not exist." }, { status: 400 });
-      }
+      if (!collection)  return NextResponse.json({ error: "The selected collection does not exist." }, { status: 400 });
     } else {
       const collectionTitle = body.collection?.type === "new" ? body.collection.title.trim() : "All resources";
 
-      if (!collectionTitle) {
-        return NextResponse.json({ error: "Please provide a collection name." }, { status: 400 });
-      }
+      if (!collectionTitle) return NextResponse.json({ error: "Please provide a collection name." }, { status: 400 });
 
       // Reuse an existing collection with the same name.
       collection = collections.find((item) => item.title.toLowerCase() === collectionTitle.toLowerCase());
 
-      // Create it only when necessary.
       if (!collection) {
         collection = await db.post<Collection>("/collections", {
           id: crypto.randomUUID(),
@@ -116,71 +110,58 @@ export async function POST(request: NextRequest) {
           title: collectionTitle,
           created_at: new Date().toISOString(),
         });
+        created.push(`/collections/${collection.id}`);
+
+        newCollection = collection;
       }
     }
 
-    // Remove duplicate and empty tags.
-    const uniqueTagNames = [...new Set(
-      body.tags
-        .filter((tag) => typeof tag === "string")
-        .map((tag) => tag.trim().toLowerCase())
-        .filter(Boolean),
-    )];
 
-    // Reuse existing tags or create new ones.
-    const savedTags: Tag[] = [];
+    const resourceId: string = crypto.randomUUID();
+    const now: string = new Date().toISOString();  
+
+    const resourceData = { id: resourceId, u_id: user.id, collection_id: collection.id, type: body.type, title: body.title.trim(), summary: body.summary, created_at: now, updated_at: now } as Resource;
+    const resource = await db.post<Resource>("/resources", resourceData);
+    created.push(`/resources/${resource.id}`);
+
+
+    let resourceType: File | Note | Link;
+
+    if (body.type === "file") {      
+      resourceType = { id: resourceId, original_filename: body.file?.original_filename, storage_key: storagePath, mime_type: body.file?.mime_type, size_bytes: body.file?.size_bytes, checksum: body.file?.checksum, text: body.file?.text } as File;
+  
+      await db.post<File>("/files", resourceType);
+      created.push(`/files/${resourceType.id}`);
+    } else if (body.type === "link") {      
+      resourceType = { id: resourceId, url: body.metadata?.url, hostname: body.metadata?.hostname, description: body.metadata?.description, image: body.metadata?.image, favicon: body.metadata?.favicon } as Link;
+  
+      await db.post<Link>("/links", resourceType);
+      created.push(`/links/${resourceType.id}`);
+    } else if (body.type === "note") {      
+      resourceType = { id: resourceId, slug: body.note?.slug, content: body.note?.content } as Note;
+  
+      await db.post<Note>("/notes", resourceType);
+      created.push(`/notes/${resourceType.id}`);
+    } else {
+        return NextResponse.json({ success: false, message: "Invalid resource type." }, { status: 400 });
+    }
+
+
+    const uniqueTagNames = [...new Set(body.tags.filter((tag) => typeof tag === "string").map((tag) => tag.trim().toLowerCase()).filter(Boolean))];
+    const newTags: Tag[] = [];
 
     for (const tagName of uniqueTagNames) {
-      let tag = existingTags.find((item) => item.text.toLowerCase() === tagName);
+      let tag = existingTags.find((item) => item.text.toLowerCase() === tagName.toLowerCase());
 
       if (!tag) {
-        tag = await db.post<Tag>("/tags", {
-          id: crypto.randomUUID(),
-          u_id: user.id,
-          text: tagName,
-          created_at: new Date().toISOString(),
-        });
+        tag = await db.post<Tag>("/tags", { id: crypto.randomUUID(), u_id: user.id, text: tagName, created_at: new Date().toISOString() });
 
-        existingTags.push(tag);
+        newTags.push(tag);
       }
 
-      savedTags.push(tag);
+      const resourceTag = await db.post<ResourceTag>("/resource_tags", { id: crypto.randomUUID(), resource_id: resourceId, tag_id: tag.id });
+      created.push(`/resource_tags/${resourceTag.id}`);
     }
-
-    // Save the resource.
-    const now = new Date().toISOString();
-
-    const resourceData: Omit<Resource, "id"> & { id: string } = {
-      id: crypto.randomUUID(),
-      u_id: user.id,
-      collection_id: collection.id,
-      type: body.type,
-      title: body.title.trim(),
-      summary: body.summary.trim(),
-      tags: savedTags.map((tag) => tag.id),
-      created_at: now,
-      updated_at: now,
-
-      ...(body.type === "link" && {
-        url: body.url,
-        hostname: body.metadata?.hostname || "",
-        description: body.metadata?.description || "",
-        image: body.metadata?.image || "",
-        favicon: body.metadata?.favicon || "",
-      }),
-
-      ...(body.type === "file" && {
-        data: storagePath,
-        size: body.file?.size,
-        text: body.file?.text,
-      }),
-
-      ...(body.type === "note" && {
-        text: body.text,
-      }),
-    };
-
-    const resource = await db.post<Resource>("/resources", resourceData);
 
     return NextResponse.json(
       {
@@ -188,35 +169,27 @@ export async function POST(request: NextRequest) {
         message: "Resource saved successfully.",
         resource: {
           ...resource,
-          tagNames: savedTags.map((tag) => tag.text),
+          ...resourceType,
+          tags: uniqueTagNames,
         },
-        collection,
+        newTags,
+        newCollection,
       },
       { status: 201 },
     );
   } catch (error) {
     console.error("Save resource error:", error);
 
+    for (const path of created.reverse()) {
+      try {
+        await db.delete(path);
+      } catch (cleanupError) {
+        console.error("Rollback failed for", path, cleanupError);
+      }
+    }
+
     return NextResponse.json({error: error instanceof Error ? error.message : "Unable to save resource."}, { status: 500 });
-  }
-}
-
-export async function GET() {
-  try {
-    const user = await getUserFromSession();
-
-    const [resources, tags, collections] = await Promise.all([db.get<Resource[]>(`/resources?u_id=${encodeURIComponent(user.id)}`), db.get<Tag[]>(`/tags?u_id=${encodeURIComponent(user.id)}`), db.get<Collection[]>(`/collections?u_id=${encodeURIComponent(user.id)}`)]);
-
-    const formattedResources = resources.map((resource) => ({
-      ...resource,
-      tagIds: resource.tags,
-      tags: resource.tags.map((tagId) => tags.find((tag) => tag.id === tagId)?.text).filter((tag): tag is string => Boolean(tag)),
-    }));
-
-    return NextResponse.json({success: true, resources: formattedResources, collections});
-  } catch (error) {
-    console.error("Fetch resources error:", error);
-
-    return NextResponse.json({ error: "Unable to fetch your resources." }, { status: 500 });
+  } finally {
+    created = [];
   }
 }
