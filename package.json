@@ -10,6 +10,7 @@
     "mock-api": "json-server --port 4000 --host 127.0.0.1 db.json"
   },
   "dependencies": {
+    "@google/genai": "^3.6.0",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.4",
     "@reduxjs/toolkit": "^2.11.0",

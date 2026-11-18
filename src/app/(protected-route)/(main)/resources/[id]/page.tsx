@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import HomeHeader from "@/src/components/home/HomeHeader";
 import { Badge } from "@/src/components/ui/badge";
@@ -8,12 +8,8 @@ import { Card, CardContent, CardTitle, CardDescription } from "@/src/components/
 import { Globe, File, NotepadText, Download, ExternalLink, Folder, CalendarDays } from "lucide-react";
 import { selectAllCollections, selectAllResources, useAppSelector } from "@/src/store/store";
 import { UserResource } from "@/src/lib/db/types";
-
-const formatFileSize = (bytes: number) => {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-};
+import { useResourceOptions } from "@/src/hooks/useResourceOptions";
+import { formatFileSize } from "@/src/utils/formatFileSize";
 
 export default function ResourcePage() {
   const resources = useAppSelector(selectAllResources);
@@ -37,28 +33,7 @@ export default function ResourcePage() {
 
   const collectionTitle = collections.find((item) => item.id === resource?.collection_id)?.title ?? "Uncategorized";
 
-  const handleOpen = () => {
-    if (resource?.type === "link" && resource.url) {
-      window.open(resource.url, "_blank", "noopener,noreferrer");
-    }
-  };
-
-  const handleViewFile = () => {
-    if (resource) {
-      window.open(`/api/resources/${resource.id}/file`, "_blank");
-    }
-  };
-
-  const handleDownloadFile = () => {
-    if (resource) {
-      const link = document.createElement("a");
-      link.href = `/api/resources/${resource.id}/file?download=1`;
-      link.download = "";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    }
-  };
+  const { handleOpen, handleView, handleDownload } = useResourceOptions();
 
   const ResourceIcon = resource?.type === "file" ? File : resource?.type === "note" ? NotepadText : Globe;
 
@@ -108,11 +83,11 @@ export default function ResourcePage() {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                {resource.type === "link" && (<Button onClick={handleOpen} className="flex-1 cursor-pointer bg-brownish-amber text-white hover:bg-brownish-amber md:rounded-xl md:px-6 md:py-6 md:text-xl lg:px-5 lg:text-base">Open <ExternalLink className="ml-2 size-4" /></Button>)}
+                {resource.type === "link" && (<Button onClick={() => handleOpen(resource.url)} className="flex-1 cursor-pointer bg-brownish-amber text-white hover:bg-brownish-amber md:rounded-xl md:px-6 md:py-6 md:text-xl lg:px-5 lg:text-base">Open <ExternalLink className="ml-2 size-4" /></Button>)}
                 {resource.type === "file" && (
                   <>
-                    <Button onClick={handleViewFile} className="flex-1 cursor-pointer bg-brownish-amber/20 text-brownish-amber hover:bg-brownish-amber/20 md:rounded-xl md:px-6 md:py-6 md:text-xl lg:px-5 lg:text-base">View</Button>
-                    <Button onClick={handleDownloadFile} className="flex-1 cursor-pointer border border-soft-lavender bg-transparent text-charcoal-black hover:bg-transparent md:px-6 md:py-6 md:text-xl lg:px-5 lg:text-base">Download <Download className="ml-2 size-4" /></Button>
+                    <Button onClick={() => handleView(resource.type, resource.id)} className="flex-1 cursor-pointer bg-brownish-amber/20 text-brownish-amber hover:bg-brownish-amber/20 md:rounded-xl md:px-6 md:py-6 md:text-xl lg:px-5 lg:text-base">View</Button>
+                    <Button onClick={() => handleDownload(resource.id)} className="flex-1 cursor-pointer border border-soft-lavender bg-transparent text-charcoal-black hover:bg-transparent md:px-6 md:py-6 md:text-xl lg:px-5 lg:text-base">Download <Download className="ml-2 size-4" /></Button>
                   </>
                 )}
               </div>

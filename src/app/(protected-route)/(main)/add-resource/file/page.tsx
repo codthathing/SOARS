@@ -1,70 +1,13 @@
 "use client";
 import AddResourceTypesButtons from "@/src/components/add-resource/AddResourceTypesButtons";
 import { Button } from "@/src/components/ui/button";
+import { useFileHook } from "@/src/hooks/useFileHook";
 import { File } from "lucide-react";
-import { ChangeEventHandler, useRef, useState } from "react";
-
-const formatFileSize = (bytes: number) => {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-};
+import { useRef } from "react";
 
 export default function page() {
+  const { details, setDetails, handleFileChange, handleFileUpload } = useFileHook();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [details, setDetails] = useState({ error: "", original_filename: "upload a PDF file to save", size_bytes: "max file size: 12 MB" });
-  const [title, setTitle] = useState("");
-
-  const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
-    const selected = e.target.files?.[0];
-    if (!selected) return;
-
-    if (selected.type !== "application/pdf") {
-      setDetails((prev) => ({ ...prev, error: "Only PDF files are allowed" }));
-      return;
-    }
-
-    if (selected.size > 5 * 1024 * 1024) {
-      setDetails((prev) => ({ ...prev, error: "File must be 5MB or smaller" }));
-      return;
-    }
-
-    setDetails({ error: "", original_filename: "Processing PDF...", size_bytes: `file size: ${formatFileSize(selected.size)}` });
-
-    try {
-      const formData = new FormData();
-      formData.append("file", selected);
-      formData.append("title", title.trim());
-
-      const response = await fetch("/api/files/preview", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok)  throw new Error(data.error || "Unable to upload PDF.");
-
-      sessionStorage.setItem(
-        "soars-resource-draft",
-        JSON.stringify({
-          type: "file",
-          file: data.file,
-          analysis: data.analysis,
-          userTitle: data.userTitle,
-        }),
-      );
-
-      window.location.href = "/add-resource/preview";
-
-      setDetails({ error: "", original_filename: selected.name, size_bytes: `file size: ${formatFileSize(selected.size)}` });
-
-      // We'll connect this to the file preview page next.
-      window.location.href = "/add-resource/preview";
-    } catch (error) {
-      setDetails((prev) => ({ ...prev, error: error instanceof Error ? error.message : "Unable to upload PDF." }));
-    }
-  };
 
   return (
     <>
@@ -76,9 +19,9 @@ export default function page() {
           <h1 className="text-sm font-bold first-letter:uppercase text-charcoal-black">{details.original_filename}</h1>
           <p className="first-letter:uppercase text-charcoal-black text-xs">{details.size_bytes}</p>
         </div>
-        <Button onClick={() => fileInputRef.current?.click()} className="bg-brownish-amber/50 text-white capitalize text-sm cursor-pointer hover:bg-brownish-amber/50">upload file</Button>
+        <Button onClick={() => details.file ? handleFileUpload() : fileInputRef.current?.click()} disabled={details.loading} className="bg-brownish-amber text-white capitalize text-sm cursor-pointer hover:bg-brownish-amber">{details.file ? "upload file" : "select file"}</Button>
       </div>
-      <input type="text" name="title" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter title (optional)" className="outline-none border-none rounded-lg md:rounded-xl bg-soft-lavender/30 p-4 md:p-5 w-4/5 mt-6" />
+      <input type="text" name="title" value={details.title} onChange={(e) => setDetails((prev) => ({...prev, title: e.target.value}))} placeholder="Enter title (optional)" className="outline-none border-none rounded-lg md:rounded-xl bg-soft-lavender/30 p-4 md:p-5 w-4/5 mt-6" />
       {details.error && <p className="text-red-500 text-base">{details.error}</p>}
     </>
   );

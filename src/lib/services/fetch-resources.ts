@@ -1,3 +1,4 @@
+import "server-only";
 import { Resource, Link, File, Note, Collection, Tag, ResourceTag, UserResource, Category } from "../db/types";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;

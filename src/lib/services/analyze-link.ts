@@ -1,7 +1,7 @@
 import "server-only";
-import { askGemmaJson } from "@/src/lib/ai/gemma";
 import type { Collection } from "@/src/lib/db/types";
 import type { LinkMetadata } from "./link-preview";
+import { ai } from "../ai";
 
 export interface LinkAnalysis {
   summary: string;
@@ -68,7 +68,7 @@ export async function analyzeLink(metadata: LinkMetadata, collections: Collectio
     }
   `;
 
-  const result = await askGemmaJson<LinkAnalysis>(prompt);
+  const result = await ai.generateJSON<LinkAnalysis>(prompt);
 
   if (typeof result.summary !== "string" || !Array.isArray(result.tags) || !result.collection || !["existing", "new"].includes(result.collection.type) || typeof result.collection.title !== "string") {
     throw new Error("Gemma returned an invalid link analysis.");

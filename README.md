@@ -1,0 +1,5 @@
+- Zod schemas for AI data response and request validation
+- Perform automated tests
+- Add pagination for loading resources in bits
+- Implement a full vector-search RAG (Retrieval-Augmented Generation)
+- Implement Redux Toolkit Query or TanStack Query for server-state management

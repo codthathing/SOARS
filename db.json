@@ -15,8 +15,27 @@
       "created_at": "2026-11-12T15:28:16.708Z"
     }
   ],
-  "links": [],
-  "files": [],
+  "links": [
+    {
+      "id": "6ac8c5bc-a299-4768-95e3-4076a6d78fa4",
+      "url": "https://github.com/codthathing",
+      "hostname": "github.com",
+      "description": "Frontend Engineer.\n. codthathing has 20 repositories available. Follow their code on GitHub.",
+      "image": "https://avatars.githubusercontent.com/u/116083752?v=4?s=400",
+      "favicon": "https://github.githubassets.com/favicons/favicon.svg"
+    }
+  ],
+  "files": [
+    {
+      "id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "original_filename": "Akinwunmi_Oluwasegun_Resume.pdf",
+      "storage_key": "uploads/cb24c156-7c66-45e7-aa47-c2cd887a0551/9a4c6502-ceef-4757-bc53-a456689c02fc.pdf",
+      "mime_type": "application/pdf",
+      "size_bytes": 48125,
+      "checksum": "8364218e9b17e63282972410bc9a4fc2c7e8da9971f5973113d39c7a843e780d",
+      "text": "Akinwunmi Oluwasegun\nMOBILE-ALT +234-90-4344-5618 | Envelope codthathing.dev@yahoo.com\nEDUCATION\nUNIVERSITY OF LAGOS\nBachelor Of Science (Computer\nScience)\nNovember 2023 - 2027 | MAP-MARKER-ALT NIGERIA\nCGPA: 4.52/5.00\nLINKS\nLink LeetCode\nX @codthathing\na Github: @codthathing\n] LinkedIn: @codthathing\nLink Portfolio Website\nTECHNICAL SKILLS\nFRONTEND DEVELOPMENT\n•HTML •CSS •Tailwind CSS •Redux\nBACKEND DEVELOPMENT\n•NodeJs •MySQL •Supabase\nPROGRAMMING LANGUAGES\n• JavaScript • TypeScript • Java • C# • PHP\n• Python\nFRAMEWORKS\n•ReactJs •ExpressJs •FastAPI •NextJs\nTOOLS AND SOFTWARE\n• Git • Github • Jest • React Testing Library\n• Redux\nCOURSEWORK\n• Data Structures And Algorithm (DSA)\n• Software Engineering\n• System Analysis and Design\n• Object Oriented Programming (OOP)\nPERSONAL SKILLS\n• Analytical Problem-Solving\n• Creative UI/UX Design\n• Agile Development\nEXPERIENCE\nCALOR STICHES | FRONTEND ENGINEER ( VOLUNTEER ) Link\nWebsite\nCALENDAR-ALT June 2024 - Present\n• Built an online store for a client’s clothing brand. Moved it from React to\nNextJs and TypeScript as it grew.\n• Developed collection pages, multi-filter browsing, search, wishlist, cart, and\ncheckout UI with multiple payment options.\n• Added sign-in pop-ups, naira and dollar prices, and smooth animations that\nwork on phones and desktops.\n• Designing an offline-first cart and wishlist with DexieJs and a Spring\nBoot/PostgreSQL backend for accounts and orders.\n• Tech Stack - NextJs, TypeScript, CSS, Motion.\nBT TECHNOLOGIES LTD | NETWORK & IT SUPPORT INTERN\nCALENDAR-ALT April 2026 - July 2026\n• Installed and terminated Cat6 cabling, access points, 8+ VoIP phones and\n20+ media converters across a hospital and university campus.\n• Participated in splicing 100+ fibre cores at 20+ sites, progressing to\nindependent splicing with verified links by VFL and OTDR.\n• Found and fixed network faults in many departments, such as a fibre signal\nloss caused by a wrong splice.\n• Documented and ran integrated tests on Open Hospital (Java/Spring Boot)\nand designed an office network in Cisco Packet Tracer.\n• Skills - Fibre splicing, OTDR, VFL, LAN testing, Cisco Packet Tracer.\nPROJECTS\nSOARS Link Website a Github\n• Designed a responsive 18-page system (mobile, tablet, desktop) for\nan app to save, organize, archive and share links and files.\n• Built the frontend sub-routes covering collections, tags, search,\nfavorites, archive, trash and sharing in Next.js, TypeScript and\nTailwind.\n• Architecting the backend with Supabase authentication, an ASP.NET\nCore (C#) API, PostgreSQL for resource data, and AWS S3 for file\nstorage.\n• Tech Stack - NextJs, TypeScript, Tailwind CSS.\nFREE CHAT Link Website a Github\n• Built a responsive chat frontend in React and Tailwind with auth,\nmessaging and profile flows, using Redux for state.\n• Developed a Python backend with FastAPI and SQLAlchemy, tested\nagainst SQLite, and wrote Jest and RTL tests for the UI.\n• Structured the frontend for API integration for connection to the\nbackend with WebSockets is the next phase.\n• Tech Stack - React, Redux, Tailwind, Jest, FastAPI, SQLAlchemy."
+    }
+  ],
   "notes": [
     {
       "id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
@@ -42,6 +61,26 @@
       "summary": "The year was marked by significant personal turbulence, including a rapid breakup and the withdrawal from an internship due to mental strain and workplace friction. Despite multiple interviews for a tech breakthrough, the user remains determined to keep grinding toward financial success in the future.",
       "created_at": "2026-11-16T16:52:55.848Z",
       "updated_at": "2026-11-16T16:52:55.848Z"
+    },
+    {
+      "id": "6ac8c5bc-a299-4768-95e3-4076a6d78fa4",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "collection_id": "e46e5457-1205-4666-bdad-5868e03887c5",
+      "type": "link",
+      "title": "codthathing - Overview",
+      "summary": "This is the GitHub profile for codthathing, who identifies as a Frontend Engineer. The profile features 20 available repositories demonstrating their coding projects. This profile is ideal for organizing frontend development resources and projects.",
+      "created_at": "2026-11-18T20:20:24.182Z",
+      "updated_at": "2026-11-18T20:20:24.182Z"
+    },
+    {
+      "id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "collection_id": "e46e5457-1205-4666-bdad-5868e03887c5",
+      "type": "file",
+      "title": "Akinwunmi Oluwasegun Resume",
+      "summary": "This document is a resume detailing the academic achievements and technical skills of Akinwunmi Oluwasegun, a Computer Science student. The profile highlights expertise in frontend development using Next.js, TypeScript, and React, complemented by backend skills in Node.js and PostgreSQL. Experience includes building complex online stores and developing full-stack projects utilizing various modern frameworks and tools.",
+      "created_at": "2026-11-18T20:32:35.815Z",
+      "updated_at": "2026-11-18T20:32:35.815Z"
     }
   ],
   "resource_tags": [
@@ -69,6 +108,51 @@
       "id": "db423bed-e9e2-4664-a02c-c583ae8b46d5",
       "resource_id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
       "tag_id": "f8b87d29-3233-4bb1-a0c1-f1c16d6d3333"
+    },
+    {
+      "id": "33b606c2-8dbf-448d-8e27-63518db94db0",
+      "resource_id": "6ac8c5bc-a299-4768-95e3-4076a6d78fa4",
+      "tag_id": "13b60ad2-d717-4e1c-af7a-20638603823c"
+    },
+    {
+      "id": "d30aba6d-f5fe-4ca9-bd2a-e6f89144026c",
+      "resource_id": "6ac8c5bc-a299-4768-95e3-4076a6d78fa4",
+      "tag_id": "51ee6f1d-2f30-442c-b0fb-135350835c47"
+    },
+    {
+      "id": "330f1c0f-9cdc-4267-a8d4-ad99e7b70824",
+      "resource_id": "6ac8c5bc-a299-4768-95e3-4076a6d78fa4",
+      "tag_id": "6edb5aa7-b2bc-46e7-961f-965974ba6582"
+    },
+    {
+      "id": "9494aa97-ffc8-42d6-b081-ebaa49c701f7",
+      "resource_id": "6ac8c5bc-a299-4768-95e3-4076a6d78fa4",
+      "tag_id": "5e75ba11-b8b4-468a-82d3-8582914e191e"
+    },
+    {
+      "id": "7688502f-914e-4729-8569-57dea4546d11",
+      "resource_id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "tag_id": "d557a55c-ada1-4083-86f7-e55c0d6391b3"
+    },
+    {
+      "id": "27cd2298-8be5-434a-ab27-05703bd32d2a",
+      "resource_id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "tag_id": "3064c856-da84-4449-81a2-031d736364d7"
+    },
+    {
+      "id": "05605897-95d8-42e4-887b-4e43fc19e606",
+      "resource_id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "tag_id": "e13700ea-c4de-460d-b1a9-c8c452e75aae"
+    },
+    {
+      "id": "f406d154-6cdd-44d7-a3e5-ecd275313327",
+      "resource_id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "tag_id": "24464f70-8da2-4993-a61d-ef136b1d8a71"
+    },
+    {
+      "id": "1eb786f3-7c8a-42a5-8c90-e515a15a9a7e",
+      "resource_id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
+      "tag_id": "025c0d4c-8081-488e-ad7f-ef0bafec3d62"
     }
   ],
   "collections": [
@@ -115,6 +199,60 @@
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
       "text": "ambition",
       "created_at": "2026-11-16T16:52:56.361Z"
+    },
+    {
+      "id": "13b60ad2-d717-4e1c-af7a-20638603823c",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "frontend",
+      "created_at": "2026-11-18T20:20:24.485Z"
+    },
+    {
+      "id": "51ee6f1d-2f30-442c-b0fb-135350835c47",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "javascript",
+      "created_at": "2026-11-18T20:20:24.583Z"
+    },
+    {
+      "id": "6edb5aa7-b2bc-46e7-961f-965974ba6582",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "github",
+      "created_at": "2026-11-18T20:20:24.710Z"
+    },
+    {
+      "id": "5e75ba11-b8b4-468a-82d3-8582914e191e",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "coding",
+      "created_at": "2026-11-18T20:20:24.796Z"
+    },
+    {
+      "id": "d557a55c-ada1-4083-86f7-e55c0d6391b3",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "frontend development",
+      "created_at": "2026-11-18T20:32:35.904Z"
+    },
+    {
+      "id": "3064c856-da84-4449-81a2-031d736364d7",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "nextjs",
+      "created_at": "2026-11-18T20:32:35.967Z"
+    },
+    {
+      "id": "e13700ea-c4de-460d-b1a9-c8c452e75aae",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "typescript",
+      "created_at": "2026-11-18T20:32:36.002Z"
+    },
+    {
+      "id": "24464f70-8da2-4993-a61d-ef136b1d8a71",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "react",
+      "created_at": "2026-11-18T20:32:36.040Z"
+    },
+    {
+      "id": "025c0d4c-8081-488e-ad7f-ef0bafec3d62",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "fullstack",
+      "created_at": "2026-11-18T20:32:36.073Z"
     }
   ],
   "favorites": [

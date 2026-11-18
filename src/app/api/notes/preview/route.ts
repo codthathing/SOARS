@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserFromSession } from "@/src/utils/getUserFromSession";
 import { db } from "@/src/lib/db/api";
-import { askGemmaJson } from "@/src/lib/ai/gemma";
 import type { Collection } from "@/src/lib/db/types";
+import { ai } from "@/src/lib/ai";
 
 export const runtime = "nodejs";
 
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
       - Return JSON only.
     `;
 
-    const analysis = await askGemmaJson<NoteAnalysis>(prompt);
+    const analysis = await ai.generateJSON<NoteAnalysis>(prompt);
 
     if (!analysis || typeof analysis.summary !== "string" || !Array.isArray(analysis.tags) || !analysis.collection || !["existing", "new"].includes(analysis.collection.type) || typeof analysis.collection.title !== "string") {
       throw new Error("Gemma returned an invalid note analysis.");

@@ -17,7 +17,7 @@ export default function AuthForgotPasswordForm({ children }: { children: ReactNo
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => submitAction(() => authAuthenticateUser(values), "/auth/otp-verification", resetForm, setSubmitting, (message) => setFieldError("email", message))}
+      onSubmit={async (values, { setSubmitting, setFieldError }) => submitAction(() => authAuthenticateUser(values), "/auth/otp-verification", setSubmitting, (message) => setFieldError("email", message))}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

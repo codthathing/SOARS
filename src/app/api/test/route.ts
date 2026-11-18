@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { askGemma } from "@/src/lib/ai/gemma";
 import { getUserFromSession } from "@/src/utils/getUserFromSession";
+import { ai } from "@/src/lib/ai";
 
 export const runtime = "nodejs";
 
@@ -8,12 +8,12 @@ export async function GET() {
   try {
     await getUserFromSession();
 
-    const result = await askGemma("You are the AI assistant for SOARS, a personal digital library. " + "Suggest five relevant tags for a tutorial about React hooks. " + "Return only the five tags, separated by commas.");
+    const result = await ai.generateText("You are the AI assistant for SOARS, a personal digital library. " + "Suggest five relevant tags for a tutorial about React hooks. " + "Return only the five tags, separated by commas.");
 
     return NextResponse.json({ success: true, result });
   } catch (error) {
-    console.error("Gemma test error:", error);
+    console.error("AI provider test error: ", error);
 
-    return NextResponse.json({ error: "Unable to communicate with Gemma." }, { status: 500 });
+    return NextResponse.json({ error: error instanceof Error ? error.message : "Unable to communicate with AI provider." }, { status: 500 });
   }
 }

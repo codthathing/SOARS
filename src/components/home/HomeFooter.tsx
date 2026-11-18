@@ -11,15 +11,15 @@ const FOOTER_ICON_MAP = { "home": Home, "bookmarks": Bookmark, "search": Search,
 
 const footer: { id: number; text: FooterIconName; path: string; order?: string }[] = [
   { id: 1, text: "home", path: "/home", order: "order-1 md:order-none" },
-  // { id: 2, text: "bookmarks", path: "/bookmarks", order: "order-2 md:order-none" },
-  { id: 4, text: "search", path: "/search", order: "order-4 md:order-none" },
-  { id: 5, text: "settings", path: "/settings", order: "order-5 md:order-none" },
-  { id: 6, text: "collections", path: "/collections" },
-  { id: 7, text: "tags", path: "/tags" },
-  { id: 8, text: "soarsAI", path: "/soars-ai" },
-  // { id: 8, text: "favorites", path: "/favorites" },
-  // { id: 9, text: "archive", path: "/archive" },
-  // { id: 0, text: "trash", path: "/trash" },
+  { id: 2, text: "bookmarks", path: "/bookmarks", order: "order-2 md:order-none" },
+  { id: 3, text: "search", path: "/search", order: "order-4 md:order-none" },
+  { id: 4, text: "settings", path: "/settings", order: "order-5 md:order-none" },
+  { id: 5, text: "collections", path: "/collections" },
+  { id: 6, text: "tags", path: "/tags" },
+  { id: 7, text: "favorites", path: "/favorites" },
+  { id: 8, text: "archive", path: "/archive" },
+  { id: 9, text: "trash", path: "/trash" },
+  { id: 0, text: "soarsAI", path: "/soars-ai" },
 ];
 
 export default function HomeFooter() {
@@ -40,7 +40,7 @@ export default function HomeFooter() {
             const Icon = FOOTER_ICON_MAP[text];
 
             return (
-              <div key={id} onClick={() => router.push(path)} className={`cursor-pointer ${(text === "collections" || text === "tags" || text === "favorites" || text === "archive" || text === "trash") ? "hidden md:flex" : "flex"} ${(text === "settings") ? "flex md:hidden" : ""} ${order ? order : ""} flex-col items-center gap-y-0.5 md:flex-row md:py-2.5 md:px-4 md:rounded-lg md:gap-x-2.5 lg:gap-x-2 lg:px-3 md:w-full ${pathname.includes(path) ? "text-brownish-amber md:bg-brownish-amber/20 md:text-brownish-amber" : ""}`}>
+              <div key={id} onClick={() => router.push(path)} className={`cursor-pointer ${(text === "collections" || text === "soarsAI" || text === "tags" || text === "favorites" || text === "archive" || text === "trash") ? "hidden md:flex" : "flex"} ${(text === "settings") ? "flex md:hidden" : ""} ${order ? order : ""} flex-col items-center gap-y-0.5 md:flex-row md:py-2.5 md:px-4 md:rounded-lg md:gap-x-2.5 lg:gap-x-2 lg:px-3 md:w-full ${pathname.includes(path) ? "text-brownish-amber md:bg-brownish-amber/20 md:text-brownish-amber" : ""}`}>
                 <Icon className={"size-5 md:size-7 lg:size-5"} />
                 <span className={"capitalize leading-none text-sm md:text-xl lg:text-sm"}>{text}</span>
               </div>
@@ -61,13 +61,13 @@ export default function HomeFooter() {
       </section>
       {showOtherOptions && <div
         className={"absolute w-[87.5%] p-4 -top-24 bg-white/75 border border-brownish-amber rounded-2xl left-0 right-0 mx-auto flex justify-between md:hidden"}>
-        {footer.slice(4, 9).map(({id, text, path}) => {
+        {footer.slice(4, 10).map(({id, text, path}) => {
           const Icon = FOOTER_ICON_MAP[text];
 
           return (
             <div key={id} onClick={() => router.push(path)} className={`cursor-pointer flex flex-col items-center gap-y-0.5 ${pathname.includes(path) ? "text-brownish-amber md:bg-brownish-amber/20 md:text-brownish-amber" : ""}`}>
-              <Icon className={"size-5"}/>
-              <span className={"capitalize leading-none text-sm"}>{text}</span>
+              <Icon className={"size-4"}/>
+              <span className={"capitalize leading-none text-xs"}>{text}</span>
             </div>
           );
         })}

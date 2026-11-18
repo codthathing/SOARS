@@ -2,16 +2,11 @@
 import AddResourceTypesButtons from "@/src/components/add-resource/AddResourceTypesButtons";
 import { Button } from "@/src/components/ui/button";
 import { Plus } from "lucide-react";
-import { ChangeEventHandler, useState } from "react";
-import { useRouter } from "next/navigation";
+import { ChangeEventHandler } from "react";
+import { useNoteHook } from "@/src/hooks/useNoteHook";
 
 export default function Page() {
-  const router = useRouter();
-
-  const [details, setDetails] = useState({ title: "", note: "" });
-
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [error, setError] = useState("");
+  const { isGenerating, details, setDetails, error, setError, handleNoteSubmit } = useNoteHook();
 
   const handleInputDetails: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
     const { name, value } = e.target;
@@ -19,49 +14,6 @@ export default function Page() {
     setDetails((previous) => ({...previous, [name]: value}));
   };
 
-  const handleNoteSubmit = async () => {
-    const note = details.note.trim();
-
-    if (!note || isGenerating) return;
-
-    setIsGenerating(true);
-    setError("");
-
-    try {
-      const response = await fetch("/api/notes/preview", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: details.title,
-          content: note,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) throw new Error(data.error || "Unable to analyse your note.");
-
-      sessionStorage.setItem(
-        "soars-resource-draft",
-        JSON.stringify({
-          type: "note",
-          note: data.note,
-          analysis: data.analysis,
-          userTitle: data.userTitle,
-        }),
-      );
-
-      router.push("/add-resource/preview");
-    } catch (err) {
-      console.error("Note analysis error:", err);
-
-      setError(err instanceof Error ? err.message : "Something went wrong while analysing your note.");
-    } finally {
-      setIsGenerating(false);
-    }
-  };
 
   return (
     <>

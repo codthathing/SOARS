@@ -1,6 +1,6 @@
 import "server-only";
-import { askGemmaJson } from "@/src/lib/ai/gemma";
 import type { Collection } from "@/src/lib/db/types";
+import { ai } from "../ai";
 
 export interface FileAnalysis {
   summary: string;
@@ -80,7 +80,7 @@ export async function analyzeFile(fileName: string, extractedText: string, colle
   `;
 
 
-  const result = await askGemmaJson<FileAnalysis>(prompt);
+  const result = await ai.generateJSON<FileAnalysis>(prompt);
 
   if (typeof result.summary !== "string" || !Array.isArray(result.tags) || !result.collection || !["existing", "new"].includes(result.collection.type) || typeof result.collection.title !== "string") {
     throw new Error("Gemma returned an invalid PDF analysis.");

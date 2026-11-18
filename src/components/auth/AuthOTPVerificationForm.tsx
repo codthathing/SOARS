@@ -19,7 +19,7 @@ export default function AuthOTPVerificationForm({ children }: { children: ReactN
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (_values, { resetForm, setSubmitting }) => submitAction("/auth/reset-password", resetForm, setSubmitting)}
+      onSubmit={async (_values, { setSubmitting }) => submitAction("/auth/reset-password", setSubmitting)}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

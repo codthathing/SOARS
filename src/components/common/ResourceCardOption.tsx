@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { MoreVertical } from "lucide-react";
 import { CardFooter } from "../ui/card";
 import { UserResource } from "@/src/lib/db/types";
+import { useResourceOptions } from "@/src/hooks/useResourceOptions";
 
 interface ResourceCardOptionProps {
   id: string;
@@ -12,36 +13,7 @@ interface ResourceCardOptionProps {
 }
 
 export default function ResourceCardOption({ id, type, url }: ResourceCardOptionProps) {
-  const [showOptions, setShowOptions] = useState(false);
-  const router = useRouter();
-
-  const handleOpen = () => {
-    if (!url) return;
-
-    window.open(url, "_blank", "noopener,noreferrer");
-    setShowOptions(false);
-  };
-
-  const handleView = () => {
-    if (type === "file") {
-      window.open(`/api/resources/${id}/file`, "_blank");
-    } else {
-      router.push(`/resources/${id}`);
-    }
-
-    setShowOptions(false);
-  };
-
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = `/api/resources/${id}/file?download=1`;
-    link.download = "";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    setShowOptions(false);
-  };
+  const { handleOpen, handleView, handleDownload, showOptions, setShowOptions, handleAction } = useResourceOptions();
 
   return (
     <CardFooter className="relative h-fit md:w-5 md:p-0 lg:w-7 shrink-0">
@@ -53,9 +25,9 @@ export default function ResourceCardOption({ id, type, url }: ResourceCardOption
         <>
           <button type="button" aria-label="Close resource options" className="fixed inset-0 z-10 cursor-default" onClick={() => setShowOptions(false)} />
           <div className="absolute right-4.5 top-7 z-20 flex min-w-28 flex-col gap-y-2 rounded-lg border border-soft-lavender bg-white px-4 py-2.5 text-sm shadow-md">
-            {type === "link" && (<button type="button" onClick={handleOpen} disabled={!url} className="cursor-pointer text-left capitalize disabled:cursor-not-allowed disabled:opacity-40">Open</button>)}
-            {(type === "file" || type === "note") && (<button type="button" onClick={handleView} className="cursor-pointer text-left capitalize">View</button>)}
-            {type === "file" && (<button type="button" onClick={handleDownload} className="cursor-pointer border-t border-soft-lavender pt-2 text-left capitalize">Download</button>)}
+            {type === "link" && (<button type="button" onClick={() => handleAction(() => handleOpen(url))} disabled={!url} className="cursor-pointer text-left capitalize disabled:cursor-not-allowed disabled:opacity-40">Open</button>)}
+            {(type === "file" || type === "note") && (<button type="button" onClick={() => handleAction(() => handleView(type, id))} className="cursor-pointer text-left capitalize">View</button>)}
+            {type === "file" && (<button type="button" onClick={() => handleAction(() => handleDownload(id))} className="cursor-pointer border-t border-soft-lavender pt-2 text-left capitalize">Download</button>)}
           </div>
         </>
       )}

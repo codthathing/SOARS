@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getUserFromSession } from "@/src/utils/getUserFromSession";
-import { db } from "@/src/lib/db/api";
-import { askGemmaJson } from "@/src/lib/ai/gemma";
-import type { Resource, Collection, Tag } from "@/src/lib/db/types";
+import { fetchResources } from "@/src/lib/services/fetch-resources";
+import { ai } from "@/src/lib/ai";
 
 export const runtime = "nodejs";
 
@@ -21,40 +20,37 @@ export async function POST(request: NextRequest) {
 
     const prompt = typeof body.prompt === "string" ? body.prompt.trim() : "";
 
-    if (!prompt) {
-      return NextResponse.json({ error: "Please enter a question." }, { status: 400 });
-    }
+    if (!prompt)  return NextResponse.json({ error: "Please enter a question." }, { status: 400 });
 
-    if (prompt.length > 2000) {
-      return NextResponse.json({ error: "Your prompt is too long." }, { status: 400 });
-    }
+    if (prompt.length > 2000) return NextResponse.json({ error: "Your prompt is too long." }, { status: 400 });
 
-    const [resources, collections, tags] = await Promise.all([db.get<Resource[]>(`/resources?u_id=${encodeURIComponent(user.id)}`), db.get<Collection[]>(`/collections?u_id=${encodeURIComponent(user.id)}`), db.get<Tag[]>(`/tags?u_id=${encodeURIComponent(user.id)}`)]);
+    const {resources, collections, tags} = await fetchResources(user.id);
 
     const resourceContext = resources.map((resource) => {
       const collection = collections.find((item) => item.id === resource.collection_id);
-
-      const resourceTags = resource.tags.map((tagId) => tags.find((tag) => tag.id === tagId)?.text).filter(Boolean);
 
       return {
         id: resource.id,
         type: resource.type,
         title: resource.title,
         summary: resource.summary,
-        description: resource.description || "",
-        tags: resourceTags,
+        tags: resource.tags,
         collection: collection?.title || "All resources",
-        content: resource.text?.slice(0, 5000) || "",
+
+        // Link-specific field details
         url: resource.type === "link" ? resource.url : undefined,
+        description: resource?.description || "",
+
+        // File-specific field details
+        text: resource?.text || "",
+
+        // Note-specific field details
+        content: resource?.content || "",
       };
     });
 
     if (resourceContext.length === 0) {
-      return NextResponse.json({
-        success: true,
-        answer: "You haven't saved any resources yet. Start adding links, files and notes to your SOARS library, and I'll help you find them.",
-        resources: [],
-      });
+      return NextResponse.json({ success: true, answer: "You haven't saved any resources yet. Start adding links, files and notes to your SOARS library, and I'll help you find them.", resources: [] });
     }
 
     const aiPrompt = `
@@ -94,51 +90,34 @@ export async function POST(request: NextRequest) {
       - Return JSON only.
     `;
 
-    const aiResult = await askGemmaJson<AIResult>(aiPrompt);
+    const aiResult = await ai.generateJSON<AIResult>(aiPrompt);
 
     if (!aiResult || typeof aiResult.answer !== "string" || !Array.isArray(aiResult.matches)) {
       throw new Error("SOARS AI returned an invalid response.");
     }
 
-    // Resolve only IDs belonging to the authenticated user's library.
-    const matchedResources = aiResult.matches
-      .filter((match) => match && typeof match.resourceId === "string" && typeof match.reason === "string")
-      .slice(0, 10)
-      .map((match) => {
-        const resource = resources.find((item) => item.id === match.resourceId);
+    const matchedResources = aiResult.matches.filter((match) => match && typeof match.resourceId === "string" && typeof match.reason === "string").slice(0, 10).map((match) => {
+      const resource = resources.find((item) => item.id === match.resourceId);
 
-        if (!resource) return null;
+      if (!resource) return null;
 
-        const collection = collections.find((item) => item.id === resource.collection_id);
+      const collection = collections.find((item) => item.id === resource.collection_id);
 
-        const resourceTags = resource.tags.map((tagId) => tags.find((tag) => tag.id === tagId)?.text).filter((tag): tag is string => Boolean(tag));
+      return {
+        id: resource.id,
+        type: resource.type,
+        title: resource.title,
+        summary: resource.summary,
+        tags: resource.tags,
+        collection: collection?.title || "All resources",
+        reason: match.reason,
+        url: resource.type === "link" ? resource.url : undefined,
+        viewUrl: resource.type === "file" ? `/api/resources/${resource.id}/file` : resource.type === "note" ? `/resources/${resource.id}` : undefined,
+        downloadUrl: resource.type === "file" ? `/api/resources/${resource.id}/file?download=1` : undefined,
+      };
+    }).filter((resource) => resource !== null);
 
-        return {
-          id: resource.id,
-          type: resource.type,
-          title: resource.title,
-          summary: resource.summary,
-          tags: resourceTags,
-          collection: collection?.title || "All resources",
-          reason: match.reason,
-
-          // Links open their original destination.
-          // Files use the protected PDF endpoint.
-          // Notes use the resource detail page.
-          url: resource.type === "link" ? resource.url : undefined,
-
-          viewUrl: resource.type === "file" ? `/api/resources/${resource.id}/file` : resource.type === "note" ? `/resources/${resource.id}` : undefined,
-
-          downloadUrl: resource.type === "file" ? `/api/resources/${resource.id}/file?download=1` : undefined,
-        };
-      })
-      .filter((resource) => resource !== null);
-
-    return NextResponse.json({
-      success: true,
-      answer: aiResult.answer,
-      resources: matchedResources,
-    });
+    return NextResponse.json({ success: true, answer: aiResult.answer, resources: matchedResources });
   } catch (error) {
     console.error("SOARS AI error:", error);
 

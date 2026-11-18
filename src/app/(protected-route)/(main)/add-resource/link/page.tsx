@@ -2,16 +2,11 @@
 import AddResourceTypesButtons from "@/src/components/add-resource/AddResourceTypesButtons";
 import { Button } from "@/src/components/ui/button";
 import { LinkIcon, Plus } from "lucide-react";
-import { ChangeEventHandler, useState } from "react";
-import { useRouter } from "next/navigation";
+import { ChangeEventHandler } from "react";
+import { useLinkHook } from "@/src/hooks/useLinkHook";
 
 export default function Page() {
-  const router = useRouter();
-
-  const [details, setDetails] = useState({ link: "", title: "" });
-
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const { error, setError, details, setDetails, loading, handleLinkSubmit } = useLinkHook();
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const { name, value } = e.target;
@@ -19,50 +14,6 @@ export default function Page() {
     setDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLinkSubmit = async () => {
-    setError("");
-
-    const trimmedLink = details.link.trim();
-    const linkWithProtocol = /^https?:\/\//i.test(trimmedLink) ? trimmedLink : `https://${trimmedLink}`;
-
-    try {
-      const url = new URL(linkWithProtocol);
-
-      if (!url.hostname.includes(".")) {
-        throw new Error("Please enter a valid URL.");
-      }
-
-      setLoading(true);
-
-      const response = await fetch("/api/links/preview", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          url: url.href,
-          title: details.title
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok)  throw new Error(data.error || "Unable to generate link preview.");
-
-      sessionStorage.setItem("soars-resource-draft",
-        JSON.stringify({
-          type: "link",
-          ...data,
-        }),
-      );
-
-      router.push("/add-resource/preview");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <>

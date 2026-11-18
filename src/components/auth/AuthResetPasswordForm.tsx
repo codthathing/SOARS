@@ -18,7 +18,7 @@ export default function AuthResetPasswordForm({ children }: { children: ReactNod
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => submitAction(() => authResetPassword(values.password), "/auth/sign-in", resetForm, setSubmitting, (message) => setFieldError("password", message))}
+      onSubmit={async (values, { setSubmitting, setFieldError }) => submitAction(() => authResetPassword(values.password), "/auth/sign-in", setSubmitting, (message) => setFieldError("password", message))}
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}

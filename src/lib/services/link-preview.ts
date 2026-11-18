@@ -1,5 +1,4 @@
 import "server-only";
-
 import { lookup } from "node:dns/promises";
 import * as ipaddr from "ipaddr.js";
 import { load } from "cheerio";

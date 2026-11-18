@@ -1,3 +1,4 @@
+import "server-only";
 import { fetchResources } from "../lib/services/fetch-resources";
 import { getUserFromSession } from "./getUserFromSession"
 
