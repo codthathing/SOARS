@@ -22,7 +22,7 @@ export default function AuthSignUpForm({ children }: { children: ReactNode }) {
       validationSchema={validationSchema}
       validateOnBlur={false}
       validateOnChange={true}
-      onSubmit={async (values, { resetForm, setSubmitting, setFieldError }) => await submitAction(() => authSignUp(values), "/auth/sign-in", resetForm, setSubmitting, (message) => setFieldError("name", message))}
+      onSubmit={async (values, { setSubmitting, setFieldError }) => await submitAction(() => authSignUp(values), "/auth/sign-in", setSubmitting, (message) => setFieldError("name", message))}
     >
       {(formik) => (
         <Form className="flex flex-col w-full gap-y-8 mt-4 mb-2.5 md:gap-y-10">

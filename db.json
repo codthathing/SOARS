@@ -41,6 +41,11 @@
       "id": "57d8671c-ecee-4330-b826-9b4fa9af9830",
       "slug": "year-of-roller-coasters-and-unwavering-grind",
       "content": "This year had a lot of roller coaster in store for me, I mean I went from having a girlfriend and being happy with her to breaking up within 2 months, had a internship but had to quit because it was taking a toll on me mentally and several frictions in the workplace, got several interviews and thought this is  the year I was going to breakout in tech but still none, I hope next year becomes better but all I know is that I won't stop grinding until I become filthy rich."
+    },
+    {
+      "id": "e70afece-1021-46aa-b8f4-24f73c846796",
+      "slug": "reflections-on-colonization-and-resistance",
+      "content": "I want to talk about the past. I want to talk about when the whites infiltrated our countries. I want to talk about how the whites forced their believes on us. I want to talk about how the whites enslaved our people. I want to talk about how people where punished if they didn't obey. I want to talk about how there was hunger in our lands. I want to talk about how some of us fought and conquered. That's all I want to talk about."
     }
   ],
   "note_versions": [
@@ -81,6 +86,16 @@
       "summary": "This document is a resume detailing the academic achievements and technical skills of Akinwunmi Oluwasegun, a Computer Science student. The profile highlights expertise in frontend development using Next.js, TypeScript, and React, complemented by backend skills in Node.js and PostgreSQL. Experience includes building complex online stores and developing full-stack projects utilizing various modern frameworks and tools.",
       "created_at": "2026-11-18T20:32:35.815Z",
       "updated_at": "2026-11-18T20:32:35.815Z"
+    },
+    {
+      "id": "e70afece-1021-46aa-b8f4-24f73c846796",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "collection_id": "dd9340b8-3217-46f2-825d-c1587f2b42fd",
+      "type": "note",
+      "title": "Reflections on Colonization and Resistance",
+      "summary": "The note reflects on the historical impact of colonization, including forced beliefs, slavery, punishment, and hunger, as well as the resistance and triumphs of the people who fought back.",
+      "created_at": "2026-11-18T22:55:55.165Z",
+      "updated_at": "2026-11-18T22:55:55.165Z"
     }
   ],
   "resource_tags": [
@@ -153,6 +168,26 @@
       "id": "1eb786f3-7c8a-42a5-8c90-e515a15a9a7e",
       "resource_id": "000d1eaa-0225-413a-ae7a-fe39b7126f3b",
       "tag_id": "025c0d4c-8081-488e-ad7f-ef0bafec3d62"
+    },
+    {
+      "id": "b54a3e7c-ba21-4a0e-a28b-bd91ba8b2301",
+      "resource_id": "e70afece-1021-46aa-b8f4-24f73c846796",
+      "tag_id": "c2adbd6e-ef84-44cb-a14b-3d6a6aaddba0"
+    },
+    {
+      "id": "1c2287ef-cdfa-4730-8417-819ac2105925",
+      "resource_id": "e70afece-1021-46aa-b8f4-24f73c846796",
+      "tag_id": "b5634546-ec5b-4a1b-a8d0-bbd002a83a99"
+    },
+    {
+      "id": "39f99f66-bc2c-43fe-9190-c42f4025da19",
+      "resource_id": "e70afece-1021-46aa-b8f4-24f73c846796",
+      "tag_id": "ba7c535d-4d2d-49f6-aa42-b1a1085969ef"
+    },
+    {
+      "id": "7d096bd2-2035-4082-ab89-7f414a371e2e",
+      "resource_id": "e70afece-1021-46aa-b8f4-24f73c846796",
+      "tag_id": "70866c0c-245c-4738-bcb1-59b09be19f25"
     }
   ],
   "collections": [
@@ -167,6 +202,12 @@
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
       "title": "Frontend Engineering",
       "created_at": "2026-11-16T16:53:45.203Z"
+    },
+    {
+      "id": "dd9340b8-3217-46f2-825d-c1587f2b42fd",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "title": "History and Reflections",
+      "created_at": "2026-11-18T22:55:54.970Z"
     }
   ],
   "tags": [
@@ -253,6 +294,30 @@
       "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
       "text": "fullstack",
       "created_at": "2026-11-18T20:32:36.073Z"
+    },
+    {
+      "id": "c2adbd6e-ef84-44cb-a14b-3d6a6aaddba0",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "history",
+      "created_at": "2026-11-18T22:55:55.234Z"
+    },
+    {
+      "id": "b5634546-ec5b-4a1b-a8d0-bbd002a83a99",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "colonization",
+      "created_at": "2026-11-18T22:55:55.292Z"
+    },
+    {
+      "id": "ba7c535d-4d2d-49f6-aa42-b1a1085969ef",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "resistance",
+      "created_at": "2026-11-18T22:55:55.370Z"
+    },
+    {
+      "id": "70866c0c-245c-4738-bcb1-59b09be19f25",
+      "u_id": "cb24c156-7c66-45e7-aa47-c2cd887a0551",
+      "text": "slavery",
+      "created_at": "2026-11-18T22:55:55.479Z"
     }
   ],
   "favorites": [

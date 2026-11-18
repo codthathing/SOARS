@@ -1,8 +1,10 @@
+"use client";
 import BookmarksSaves from "@/src/components/bookmarks/BookmarksSaves";
 import Filters from "@/src/components/common/FilterTabs";
 import Input from "@/src/components/common/Input";
 import HomeHeader from "@/src/components/home/HomeHeader";
 import { Filter } from "lucide-react";
+import { useState } from "react";
 
 const bookmarkFilters = [
   {id: 0, text: "all"},
@@ -12,6 +14,8 @@ const bookmarkFilters = [
 ]
 
 export default function BookmarksPage() {
+  const [filter, setFilter] = useState("all");
+
   return (
     <>
       <HomeHeader topic="bookmarks" showAvatar={true} showArrowLeft={false} />
@@ -20,7 +24,7 @@ export default function BookmarksPage() {
           <Input placeholder="Search bookmarks" />
           <div className="flex items-center gap-x-2 bg-transparent text-charcoal-black border border-soft-lavender px-4 py-2.5 md:px-5 md:py-3.5 lg:px-6.5 rounded-lg md:rounded-xl"><Filter className="size-4 md:size-5 lg:size-4.5" /><span className="capitalize font-bold text-sm md:text-xl lg:text-lg">filter</span></div>
         </div>
-        <Filters filters={bookmarkFilters} />
+        <Filters filters={bookmarkFilters} value={filter} onChange={setFilter} />
         <BookmarksSaves />
       </section>
     </>
